@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Edge.cs" />
+    <Compile Include="Assets\Script\ScrollCamera.cs" />
     <Compile Include="Assets\Script\Shark.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/fatih/Documents/GitHub/BigBite/BigBite/BigBite/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
