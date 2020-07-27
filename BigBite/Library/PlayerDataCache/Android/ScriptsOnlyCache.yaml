@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - DestroyLine
     - ScrollCamera
     - Shark
     Unity.DeviceSimulator.Editor.dll:
@@ -46,7 +47,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 12856}
+      Script: {instanceID: 12642}
+    - Class: 114
+      Script: {instanceID: 12858}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -360,6 +363,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DestroyLine
   - hash:
       serializedVersion: 2
       Hash: ae83e830e7a90c0aff918c4c2e520825

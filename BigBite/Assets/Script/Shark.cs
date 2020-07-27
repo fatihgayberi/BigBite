@@ -25,7 +25,7 @@ public class Shark : MonoBehaviour
         mana = 0;
         speed = 5f;
         speedModifier = 0.005f;
-        seaPositionZ = 16;
+        seaPositionZ = 8.5f;
         seconds = 0;
         endedGameTimer = 5f;
         moveOn = false;
@@ -133,7 +133,7 @@ public class Shark : MonoBehaviour
     {
         if (seconds > endedGameTimer && !gameFinish)
         {
-            GameObject.Instantiate(finish, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
+            GameObject.Instantiate(finish, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
             gameFinish = true;
         }
     }
