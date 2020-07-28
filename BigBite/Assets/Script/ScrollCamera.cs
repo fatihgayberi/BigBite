@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ScrollCamera : MonoBehaviour
 {
+    Shark shark;
     // Start is called before the first frame update
     void Start()
     {
-
+        shark = FindObjectOfType<Shark>();
     }
 
     // Update is called once per frame
@@ -18,6 +19,6 @@ public class ScrollCamera : MonoBehaviour
 
     void CameraPosition()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Player").transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, shark.getShark().transform.position.z);
     }
 }

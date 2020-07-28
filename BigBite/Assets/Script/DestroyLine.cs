@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class DestroyLine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        transform.position = new Vector3(transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Player").transform.position.z - 11.5f);
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        Destroy(other.gameObject);
+        if (collision.gameObject.name.Contains("Sea"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }

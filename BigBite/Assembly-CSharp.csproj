@@ -66,6 +66,7 @@
     <Compile Include="Assets\Script\DestroyLine.cs" />
     <Compile Include="Assets\Script\ScrollCamera.cs" />
     <Compile Include="Assets\Script\Shark.cs" />
+    <Compile Include="Assets\Script\Try.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/fatih/Documents/GitHub/BigBite/BigBite/BigBite/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

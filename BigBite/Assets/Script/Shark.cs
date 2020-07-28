@@ -11,16 +11,19 @@ public class Shark : MonoBehaviour
     float seaPositionZ;
     float seconds;
     float endedGameTimer;
+    int sharkIndex;
 
-    public GameObject sea;
+    public GameObject[] sea;
+    public GameObject[] shark;
+    private GameObject playerShark;
     public GameObject finish;
 
     bool moveOn;
     bool gameFinish;
 
-    // Start is called before the first frame update
     void Start()
     {
+        sharkIndex = 3;
         health = 100;
         mana = 0;
         speed = 5f;
@@ -30,6 +33,8 @@ public class Shark : MonoBehaviour
         endedGameTimer = 5f;
         moveOn = false;
         gameFinish = false;
+        CreatePlayer(3);
+        //playerShark = shark[sharkIndex];
     }
 
     void FixedUpdate()
@@ -44,6 +49,14 @@ public class Shark : MonoBehaviour
         SecondCounter();
     }
 
+    void CreatePlayer(int sharkIndex)
+    {
+        playerShark = Instantiate(shark[sharkIndex], new Vector3(0, 0.5f, 0), Quaternion.identity);//playerShark.transform.rotation * Quaternion.Euler(-90, -90, 0));//new rota //Quaternion(-90, -90, 0));
+    }
+    public GameObject getShark()
+    {
+        return playerShark;
+    }
     public float getHealth()
     {
         return health;
@@ -92,19 +105,22 @@ public class Shark : MonoBehaviour
     {
         if (moveOn)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
+            playerShark.transform.position = new Vector3(playerShark.transform.position.x, playerShark.transform.position.y, playerShark.transform.position.z + speed * Time.deltaTime);
         }
     }
 
+    // yeni bir sea olusturur
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
         {
-            GameObject.Instantiate(sea, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
+            GameObject seaObject = sea[Random.Range(0, sea.Length)];
+            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
             seaPositionZ += 6;
         }
     }    
 
+    // kenarlara degdigi surece hızını dusurur
     void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.name.Contains("Edge"))
@@ -113,6 +129,7 @@ public class Shark : MonoBehaviour
         }
     }
 
+    // kenarlara degmeyi bitirdigini kontrol eder
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.name.Contains("Edge"))
@@ -121,6 +138,7 @@ public class Shark : MonoBehaviour
         }
     }
 
+    // oyunun suresini tutar
     void SecondCounter()
     {
         if (moveOn)
@@ -129,6 +147,7 @@ public class Shark : MonoBehaviour
         }
     }
 
+    // oyunu bitirir
     void GameFinish()
     {
         if (seconds > endedGameTimer && !gameFinish)
