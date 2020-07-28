@@ -11,19 +11,18 @@ public class Shark : MonoBehaviour
     float seaPositionZ;
     float seconds;
     float endedGameTimer;
-    int sharkIndex;
 
     public GameObject[] sea;
-    public GameObject[] shark;
     private GameObject playerShark;
     public GameObject finish;
 
     bool moveOn;
     bool gameFinish;
 
+    SharkCreate sharkCreate;
+
     void Start()
     {
-        sharkIndex = 3;
         health = 100;
         mana = 0;
         speed = 5f;
@@ -33,8 +32,7 @@ public class Shark : MonoBehaviour
         endedGameTimer = 5f;
         moveOn = false;
         gameFinish = false;
-        CreatePlayer(3);
-        //playerShark = shark[sharkIndex];
+        sharkCreate = FindObjectOfType<SharkCreate>();
     }
 
     void FixedUpdate()
@@ -49,13 +47,13 @@ public class Shark : MonoBehaviour
         SecondCounter();
     }
 
-    void CreatePlayer(int sharkIndex)
-    {
-        playerShark = Instantiate(shark[sharkIndex], new Vector3(0, 0.5f, 0), Quaternion.identity);//playerShark.transform.rotation * Quaternion.Euler(-90, -90, 0));//new rota //Quaternion(-90, -90, 0));
-    }
     public GameObject getShark()
     {
         return playerShark;
+    }
+    public GameObject setShark(GameObject playerShark)
+    {
+        return this.playerShark = playerShark;
     }
     public float getHealth()
     {
@@ -105,7 +103,7 @@ public class Shark : MonoBehaviour
     {
         if (moveOn)
         {
-            playerShark.transform.position = new Vector3(playerShark.transform.position.x, playerShark.transform.position.y, playerShark.transform.position.z + speed * Time.deltaTime);
+            sharkCreate.getSharkPlayer().transform.position =  new Vector3(sharkCreate.getSharkPlayer().transform.position.x, sharkCreate.getSharkPlayer().transform.position.y, sharkCreate.getSharkPlayer().transform.position.z + speed * Time.deltaTime);
         }
     }
 
