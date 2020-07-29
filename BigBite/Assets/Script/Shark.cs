@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Shark : MonoBehaviour
 {
-    float health;
-    float mana;
-    public float speed;
-    float speedModifier;
-    float seaPositionZ;
-    float seconds;
-    float endedGameTimer;
-
-    public GameObject[] sea;
-    private GameObject playerShark;
-    public GameObject finish;
-
-    bool moveOn;
-    bool gameFinish;
-
+    Sea seaClassObject;
     SharkCreate sharkCreate;
+
+    float health; // oyuncunun canini saklar
+    float mana; // oyuncunun mana gucunu tutar
+    public float speed; // oyuncunun hizini saklar
+    float speedModifier; // ekranda kaydırma islemi hassasiyetini saglar
+    float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
+    float seconds; // oyunun icindeki gecen zamani saklar
+    float endedGameTimer; // oyunun ne zaman bietecegini saklar
+
+    public GameObject[] sea; // sea prefablarını tutan array unity uzerinden duzenlenir
+    public GameObject finish; // bitis prefabı unity uzerinden atamasi yapilir
+
+    bool moveOn; // oyuna dokunmadan baslamasini engeller
+    bool gameFinish; // oyunun bitisini saglar
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class Shark : MonoBehaviour
         endedGameTimer = 30f;
         moveOn = false;
         gameFinish = false;
+        seaClassObject = FindObjectOfType<Sea>();
         sharkCreate = FindObjectOfType<SharkCreate>();
     }
 
@@ -46,41 +47,6 @@ public class Shark : MonoBehaviour
         GameFinish();
         SecondCounter();
     }
-
-    public GameObject getShark()
-    {
-        return playerShark;
-    }
-    public GameObject setShark(GameObject playerShark)
-    {
-        return this.playerShark = playerShark;
-    }
-    public float getHealth()
-    {
-        return health;
-    }
-    public float setHealth(float health)
-    {
-        return this.health = health;
-         
-    }
-    public float getMana()
-    {
-        return mana;
-    }
-    public float setMana(float mana)
-    {
-        return this.mana = mana;
-    }
-    public float getSpeed()
-    {
-        return speed;
-    }
-    public float setSpeed(float speed)
-    {
-        return this.speed = speed;
-    }
-
 
     // sag sol yapmasini saglar
     void Move()
@@ -116,6 +82,16 @@ public class Shark : MonoBehaviour
             Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
             seaPositionZ += 6;
         }
+
+        for (int i = 0; i < seaClassObject.seaObject.Count; i++)
+        {
+            if (other.transform.name.Contains(seaClassObject.seaObject[i].getSeaGameObject().name))
+            {
+                health -= seaClassObject.seaObject[i].getPoweOfObject();
+                break;
+            }
+        }
+        Debug.Log("health: " + health);
     }    
 
     // kenarlara degdigi surece hızını dusurur
@@ -154,4 +130,5 @@ public class Shark : MonoBehaviour
             gameFinish = true;
         }
     }
+
 }

@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ScrollCamera : MonoBehaviour
 {
-    Shark shark;
     SharkCreate sharkCreate;
 
     void Start()
     {
         sharkCreate = FindObjectOfType<SharkCreate>();
-        shark = FindObjectOfType<Shark>();
     }
 
     void Update()
@@ -18,6 +16,7 @@ public class ScrollCamera : MonoBehaviour
         CameraPosition();
     }
 
+    // main camera nin pozisyonunu gunceller
     void CameraPosition()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, sharkCreate.getSharkPlayer().transform.position.z);

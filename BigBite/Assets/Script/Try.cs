@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Try : MonoBehaviour
 {
+
+    /* DENEME SCRIPT */
+
     // Start is called before the first frame update
     void Start()
     {

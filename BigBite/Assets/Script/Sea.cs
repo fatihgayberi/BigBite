@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Sea : MonoBehaviour
 {
-    public GameObject[] seaObjectArray;
-    public List<SeaObject> seaObject = new List<SeaObject>();
-    int level;
-    static float positionZ = 1.5f;
+    public GameObject[] seaObjectArray; // unity uzerinden engeller eklenir
+    public List<SeaDamageObject> seaObject = new List<SeaDamageObject>(); // engellerin ozelliklerini tutan list
+    int level; // oyuncunun levelini tutar
+    static float positionZ = 1.5f; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
 
     void Start()
     {
@@ -21,14 +21,16 @@ public class Sea : MonoBehaviour
         
     }
 
+    // engelleri list e ekler
     void LevelAddOject()
     {
-        seaObject.Add(new SeaObject(seaObjectArray[0], 5, 1)); // 0-10 bölüm arası basit bölümlerden oluşacak
-        seaObject.Add(new SeaObject(seaObjectArray[1], 10, 2)); // 10 - 15 bölüm arası kutular dahil edilecek
-        seaObject.Add(new SeaObject(seaObjectArray[2], 15, 3)); // 15 - 20 bölüm arası mayın dahil edilecek
-        seaObject.Add(new SeaObject(seaObjectArray[3], 20, 4)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
+        seaObject.Add(new SeaDamageObject(seaObjectArray[0], 5, 1)); // 0-10 bölüm arası basit bölümlerden oluşacak
+        seaObject.Add(new SeaDamageObject(seaObjectArray[1], 10, 2)); // 10 - 15 bölüm arası kutular dahil edilecek
+        seaObject.Add(new SeaDamageObject(seaObjectArray[2], 15, 3)); // 15 - 20 bölüm arası mayın dahil edilecek
+        seaObject.Add(new SeaDamageObject(seaObjectArray[3], 20, 4)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
     }
 
+    // level seviyesine gore spawn edilecek olan engelli belirler
     void SpawnObject()
     {
 
@@ -50,12 +52,11 @@ public class Sea : MonoBehaviour
         }
     }
 
+    // randrom olarak engeller olusturur
     void RandomSeaObjectGenerator(int lvl)
     {
         for (int i = 0; i < 3; i++)
         {
-            //Instantiate(seaObject[Random.Range(0, 3)].getSeaGameObject(), new Vector3(Random.Range(-10.0f, 10.0f), 0.3f, i), Quaternion.identity);
-            //Instantiate(seaObject[2].getSeaGameObject(), new Vector3(Random.Range(-1, 2), 0.3f, positionZ), Quaternion.identity);
             Instantiate(seaObject[Random.Range(0, lvl)].getSeaGameObject(), new Vector3(Random.Range(-1f, 1f), 0.3f, positionZ), Quaternion.identity);
             positionZ += 2f;
         }
