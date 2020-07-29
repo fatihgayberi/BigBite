@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\DestroyLine.cs" />
     <Compile Include="Assets\Script\ScrollCamera.cs" />
+    <Compile Include="Assets\Script\Sea.cs" />
     <Compile Include="Assets\Script\SeaObject.cs" />
     <Compile Include="Assets\Script\Shark.cs" />
     <Compile Include="Assets\Script\SharkCreate.cs" />

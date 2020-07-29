@@ -102,6 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122361603407977780}
+  - component: {fileID: 5809653418353505034}
   m_Layer: 0
   m_Name: Sea1
   m_TagString: Untagged
@@ -137,6 +138,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5809653418353505034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351547483721937508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d6aa4fb84282b44bcf8f4835eb1925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seaObjectArray:
+  - {fileID: 3379543164016507901, guid: 754cafcf1d239d9469da2cba009476f8, type: 3}
+  - {fileID: 1227382470880466622, guid: c12c50d72766e2c49b53f8570ac39dfc, type: 3}
+  - {fileID: 2743716779486194460, guid: 4d631bf689b3fea4cb6fc2b49c644484, type: 3}
+  - {fileID: 3969130605918699219, guid: 2ef76eae33f369043b89f15777002162, type: 3}
 --- !u!1001 &537515823069420612
 PrefabInstance:
   m_ObjectHideFlags: 0

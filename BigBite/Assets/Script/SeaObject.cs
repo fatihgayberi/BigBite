@@ -2,18 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeaObject : MonoBehaviour
+[SerializeField]
+public class SeaObject
 {
-    List<SeaObject> levelBasic = new List<SeaObject>();
-    // Start is called before the first frame update
-    void Start()
+    public GameObject seaGameObject;
+    public float powerOfObject;
+    public int levelRating;
+
+    public SeaObject(GameObject seaGameObject, float powerOfObject, int levelRating)
     {
-        
+        this.seaGameObject = seaGameObject;
+        this.powerOfObject = powerOfObject;
+        this.levelRating = levelRating;
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject getSeaGameObject()
     {
-        
+        return seaGameObject;
+    }
+    public float getPoweOfObject()
+    {
+        return powerOfObject;
+    }
+    public int getLevelRating()
+    {
+        return levelRating;
     }
 }

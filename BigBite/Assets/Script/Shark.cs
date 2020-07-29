@@ -29,7 +29,7 @@ public class Shark : MonoBehaviour
         speedModifier = 0.005f;
         seaPositionZ = 8.5f;
         seconds = 0;
-        endedGameTimer = 5f;
+        endedGameTimer = 30f;
         moveOn = false;
         gameFinish = false;
         sharkCreate = FindObjectOfType<SharkCreate>();

@@ -12,14 +12,14 @@ public class SharkCreate : MonoBehaviour
     void Start()
     {
         shark = FindObjectOfType<Shark>();
-        sharkIndex = 1;
+        sharkIndex = 2;
         CreatePlayer(sharkIndex);
     }
 
     void CreatePlayer(int sharkIndex)
     {
         sharkPlayer =  Instantiate(sharkArray[sharkIndex], new Vector3(0, 0.5f, 0), Quaternion.Euler(new Vector3(-90, -90, 0)));
-        transform.parent = shark.transform;
+        transform.parent = sharkPlayer.transform;
     }
 
     public GameObject getSharkPlayer()
