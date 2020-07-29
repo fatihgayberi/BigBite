@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2122361603407977780}
   - component: {fileID: 5809653418353505034}
+  - component: {fileID: 5325630894719290077}
   m_Layer: 0
   m_Name: Sea1
   m_TagString: Untagged
@@ -157,6 +158,19 @@ MonoBehaviour:
   - {fileID: 3969130605918699219, guid: 2ef76eae33f369043b89f15777002162, type: 3}
   seaAdvantageObjectArray:
   - {fileID: 7784405545659452887, guid: caf3acea7fa575a41bd86efc6d9e0c74, type: 3}
+--- !u!65 &5325630894719290077
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2351547483721937508}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1, z: 6}
+  m_Center: {x: 0, y: -0.6, z: 0}
 --- !u!1001 &537515823069420612
 PrefabInstance:
   m_ObjectHideFlags: 0

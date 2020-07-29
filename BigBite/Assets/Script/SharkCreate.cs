@@ -10,7 +10,7 @@ public class SharkCreate : MonoBehaviour
 
     void Start()
     {
-        sharkIndex = 2;
+        sharkIndex = 1;
         CreatePlayer(sharkIndex);
     }
 

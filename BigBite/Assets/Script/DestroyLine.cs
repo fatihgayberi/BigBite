@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class DestroyLine : MonoBehaviour
 {
-    private void Update()
+    // geride kalan objeleri ekrandan temizler
+    public void OnTriggerEnter(Collider other)
     {
-        //transform.position = new Vector3(transform.position.x, transform.position.y, GameObject.FindGameObjectWithTag("Player").transform.position.z - 11.5f);
-    }
-    private void OnTriggerEnter()
-    {
-            Destroy(gameObject);
+        Destroy(other.gameObject);
     }
 }

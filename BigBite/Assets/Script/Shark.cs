@@ -12,9 +12,8 @@ public class Shark : MonoBehaviour
     public float speed; // oyuncunun hizini saklar
     float speedModifier; // ekranda kaydırma islemi hassasiyetini saglar
     float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
-    float seconds; // oyunun icindeki gecen zamani saklar
+    float seconds; // oyunun icindeki gecen zamani saklar 
     float endedGameTimer; // oyunun ne zaman bietecegini saklar
-
     public GameObject[] sea; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finish; // bitis prefabı unity uzerinden atamasi yapilir
 
@@ -22,18 +21,19 @@ public class Shark : MonoBehaviour
     bool gameFinish; // oyunun bitisini saglar
 
     void Start()
-    {
+    {        
         health = 100;
-        mana = 0;
+        mana = 30;
         speed = 5f;
         speedModifier = 0.005f;
-        seaPositionZ = 8.5f;
+        seaPositionZ = 2.5f;
         seconds = 0;
         endedGameTimer = 30f;
         moveOn = false;
         gameFinish = false;
+        StartedSea();
         seaClassObject = FindObjectOfType<Sea>();
-        sharkCreate = FindObjectOfType<SharkCreate>();
+        sharkCreate = FindObjectOfType<SharkCreate>();        
     }
 
     void FixedUpdate()
@@ -103,6 +103,13 @@ public class Shark : MonoBehaviour
         }
     }
 
+    void StartedSea()
+    {
+        GameObject seaObject = sea[Random.Range(0, sea.Length)];
+        Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
+        seaPositionZ += 6;
+    }
+
     // yeni bir sea olusturur
     void BackColliderControl(Collider collider)
     {
@@ -144,12 +151,13 @@ public class Shark : MonoBehaviour
                     health += seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP();
                 }
 
-                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() > 100f)
+                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() >= 100f)
                 {
                     mana = 100f;
+                    // mana 100 oldugunda fullenince patlama gerçekleşecek
                 }
 
-                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() <= 100f)
+                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() < 100f)
                 {
                     mana += seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana();
                 }
