@@ -73,26 +73,17 @@ public class Shark : MonoBehaviour
         }
     }
 
-    // yeni bir sea olusturur
+    // objelere degdiginde yapilmasi gereken islemleri yapar
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
-        {
-            GameObject seaObject = sea[Random.Range(0, sea.Length)];
-            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
-            seaPositionZ += 6;
-        }
+        BackColliderControl(other);
 
-        for (int i = 0; i < seaClassObject.seaObject.Count; i++)
-        {
-            if (other.transform.name.Contains(seaClassObject.seaObject[i].getSeaGameObject().name))
-            {
-                health -= seaClassObject.seaObject[i].getPoweOfObject();
-                break;
-            }
-        }
-        Debug.Log("health: " + health);
-    }    
+        DamageColliderControl(other);
+
+        AdvantageColliderControl(other);
+
+        Debug.Log("health: " + health + " mana: " + mana);
+    }
 
     // kenarlara degdigi surece hızını dusurur
     void OnCollisionStay(Collision collision)
@@ -109,6 +100,62 @@ public class Shark : MonoBehaviour
         if (collision.gameObject.name.Contains("Edge"))
         {
             speed = 5;
+        }
+    }
+
+    // yeni bir sea olusturur
+    void BackColliderControl(Collider collider)
+    {
+        if (collider.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
+        {
+            GameObject seaObject = sea[Random.Range(0, sea.Length)];
+            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
+            seaPositionZ += 6;
+        }
+    }
+
+    // damage objelerine degdiginde yapilmasi gerekenleri yapar
+    void DamageColliderControl(Collider collider)
+    {
+        for (int i = 0; i < seaClassObject.seaDamageObject.Count; i++)
+        {
+            if (collider.transform.name.Contains(seaClassObject.seaDamageObject[i].getSeaGameObject().name))
+            {
+                health -= seaClassObject.seaDamageObject[i].getPoweOfObject();
+                break;
+            }
+        }
+    }
+
+    // advantage objelerine degdiginde yapilmasi gerekenleri yapar
+    void AdvantageColliderControl(Collider collider)
+    {
+        for (int i = 0; i < seaClassObject.seaAdvantageObject.Count; i++)
+        {
+            if (collider.transform.name.Contains(seaClassObject.seaAdvantageObject[i].getSeaGameObject().name))
+            {
+                if (health + seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP() > 100f)
+                {
+                    health = 100f;
+                }
+                
+                if (health + seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP() <= 100f)
+                {
+                    health += seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP();
+                }
+
+                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() > 100f)
+                {
+                    mana = 100f;
+                }
+
+                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() <= 100f)
+                {
+                    mana += seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana();
+                }
+
+                break;
+            }
         }
     }
 

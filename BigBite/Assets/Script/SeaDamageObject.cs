@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[SerializeField]
+// engellerin adini-gucunu-engel seviyesini tutar
 public class SeaDamageObject
 {
     public GameObject seaGameObject;
     public float powerOfObject;
     public int levelRating;
 
-    // engellerin adini-gucunu-engel seviyesini tutar
     public SeaDamageObject(GameObject seaGameObject, float powerOfObject, int levelRating)
     {
         this.seaGameObject = seaGameObject;
@@ -17,7 +16,7 @@ public class SeaDamageObject
         this.levelRating = levelRating;
     }
 
-    // shark objesini return eder
+    // engel objesini return eder
     public GameObject getSeaGameObject()
     {
         return seaGameObject;
