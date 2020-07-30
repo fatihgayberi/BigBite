@@ -66,6 +66,7 @@ MonoBehaviour:
   - {fileID: 3969130605918699219, guid: 2ef76eae33f369043b89f15777002162, type: 3}
   seaAdvantageObjectArray:
   - {fileID: 7784405545659452887, guid: caf3acea7fa575a41bd86efc6d9e0c74, type: 3}
+  coin: {fileID: 2232983921702285930, guid: 9774836e01fe6414781ce016b613d738, type: 3}
 --- !u!65 &1036196731112557954
 BoxCollider:
   m_ObjectHideFlags: 0

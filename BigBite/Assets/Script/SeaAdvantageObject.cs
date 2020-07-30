@@ -23,13 +23,13 @@ public class SeaAdvantageObject
     }
 
     // faydali objenin kazandirdigi cani return eder
-    public float getPoweOfObjectHP()
+    public float getPowerOfObjectHP()
     {
         return powerOfObjectHP;
     }
 
     // faydali objenin kazandirdigi manayi return eder
-    public float getPoweOfObjectMana()
+    public float getPowerOfObjectMana()
     {
         return powerOfObjectMana;
     }

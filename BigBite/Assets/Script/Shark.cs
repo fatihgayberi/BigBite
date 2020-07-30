@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Shark
 {
-    GameObject sharkObject;
-    float sharkHP;
-    float sharkSpeed;
-    float sharkManaTime;
-    float sharkManaPower;
-    int sharkLevel;
+    GameObject sharkObject; // sharki tutar
+    float sharkHP; // sharkin canini tutar
+    float sharkSpeed; // sharkin hizini tutar
+    float sharkManaTime; // sharkin manasi fullendiginde sharkManaTime kadar mana ozel guc calisir
+    float sharkManaPower; // ozel guc calistiginda hizi sharkManaPower kadar olur
+    int sharkLevel; // sharkin level duzeyini tutar
 
     public Shark(GameObject sharkObject, float sharkHP, float sharkSpeed, float sharkManaTime, float sharkManaPower, int sharkLevel)
     {
@@ -46,7 +46,7 @@ public class Shark
         return sharkManaPower;
     }
 
-    public float getLevel()
+    public int getLevel()
     {
         return sharkLevel;
     }

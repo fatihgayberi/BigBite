@@ -37,4 +37,35 @@ public class SharkCreate : MonoBehaviour
     {
         return sharkPlayer;
     }
+
+    // secili sharkin canini return eder
+    public float getSelectHealth()
+    {
+        return shark[sharkIndex].getHealth();
+    }
+
+    // secili sharkin hizini return eder
+    public float getSelectSpeed()
+    {
+        return shark[sharkIndex].getSpeed();
+    }
+
+    // secili sharkin mana suresini return eder
+    public float getSelectManaTime()
+    {
+        return shark[sharkIndex].getManaTime();
+    }
+
+    // secili sharkin mana gucunu return eder
+    public float getSelectManaPower()
+    {
+        return shark[sharkIndex].getManaPower();
+    }
+
+    // secili sharkin seviyesini return eder
+    public int getSelectLevel()
+    {
+        return shark[sharkIndex].getLevel();
+    }
+
 }
