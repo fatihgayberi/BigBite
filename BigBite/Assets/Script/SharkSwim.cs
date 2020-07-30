@@ -10,7 +10,6 @@ public class SharkSwim : MonoBehaviour
     float health; // oyuncunun canini saklar
     float mana; // oyuncunun mana seviyesini tutar
     public float speed; // oyuncunun hizini saklar
-    int coinCounter; // oyuncunun parasini saklar
     float speedModifier; // ekranda kaydırma islemi hassasiyetini saglar
     float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
     float seconds; // oyunun icindeki gecen zamani saklar 
@@ -29,7 +28,6 @@ public class SharkSwim : MonoBehaviour
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
-        coinCounter = 0;
         speedModifier = 0.005f;
         seaPositionZ = 2.5f;
         seconds = 0;
@@ -191,8 +189,8 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.name.Contains(sea.coin.gameObject.name))
         {
-            coinCounter++;
-            Debug.Log("Coin: " + coinCounter);
+            sharkCreate.setCoinCounter(1);
+            Debug.Log("Coin: " + sharkCreate.getCoinCounter());
         }
     }
 

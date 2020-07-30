@@ -6,6 +6,7 @@ public class SharkCreate : MonoBehaviour
 {
     public GameObject[] sharkArray; // shark prefablarini tutar
     public List<Shark> shark = new List<Shark>(); // sharklarin ozelliklerini tutan list
+    int coinCounter; // oyuncunun parasini saklar
     GameObject sharkPlayer;
     int sharkIndex;
 
@@ -66,6 +67,18 @@ public class SharkCreate : MonoBehaviour
     public int getSelectLevel()
     {
         return shark[sharkIndex].getLevel();
+    }
+
+    // oyuncunun parasini return eder
+    public int getCoinCounter()
+    {
+        return coinCounter;
+    }
+
+    // oyuncunun parasini set eder
+    public void setCoinCounter(int coinCounter)
+    {
+        this.coinCounter += coinCounter;
     }
 
 }
