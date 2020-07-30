@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyLine : MonoBehaviour
 {
     // geride kalan objeleri ekrandan temizler
-    public void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
     }

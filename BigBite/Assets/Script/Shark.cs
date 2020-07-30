@@ -2,188 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shark : MonoBehaviour
+public class Shark
 {
-    Sea seaClassObject;
-    SharkCreate sharkCreate;
+    GameObject sharkObject;
+    float sharkHP;
+    float sharkSpeed;
+    float sharkManaTime;
+    float sharkManaPower;
+    int sharkLevel;
 
-    float health; // oyuncunun canini saklar
-    float mana; // oyuncunun mana gucunu tutar
-    public float speed; // oyuncunun hizini saklar
-    float speedModifier; // ekranda kaydırma islemi hassasiyetini saglar
-    float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
-    float seconds; // oyunun icindeki gecen zamani saklar 
-    float endedGameTimer; // oyunun ne zaman bietecegini saklar
-    public GameObject[] sea; // sea prefablarını tutan array unity uzerinden duzenlenir
-    public GameObject finish; // bitis prefabı unity uzerinden atamasi yapilir
-
-    bool moveOn; // oyuna dokunmadan baslamasini engeller
-    bool gameFinish; // oyunun bitisini saglar
-
-    void Start()
-    {        
-        health = 100;
-        mana = 30;
-        speed = 5f;
-        speedModifier = 0.005f;
-        seaPositionZ = 2.5f;
-        seconds = 0;
-        endedGameTimer = 30f;
-        moveOn = false;
-        gameFinish = false;
-        StartedSea();
-        seaClassObject = FindObjectOfType<Sea>();
-        sharkCreate = FindObjectOfType<SharkCreate>();        
-    }
-
-    void FixedUpdate()
+    public Shark(GameObject sharkObject, float sharkHP, float sharkSpeed, float sharkManaTime, float sharkManaPower, int sharkLevel)
     {
-        MoveSpeed();
-        Move();
+        this.sharkObject = sharkObject;
+        this.sharkHP = sharkHP;
+        this.sharkSpeed = sharkSpeed;
+        this.sharkManaTime = sharkManaTime;
+        this.sharkManaPower = sharkManaPower;
+        this.sharkLevel = sharkLevel;
     }
 
-    private void Update()
+    public GameObject getSharkObject()
     {
-        GameFinish();
-        SecondCounter();
+        return sharkObject;
     }
 
-    // sag sol yapmasini saglar
-    void Move()
+    public float getHealth()
     {
-        if (Input.touchCount > 0)
-        {
-            moveOn = true;
-            Touch touch;
-
-            touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Moved)
-            {
-                transform.position = new Vector3(transform.position.x + touch.deltaPosition.x * speedModifier, transform.position.y, transform.position.z);
-            }
-        }
+        return sharkHP;
     }
 
-    // surekli olarak z ekseninde ilerlemesini saglar
-    void MoveSpeed()
+    public float getSpeed()
     {
-        if (moveOn)
-        {
-            sharkCreate.getSharkPlayer().transform.position =  new Vector3(sharkCreate.getSharkPlayer().transform.position.x, sharkCreate.getSharkPlayer().transform.position.y, sharkCreate.getSharkPlayer().transform.position.z + speed * Time.deltaTime);
-        }
+        return sharkSpeed;
     }
 
-    // objelere degdiginde yapilmasi gereken islemleri yapar
-    void OnTriggerEnter(Collider other)
+    public float getManaTime()
     {
-        BackColliderControl(other);
-
-        DamageColliderControl(other);
-
-        AdvantageColliderControl(other);
-
-        Debug.Log("health: " + health + " mana: " + mana);
+        return sharkManaTime;
     }
 
-    // kenarlara degdigi surece hızını dusurur
-    void OnCollisionStay(Collision collision)
+    public float getManaPower()
     {
-        if (collision.gameObject.name.Contains("Edge"))
-        {
-            speed = 1;
-        }
+        return sharkManaPower;
     }
 
-    // kenarlara degmeyi bitirdigini kontrol eder
-    void OnCollisionExit(Collision collision)
+    public float getLevel()
     {
-        if (collision.gameObject.name.Contains("Edge"))
-        {
-            speed = 5;
-        }
+        return sharkLevel;
     }
-
-    void StartedSea()
-    {
-        GameObject seaObject = sea[Random.Range(0, sea.Length)];
-        Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
-        seaPositionZ += 6;
-    }
-
-    // yeni bir sea olusturur
-    void BackColliderControl(Collider collider)
-    {
-        if (collider.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
-        {
-            GameObject seaObject = sea[Random.Range(0, sea.Length)];
-            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
-            seaPositionZ += 6;
-        }
-    }
-
-    // damage objelerine degdiginde yapilmasi gerekenleri yapar
-    void DamageColliderControl(Collider collider)
-    {
-        for (int i = 0; i < seaClassObject.seaDamageObject.Count; i++)
-        {
-            if (collider.transform.name.Contains(seaClassObject.seaDamageObject[i].getSeaGameObject().name))
-            {
-                health -= seaClassObject.seaDamageObject[i].getPoweOfObject();
-                break;
-            }
-        }
-    }
-
-    // advantage objelerine degdiginde yapilmasi gerekenleri yapar
-    void AdvantageColliderControl(Collider collider)
-    {
-        for (int i = 0; i < seaClassObject.seaAdvantageObject.Count; i++)
-        {
-            if (collider.transform.name.Contains(seaClassObject.seaAdvantageObject[i].getSeaGameObject().name))
-            {
-                if (health + seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP() > 100f)
-                {
-                    health = 100f;
-                }
-                
-                if (health + seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP() <= 100f)
-                {
-                    health += seaClassObject.seaAdvantageObject[i].getPoweOfObjectHP();
-                }
-
-                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() >= 100f)
-                {
-                    mana = 100f;
-                    // mana 100 oldugunda fullenince patlama gerçekleşecek
-                }
-
-                if (mana + seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana() < 100f)
-                {
-                    mana += seaClassObject.seaAdvantageObject[i].getPoweOfObjectMana();
-                }
-
-                break;
-            }
-        }
-    }
-
-    // oyunun suresini tutar
-    void SecondCounter()
-    {
-        if (moveOn)
-        {
-            seconds += Time.deltaTime;
-        }
-    }
-
-    // oyunu bitirir
-    void GameFinish()
-    {
-        if (seconds > endedGameTimer && !gameFinish)
-        {
-            GameObject.Instantiate(finish, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
-            gameFinish = true;
-        }
-    }
-
 }
