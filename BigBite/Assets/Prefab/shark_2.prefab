@@ -128,4 +128,5 @@ MonoBehaviour:
   - {fileID: 168351702741205225, guid: df667f9b7bd581c42b40b6aa2cb8cf2a, type: 3}
   - {fileID: 2351547483721937508, guid: 9187bab42369aaf4b92d07abb33244a9, type: 3}
   - {fileID: 3481957137927217317, guid: 73ef7b95d65d8a04c999c97dec213344, type: 3}
-  finish: {fileID: 2719089444238964584, guid: 1f4ed0771c3b8104199c4aa02021a668, type: 3}
+  finishPrefab: {fileID: 2719089444238964584, guid: 1f4ed0771c3b8104199c4aa02021a668,
+    type: 3}

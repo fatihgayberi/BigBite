@@ -16,11 +16,12 @@ public class SharkSwim : MonoBehaviour
     float powerTime; // ozel guc icin zaman tutar
     float endedGameTimer; // oyunun ne zaman bietecegini saklar
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
-    public GameObject finish; // bitis prefabı unity uzerinden atamasi yapilir
+    public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
 
     bool moveOn; // oyuna dokunmadan baslamasini engeller
     bool gameFinish; // oyunun bitisini saglar
-    bool powerUp;
+    bool powerUp; // ozel guc durumunu saklar
+    bool finishMenu; // oyun sonu menusunun baslatilmasini haber vermek icin kullanilir
 
     void Start()
     {
@@ -32,7 +33,7 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ = 2.5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 30f;
+        endedGameTimer = 5f;
         moveOn = false;
         powerUp = false;
         gameFinish = false;
@@ -90,6 +91,8 @@ public class SharkSwim : MonoBehaviour
 
         CoinWin(other);
 
+        FinishTable(other);
+
         Debug.Log("health: " + health + " mana: " + mana);
     }
 
@@ -119,7 +122,7 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ += 6;
     }
 
-    // yeni bir sea olusturur
+    // back colliderine degdiginde yeni bir sea olusturur
     void BackColliderControl(Collider collider)
     {
         if (collider.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
@@ -194,6 +197,15 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
+    // finish e geldiginde yapilmasi gerekenleri yapar
+    void FinishTable(Collider collider)
+    {
+        if (collider.transform.name.Contains(finishPrefab.gameObject.name))
+        {
+            finishMenu = true;
+        }
+    }
+
     // ozel gucu gercekler
     void SpecialPower()
     {
@@ -229,9 +241,15 @@ public class SharkSwim : MonoBehaviour
     {
         if (seconds > endedGameTimer && !gameFinish)
         {
-            GameObject.Instantiate(finish, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
+            GameObject.Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
             gameFinish = true;
         }
+    }
+
+    // finish menuyu return eder
+    public bool getFinishMenu()
+    {
+        return finishMenu;
     }
 
 }
