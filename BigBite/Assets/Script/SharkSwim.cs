@@ -15,6 +15,8 @@ public class SharkSwim : MonoBehaviour
     float seconds; // oyunun icindeki gecen zamani saklar 
     float powerTime; // ozel guc icin zaman tutar
     float endedGameTimer; // oyunun ne zaman bietecegini saklar
+    int fishCounter;
+
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
 
@@ -34,6 +36,7 @@ public class SharkSwim : MonoBehaviour
         seconds = 0;
         powerTime = 0;
         endedGameTimer = 5f;
+        fishCounter = 0;
         moveOn = false;
         powerUp = false;
         gameFinish = false;
@@ -181,6 +184,7 @@ public class SharkSwim : MonoBehaviour
                         mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                     }
 
+                    fishCounter++;
                     break;
                 }
             }
@@ -250,6 +254,11 @@ public class SharkSwim : MonoBehaviour
     public bool getFinishMenu()
     {
         return finishMenu;
+    }
+
+    public int getFishCounter()
+    {
+        return fishCounter;
     }
 
 }
