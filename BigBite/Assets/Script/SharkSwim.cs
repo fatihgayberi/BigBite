@@ -11,7 +11,7 @@ public class SharkSwim : MonoBehaviour
     float mana; // oyuncunun mana seviyesini tutar
     public float speed; // oyuncunun hizini saklar
     float speedModifier; // ekranda kaydırma islemi hassasiyetini saglar
-    float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
+    static float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
     float seconds; // oyunun icindeki gecen zamani saklar 
     float powerTime; // ozel guc icin zaman tutar
     float endedGameTimer; // oyunun ne zaman bietecegini saklar
@@ -31,7 +31,7 @@ public class SharkSwim : MonoBehaviour
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
-        speedModifier = 0.005f;
+        speedModifier = 0.005f; // 0.0025f degeri ideal deger
         seaPositionZ = 2.5f;
         seconds = 0;
         powerTime = 0;
@@ -254,6 +254,12 @@ public class SharkSwim : MonoBehaviour
     public bool getFinishMenu()
     {
         return finishMenu;
+    }
+
+    // finish menuyu set eder
+    public void setFinishMenu(bool finishMenu)
+    {
+        this.finishMenu = finishMenu;
     }
 
     public int getFishCounter()

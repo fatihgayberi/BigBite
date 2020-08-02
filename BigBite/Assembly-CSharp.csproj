@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\DestroyLine.cs" />
     <Compile Include="Assets\Script\FinishMenu.cs" />
+    <Compile Include="Assets\Script\MarketMenu.cs" />
     <Compile Include="Assets\Script\PlayerData.cs" />
     <Compile Include="Assets\Script\SaveSystem.cs" />
     <Compile Include="Assets\Script\ScrollCamera.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Script\SharkCreate.cs" />
     <Compile Include="Assets\Script\SharkSwim.cs" />
     <Compile Include="Assets\Script\StartMenu.cs" />
+    <Compile Include="Assets\Script\ValueMemory.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/fatih/Documents/GitHub/BigBite/BigBite/BigBite/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

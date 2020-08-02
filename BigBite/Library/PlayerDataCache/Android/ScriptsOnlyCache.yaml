@@ -26,7 +26,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Scenes/SampleScene.unity:
+    Assets/Scenes/GameScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -66,23 +66,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11782}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12102}
     - Class: 114
-      Script: {instanceID: 12190}
+      Script: {instanceID: 12192}
     - Class: 114
-      Script: {instanceID: 12212}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12662}
+      Script: {instanceID: 12664}
     - Class: 114
-      Script: {instanceID: 12672}
+      Script: {instanceID: 12674}
     - Class: 114
-      Script: {instanceID: 12684}
+      Script: {instanceID: 12686}
     - Class: 114
-      Script: {instanceID: 12894}
-    - Class: 114
-      Script: {instanceID: 13060}
+      Script: {instanceID: 12896}
     - Class: 114
       Script: {instanceID: 13062}
+    - Class: 114
+      Script: {instanceID: 13064}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -131,15 +131,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11782}
     - Class: 114
-      Script: {instanceID: 12190}
+      Script: {instanceID: 11848}
     - Class: 114
-      Script: {instanceID: 12212}
+      Script: {instanceID: 12192}
     - Class: 114
-      Script: {instanceID: 12684}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 13062}
+      Script: {instanceID: 12686}
     - Class: 114
-      Script: {instanceID: 22362}
+      Script: {instanceID: 13064}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -315,7 +315,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 752ed5a65f932a0f5d5183313ac67e58
+      Hash: 1e86c1f49da36d973f99ab361eaf7ee1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishMenu
@@ -349,6 +349,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Selectable
+  - hash:
+      serializedVersion: 2
+      Hash: 1158a5c6a34ada136cce9523bd5b1efc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartMenu
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -613,14 +619,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 1158a5c6a34ada136cce9523bd5b1efc
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: StartMenu
   platform: 13
   scenePathNames:
   - Assets/Scenes/StartScene.unity
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/GameScene.unity
   playerPath: C:/Users/fatih/Desktop/apk/BigBite.apk

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FinishMenu : MonoBehaviour
@@ -8,17 +10,29 @@ public class FinishMenu : MonoBehaviour
     public GameObject finishMenu;
     public Text coinSum;
     public Text fishSum;
-    public Texture background;
-    public GameObject star1Inactive;
-    public GameObject star2Inactive;
-    public GameObject star3Inactive;
-    public Texture starActive;
+    public GameObject star1;
+    public Sprite starActive;
     SharkSwim sharkSwim;
     SharkCreate sharkCreate;
 
+    public Button playBtn;
+    public Button homeBtn;
+
     void Start()
     {
+        Sea.damagePositionZ = 1.5f;
+        sharkSwim = FindObjectOfType<SharkSwim>();
+        sharkCreate = FindObjectOfType<SharkCreate>();
+
+        homeBtn.onClick.AddListener(TaskOnClickHome);
+        playBtn.onClick.AddListener(TaskOnClickPlay);
+
+        CoinOutput(sharkCreate.getCoinCounter());
+        FishOutput(sharkSwim.getFishCounter());
+
+        //StarUpdate();
     }
+
     void Update()
     {
         EnableCanvas();
@@ -31,9 +45,7 @@ public class FinishMenu : MonoBehaviour
 
         if (sharkSwim.getFinishMenu())
         {
-            //BackGround();
             finishMenu.SetActive(true);
-            StarUpdate(sharkSwim.getFishCounter());
             CoinOutput(sharkCreate.getCoinCounter());
             FishOutput(sharkSwim.getFishCounter());
         }
@@ -53,18 +65,18 @@ public class FinishMenu : MonoBehaviour
         fishSum.text = fishCounter.ToString() + " Balik";
     }
 
-    void BackGround()
+    void TaskOnClickPlay()
     {
-        //GUI.DrawTexture(new Rect(0,0, 800, 600), background);
+        SceneManager.LoadScene("GameScene");
     }
 
-    void StarUpdate(int fishCounter)
+    void TaskOnClickHome()
     {
-        Debug.Log("line 60");
-        if (fishCounter > -1)
-        {
-            Debug.Log("line 63");
-            star1Inactive.GetComponent<Renderer>().material.mainTexture = starActive;
-        }
+        SceneManager.LoadScene("StartScene");
+    }
+
+    void StarUpdate()
+    {
+        GetComponent<Image>().sprite = starActive;
     }
 }

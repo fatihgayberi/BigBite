@@ -11,7 +11,7 @@ public class Sea : MonoBehaviour
     public GameObject coin; // oyundaki altini tutar unity uzerinden eklenir
 
     int level; // oyuncunun levelini tutar
-    static float damagePositionZ = 1.5f; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
+    public static float damagePositionZ = 1.5f; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageFishPositionZ; // advantage objelerinin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageCoinPositionZ;
 

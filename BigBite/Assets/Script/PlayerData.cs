@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    int coinCounter;
+    public int coinCounter;
 
     public PlayerData(SharkCreate sharkCreate)
     {
