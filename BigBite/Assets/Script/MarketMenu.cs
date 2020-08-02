@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class MarketMenu : MonoBehaviour
 {
-    SharkCreate sharkCreate;
     public Button backBtn;
     public Text totalCoin;
 
@@ -14,8 +13,7 @@ public class MarketMenu : MonoBehaviour
     void Start()
     {
         backBtn.onClick.AddListener(TaskOnTouchBack);
-        sharkCreate = FindObjectOfType<SharkCreate>();
-        TotalCoin(sharkCreate.totalCoin);
+        //TotalCoin(sharkCreate.totalCoin);
     }
 
     // Update is called once per frame

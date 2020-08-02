@@ -76,7 +76,6 @@
     <Compile Include="Assets\Script\SharkCreate.cs" />
     <Compile Include="Assets\Script\SharkSwim.cs" />
     <Compile Include="Assets\Script\StartMenu.cs" />
-    <Compile Include="Assets\Script\ValueMemory.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/fatih/Documents/GitHub/BigBite/BigBite/BigBite/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

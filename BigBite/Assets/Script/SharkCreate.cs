@@ -18,11 +18,6 @@ public class SharkCreate : MonoBehaviour
         CreatePlayer(sharkIndex);
     }
 
-    private void Update()
-    {
-        MemorySetTotalCoin();
-    }
-
     void SharkAdd()
     {
         shark.Add(new Shark(sharkArray[0], 100f, 2f, 2f, 4f, 1));
@@ -99,10 +94,5 @@ public class SharkCreate : MonoBehaviour
         PlayerData data = SaveSystem.LoadPlayer();
 
         totalCoin += data.coinCounter;
-    }
-
-    void MemorySetTotalCoin()
-    {
-        ValueMemory.TotalCoin(totalCoin);
     }
 }
