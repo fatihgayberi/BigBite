@@ -6,9 +6,11 @@ using UnityEngine;
 public class PlayerData
 {
     public int coinCounter;
+    public int totalCoin;
 
     public PlayerData(SharkCreate sharkCreate)
     {
         coinCounter = sharkCreate.getCoinCounter();
+        totalCoin = sharkCreate.getTotalCoin();
     }
 }

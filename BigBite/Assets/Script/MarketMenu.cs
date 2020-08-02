@@ -13,7 +13,7 @@ public class MarketMenu : MonoBehaviour
     void Start()
     {
         backBtn.onClick.AddListener(TaskOnTouchBack);
-        //TotalCoin(sharkCreate.totalCoin);
+        TotalCoin();
     }
 
     // Update is called once per frame
@@ -27,8 +27,10 @@ public class MarketMenu : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
-    void TotalCoin(int totalCoin)
+    void TotalCoin()
     {
-        this.totalCoin.text = totalCoin.ToString() + " Coin";
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        this.totalCoin.text = data.totalCoin + " Coin";
     }
 }

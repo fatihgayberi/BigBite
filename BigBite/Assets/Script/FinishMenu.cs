@@ -7,8 +7,6 @@ public class FinishMenu : MonoBehaviour
     public GameObject finishMenu;
     public Text coinSum;
     public Text fishSum;
-    public GameObject star1;
-    public Sprite starActive;
     SharkSwim sharkSwim;
     SharkCreate sharkCreate;
 
@@ -26,8 +24,6 @@ public class FinishMenu : MonoBehaviour
 
         CoinOutput(sharkCreate.getCoinCounter());
         FishOutput(sharkSwim.getFishCounter());
-
-        //StarUpdate();
     }
 
     void Update()
@@ -70,10 +66,5 @@ public class FinishMenu : MonoBehaviour
     void TaskOnClickHome()
     {
         SceneManager.LoadScene("StartScene");
-    }
-
-    void StarUpdate()
-    {
-        GetComponent<Image>().sprite = starActive;
     }
 }
