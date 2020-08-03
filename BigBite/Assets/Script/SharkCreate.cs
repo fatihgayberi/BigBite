@@ -11,6 +11,8 @@ public class SharkCreate : MonoBehaviour
     GameObject sharkPlayer;
     int sharkIndex;
 
+    public DataManager dataManager;
+
     void Start()
     {
         sharkIndex = 1;
@@ -82,26 +84,18 @@ public class SharkCreate : MonoBehaviour
         this.coinCounter += coinCounter;
     }
 
+    // toplam parayi set eder
     public int getTotalCoin()
     {
         return totalCoin;
     }
 
-    // oyuncunun verilerini save eder
-    public void SavePlayer()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
+    public void CoinSave()
+    {    
+        dataManager.Load();
 
-        //data.coinCounter += coinCounter;
-        totalCoin = coinCounter + data.totalCoin;
-        SaveSystem.SavePlayer(this);
+        dataManager.data.totalCoin += coinCounter;
+
+        dataManager.Save();
     }
-
-    // oyuncunun verilerini load eder
-    //public void LoadPlayer()
-    //{
-        //PlayerData data = SaveSystem.LoadPlayer();
-
-        //data.totalCoin += data.coinCounter;
-    //}
 }

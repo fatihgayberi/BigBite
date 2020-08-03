@@ -134,8 +134,9 @@ GameObject:
   - component: {fileID: 157374201}
   - component: {fileID: 157374200}
   - component: {fileID: 157374204}
+  - component: {fileID: 157374205}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: MarketMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,6 +237,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backBtn: {fileID: 414649554}
   totalCoin: {fileID: 829861871}
+  dataManager: {fileID: 157374205}
+--- !u!114 &157374205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157374199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba8d48feaa00ac4796016bb385450b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &269954566
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: total coin
+  m_Text: 0 coin
 --- !u!222 &829861872
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -8,12 +8,15 @@ public class MarketMenu : MonoBehaviour
 {
     public Button backBtn;
     public Text totalCoin;
+    public DataManager dataManager;
 
     // Start is called before the first frame update
     void Start()
     {
         backBtn.onClick.AddListener(TaskOnTouchBack);
-        TotalCoin();
+
+        dataManager.Load();
+        TotalCoin(dataManager.data.totalCoin);
     }
 
     // Update is called once per frame
@@ -27,10 +30,8 @@ public class MarketMenu : MonoBehaviour
         SceneManager.LoadScene("StartScene");
     }
 
-    void TotalCoin()
+    void TotalCoin(int totalCoin)
     {
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        this.totalCoin.text = data.totalCoin + " Coin";
+        this.totalCoin.text = totalCoin + " Coin";
     }
 }

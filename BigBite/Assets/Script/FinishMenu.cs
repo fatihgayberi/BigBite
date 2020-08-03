@@ -9,21 +9,16 @@ public class FinishMenu : MonoBehaviour
     public Text fishSum;
     SharkSwim sharkSwim;
     SharkCreate sharkCreate;
-
     public Button playBtn;
     public Button homeBtn;
 
     void Start()
     {
-        Sea.damagePositionZ = 1.5f;
         sharkSwim = FindObjectOfType<SharkSwim>();
         sharkCreate = FindObjectOfType<SharkCreate>();
-
-        homeBtn.onClick.AddListener(TaskOnClickHome);
-        playBtn.onClick.AddListener(TaskOnClickPlay);
-
-        CoinOutput(sharkCreate.getCoinCounter());
-        FishOutput(sharkSwim.getFishCounter());
+        Sea.damagePositionZ = 1.5f;
+        playBtn.onClick.AddListener(TaskOnTouchPlay);
+        homeBtn.onClick.AddListener(TaskOnTouchkHome);
     }
 
     void Update()
@@ -39,13 +34,13 @@ public class FinishMenu : MonoBehaviour
         if (sharkSwim.getFinishMenu())
         {
             finishMenu.SetActive(true);
-            CoinOutput(sharkCreate.getCoinCounter());
             FishOutput(sharkSwim.getFishCounter());
+            CoinOutput(sharkCreate.getCoinCounter());
         }
-        else
-        {
-            finishMenu.SetActive(false);
-        }
+        //else
+        //{
+        //    finishMenu.SetActive(false);
+        //}
     }
 
     void CoinOutput(int coin)
@@ -58,12 +53,12 @@ public class FinishMenu : MonoBehaviour
         fishSum.text = fishCounter.ToString() + " Balik";
     }
 
-    void TaskOnClickPlay()
+    public void TaskOnTouchPlay()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    void TaskOnClickHome()
+    public void TaskOnTouchkHome()
     {
         SceneManager.LoadScene("StartScene");
     }

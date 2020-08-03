@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SharkSwim : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class SharkSwim : MonoBehaviour
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
-        speedModifier = 0.005f; // 0.0025f degeri ideal deger
+        speedModifier = 0.0025f; // 0.0025f degeri ideal deger
         seaPositionZ = 2.5f;
         seconds = 0;
         powerTime = 0;
@@ -206,6 +207,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.name.Contains(finishPrefab.gameObject.name))
         {
+            //SceneManager.LoadScene("FinishScene");
             finishMenu = true;
         }
     }
@@ -266,5 +268,6 @@ public class SharkSwim : MonoBehaviour
     {
         return fishCounter;
     }
+
 
 }
