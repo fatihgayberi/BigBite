@@ -24,7 +24,6 @@ public class SharkSwim : MonoBehaviour
     bool moveOn; // oyuna dokunmadan baslamasini engeller
     bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
-    bool finishMenu; // oyun sonu menusunun baslatilmasini haber vermek icin kullanilir
 
     void Start()
     {
@@ -207,8 +206,8 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.name.Contains(finishPrefab.gameObject.name))
         {
-            //SceneManager.LoadScene("FinishScene");
-            finishMenu = true;
+            sharkCreate.CoinGameSave();
+            SceneManager.LoadScene("FinishScene");
         }
     }
 
@@ -247,27 +246,14 @@ public class SharkSwim : MonoBehaviour
     {
         if (seconds > endedGameTimer && !gameFinish)
         {
-            GameObject.Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
+            Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
             gameFinish = true;
         }
-    }
-
-    // finish menuyu return eder
-    public bool getFinishMenu()
-    {
-        return finishMenu;
-    }
-
-    // finish menuyu set eder
-    public void setFinishMenu(bool finishMenu)
-    {
-        this.finishMenu = finishMenu;
     }
 
     public int getFishCounter()
     {
         return fishCounter;
     }
-
 
 }

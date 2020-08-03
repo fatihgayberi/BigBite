@@ -7,15 +7,13 @@ public class FinishMenu : MonoBehaviour
     public GameObject finishMenu;
     public Text coinSum;
     public Text fishSum;
-    SharkSwim sharkSwim;
-    SharkCreate sharkCreate;
     public Button playBtn;
     public Button homeBtn;
+    public DataManager dataManager;
+
 
     void Start()
     {
-        sharkSwim = FindObjectOfType<SharkSwim>();
-        sharkCreate = FindObjectOfType<SharkCreate>();
         Sea.damagePositionZ = 1.5f;
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         homeBtn.onClick.AddListener(TaskOnTouchkHome);
@@ -28,19 +26,9 @@ public class FinishMenu : MonoBehaviour
 
     void EnableCanvas()
     {
-        sharkSwim = FindObjectOfType<SharkSwim>();
-        sharkCreate = FindObjectOfType<SharkCreate>();
-
-        if (sharkSwim.getFinishMenu())
-        {
-            finishMenu.SetActive(true);
-            FishOutput(sharkSwim.getFishCounter());
-            CoinOutput(sharkCreate.getCoinCounter());
-        }
-        //else
-        //{
-        //    finishMenu.SetActive(false);
-        //}
+        dataManager.Load();
+        FishOutput(dataManager.data.fishCounter);
+        CoinOutput(dataManager.data.coinCounter);        
     }
 
     void CoinOutput(int coin)

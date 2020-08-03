@@ -7,9 +7,9 @@ public class SharkCreate : MonoBehaviour
     public GameObject[] sharkArray; // shark prefablarini tutar
     public List<Shark> shark = new List<Shark>(); // sharklarin ozelliklerini tutan list
     int coinCounter; // oyuncunun bir bolumdeki parasini saklar
-    int totalCoin; // oyuncunun genel parasini saklar
     GameObject sharkPlayer;
     int sharkIndex;
+    SharkSwim sharkSwim;
 
     public DataManager dataManager;
 
@@ -84,18 +84,13 @@ public class SharkCreate : MonoBehaviour
         this.coinCounter += coinCounter;
     }
 
-    // toplam parayi set eder
-    public int getTotalCoin()
+    public void CoinGameSave()
     {
-        return totalCoin;
-    }
-
-    public void CoinSave()
-    {    
+        sharkSwim = FindObjectOfType<SharkSwim>();
         dataManager.Load();
-
         dataManager.data.totalCoin += coinCounter;
-
+        dataManager.data.coinCounter = coinCounter;
+        dataManager.data.fishCounter = sharkSwim.getFishCounter();
         dataManager.Save();
     }
 }
