@@ -67,6 +67,7 @@
     <Compile Include="Assets\Script\DestroyLine.cs" />
     <Compile Include="Assets\Script\FinishMenu.cs" />
     <Compile Include="Assets\Script\MarketMenu.cs" />
+    <Compile Include="Assets\Script\PlayUI.cs" />
     <Compile Include="Assets\Script\PlayerData.cs" />
     <Compile Include="Assets\Script\ScrollCamera.cs" />
     <Compile Include="Assets\Script\Sea.cs" />

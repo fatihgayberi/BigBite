@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - DestroyLine
     - FinishMenu
     - MarketMenu
+    - PlayUI
     - ScrollCamera
     - Sea
     - SharkCreate
@@ -113,18 +114,30 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 11174}
+    - Class: 114
+      Script: {instanceID: 11340}
+    - Class: 114
+      Script: {instanceID: 11380}
+    - Class: 114
       Script: {instanceID: 12102}
     - Class: 114
       Script: {instanceID: 12666}
     - Class: 114
       Script: {instanceID: 12676}
     - Class: 114
+      Script: {instanceID: 12688}
+    - Class: 114
       Script: {instanceID: 12896}
     - Class: 114
       Script: {instanceID: 13062}
     - Class: 114
       Script: {instanceID: 13090}
+    - Class: 114
+      Script: {instanceID: 14916}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
@@ -133,6 +146,14 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
     Assets/Scenes/MarketScene.unity:
     - Class: 1
@@ -717,6 +738,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 295db680bdede11b536d0ab1ab8ffd7a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayUI
   platform: 13
   scenePathNames:
   - Assets/Scenes/StartScene.unity
