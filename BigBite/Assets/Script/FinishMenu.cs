@@ -21,10 +21,10 @@ public class FinishMenu : MonoBehaviour
 
     void Update()
     {
-        EnableCanvas();
+        CanvasOutput();
     }
 
-    void EnableCanvas()
+    void CanvasOutput()
     {
         dataManager.Load();
         FishOutput(dataManager.data.fishCounter);
