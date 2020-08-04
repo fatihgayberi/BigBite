@@ -63,11 +63,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 13064}
+      Script: {instanceID: 13066}
     - Class: 114
-      Script: {instanceID: 13090}
+      Script: {instanceID: 13092}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -122,19 +122,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12102}
     - Class: 114
-      Script: {instanceID: 12666}
+      Script: {instanceID: 12372}
     - Class: 114
-      Script: {instanceID: 12676}
+      Script: {instanceID: 12668}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 12678}
     - Class: 114
-      Script: {instanceID: 12896}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 13062}
+      Script: {instanceID: 12898}
     - Class: 114
-      Script: {instanceID: 13090}
+      Script: {instanceID: 13064}
     - Class: 114
-      Script: {instanceID: 14916}
+      Script: {instanceID: 13092}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -189,11 +189,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12326}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 13064}
+      Script: {instanceID: 13066}
     - Class: 114
-      Script: {instanceID: 13090}
+      Script: {instanceID: 13092}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -244,9 +244,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12688}
+      Script: {instanceID: 12690}
     - Class: 114
-      Script: {instanceID: 13064}
+      Script: {instanceID: 13066}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -530,6 +530,12 @@ ScriptsOnlyBuild:
     className: MarketMenu
   - hash:
       serializedVersion: 2
+      Hash: 295db680bdede11b536d0ab1ab8ffd7a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayUI
+  - hash:
+      serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -738,12 +744,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 295db680bdede11b536d0ab1ab8ffd7a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayUI
   platform: 13
   scenePathNames:
   - Assets/Scenes/StartScene.unity

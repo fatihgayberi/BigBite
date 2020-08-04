@@ -9,12 +9,6 @@ public class PlayUI : MonoBehaviour
     public Text fishCounter;
     SharkSwim sharkSwim;
     SharkCreate SharkCreate;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
