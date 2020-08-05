@@ -22,11 +22,11 @@ public class SharkCreate : MonoBehaviour
 
     void SharkAdd()
     {
-        shark.Add(new Shark(sharkArray[0], 100f, 2f, 2f, 4f, 1));
-        shark.Add(new Shark(sharkArray[1], 150f, 2.5f, 4f, 5f, 2));
-        shark.Add(new Shark(sharkArray[2], 200f, 3f, 6f, 6f, 3));
-        shark.Add(new Shark(sharkArray[3], 250f, 3.5f, 8f, 7f, 4));
-        shark.Add(new Shark(sharkArray[4], 300f, 4f, 10f, 8f, 5));
+        shark.Add(new Shark(sharkArray[0], 100f, 6f, 2f, 4f, 1));
+        shark.Add(new Shark(sharkArray[1], 150f, 6.5f, 4f, 5f, 2));
+        shark.Add(new Shark(sharkArray[2], 200f, 6f, 6f, 6f, 3));
+        shark.Add(new Shark(sharkArray[3], 250f, 6.5f, 8f, 7f, 4));
+        shark.Add(new Shark(sharkArray[4], 300f, 6f, 10f, 8f, 5));
     }
 
     // shark oluşturur

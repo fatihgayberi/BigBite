@@ -31,11 +31,11 @@ public class SharkSwim : MonoBehaviour
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
-        speedModifier = 0.0025f; // 0.0025f degeri ideal deger
-        seaPositionZ = 2.5f;
+        speedModifier = 0.005f; // 0.0025f degeri ideal deger
+        seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 5f;
+        endedGameTimer = 30f;
         fishCounter = 0;
         moveOn = false;
         powerUp = false;
@@ -121,8 +121,8 @@ public class SharkSwim : MonoBehaviour
     void StartedSea()
     {
         GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
-        Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
-        seaPositionZ += 6;
+        Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+        seaPositionZ += 15;
     }
 
     // back colliderine degdiginde yeni bir sea olusturur
@@ -131,8 +131,8 @@ public class SharkSwim : MonoBehaviour
         if (collider.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
         {
             GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
-            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.identity);
-            seaPositionZ += 6;
+            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+            seaPositionZ += 15;
         }
     }
 
@@ -144,7 +144,7 @@ public class SharkSwim : MonoBehaviour
         {
             for (int i = 0; i < sea.seaDamageObject.Count; i++)
             {
-                if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
+                if (sea.seaDamageObject[i].getSeaGameObject().name.Contains(collider.transform.name))
                 {
                     health -= sea.seaDamageObject[i].getPoweOfObject();
                     break;
@@ -176,7 +176,6 @@ public class SharkSwim : MonoBehaviour
                     {
                         mana = 100f;
                         powerUp = true;
-                        // mana 100 oldugunda fullenince patlama gerçekleşecek
                     }
 
                     if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() < 100f)
