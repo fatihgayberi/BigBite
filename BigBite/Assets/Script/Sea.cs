@@ -10,20 +10,28 @@ public class Sea : MonoBehaviour
     public List<SeaAdvantageObject> seaAdvantageObject = new List<SeaAdvantageObject>(); // engellerin ozelliklerini tutan list
     public GameObject coin; // oyundaki altini tutar unity uzerinden eklenir
 
+    SharkCreate sharkCreate;
+
     int level; // oyuncunun levelini tutar
-    public static float damagePositionZ = 5.5f; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
+    public static float damagePositionZ; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageFishPositionZ; // advantage objelerinin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageCoinPositionZ;
 
     void Start()
     {
+        sharkCreate = FindObjectOfType<SharkCreate>();
         level = 25;
-        advantageFishPositionZ = damagePositionZ;
-        advantageCoinPositionZ = damagePositionZ;
+        //advantageFishPositionZ = damagePositionZ;
+        //advantageCoinPositionZ = damagePositionZ;
         LevelAddOject();
         SpawnDamageObject();
         SpawnAdvantageObject();
         CoinCreate();
+    }
+
+    private void Update()
+    {
+        PositionControlZ();
     }
 
     // engelleri list e ekler
@@ -39,7 +47,7 @@ public class Sea : MonoBehaviour
         seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[0], 10, 25));
     }
 
-    // level seviyesine gore spawn edilecek olan engelli belirler
+    // level seviyesine gore spawn edilecek olan engeli belirler
     void SpawnDamageObject()
     {
         if (level <= 10)
@@ -66,12 +74,12 @@ public class Sea : MonoBehaviour
         int possibility;
         possibility = Random.Range(0, 100);
 
-        if (possibility < 20) // %20 olasilik ile 2 tane advantage ogesi spawn eder
+        if (possibility < 20) // %20 olasilik ile 1 tane advantage ogesi spawn eder
         {
             RandomSeaAdvantageObjectGenerator(1);
         }
         
-        if (possibility < 35) // %35 olasilik ile 1 tane advantage ogesi spawn eder
+        else if (possibility < 35) // %35 olasilik ile 2 tane advantage ogesi spawn eder
         {
             RandomSeaAdvantageObjectGenerator(1);
             RandomSeaAdvantageObjectGenerator(1);
@@ -103,34 +111,54 @@ public class Sea : MonoBehaviour
     // randrom olarak engeller olusturur
     void RandomSeaDamageObjectGenerator(int lvl)
     {
-        for (int i = 0; i < 3; i++)
+        if (sharkCreate.getPlayBool())
         {
-            Instantiate(seaDamageObject[Random.Range(0, lvl)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
-            damagePositionZ += 4.8f;
-            advantageFishPositionZ = damagePositionZ - 0.5f;
-            advantageCoinPositionZ = damagePositionZ - 0.8f;
-
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(seaDamageObject[Random.Range(0, lvl)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
+                damagePositionZ += 4.8f;
+                advantageFishPositionZ = damagePositionZ - 0.5f;
+                advantageCoinPositionZ = damagePositionZ - 0.8f;
+            }
         }
+
     }
 
     // random fish advantage objesi olusturur
     void RandomSeaAdvantageObjectGenerator(int fishCount)
     {
-        Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
-        advantageFishPositionZ += 1f;
+        if (sharkCreate.getPlayBool())
+        {
+            Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
+            advantageFishPositionZ += 1f;
+        }
+
     }
 
     // coin advantage objesi olusturur
     void CoinCreate()
     {
-        GameObject coinObject;
-
-        int count = Random.Range(3, 5);
-        for (int i = 0; i < count; i++)
+        if (sharkCreate.getPlayBool())
         {
-            coinObject = Instantiate(coin, new Vector3(RandomPositionXGenarator(), 0.3f, advantageCoinPositionZ), Quaternion.identity);
-            coinObject.transform.Rotate(5, 0, 0);
-            advantageCoinPositionZ += 1f;
+            GameObject coinObject;
+
+            int count = Random.Range(3, 5);
+            for (int i = 0; i < count; i++)
+            {
+                coinObject = Instantiate(coin, new Vector3(RandomPositionXGenarator(), 0.3f, advantageCoinPositionZ), Quaternion.identity);
+                coinObject.transform.Rotate(5, 0, 0);
+                advantageCoinPositionZ += 1f;
+            }
+        }
+    }
+
+    void PositionControlZ()
+    {
+        if (!sharkCreate.getPlayBool())
+        {
+            damagePositionZ = sharkCreate.getSharkPlayer().transform.position.z + 20f;
+            advantageFishPositionZ = damagePositionZ;
+            advantageCoinPositionZ = damagePositionZ;
         }
     }
 }

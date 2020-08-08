@@ -31,7 +31,7 @@ public class SharkSwim : MonoBehaviour
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
-        speedModifier = 0.005f; // 0.0025f degeri ideal deger
+        speedModifier = 0.005f; // 0.005f degeri ideal deger
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
@@ -59,7 +59,7 @@ public class SharkSwim : MonoBehaviour
     // sag sol yapmasini saglar
     void Move()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && sharkCreate.getPlayBool())
         {
             moveOn = true;
             Touch touch;
@@ -75,10 +75,7 @@ public class SharkSwim : MonoBehaviour
     // surekli olarak z ekseninde ilerlemesini saglar
     void MoveSpeed()
     {
-        if (moveOn)
-        {
-            sharkCreate.getSharkPlayer().transform.position =  new Vector3(sharkCreate.getSharkPlayer().transform.position.x, sharkCreate.getSharkPlayer().transform.position.y, sharkCreate.getSharkPlayer().transform.position.z + speed * Time.deltaTime);
-        }
+        sharkCreate.getSharkPlayer().transform.position =  new Vector3(sharkCreate.getSharkPlayer().transform.position.x, sharkCreate.getSharkPlayer().transform.position.y, sharkCreate.getSharkPlayer().transform.position.z + speed * Time.deltaTime);
     }
 
     // objelere degdiginde yapilmasi gereken islemleri yapar
@@ -250,6 +247,7 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
+    // yenen balık sayisini return eder
     public int getFishCounter()
     {
         return fishCounter;

@@ -9,12 +9,15 @@ public class SharkCreate : MonoBehaviour
     int coinCounter; // oyuncunun bir bolumdeki parasini saklar
     GameObject sharkPlayer;
     int sharkIndex;
+    bool playBool;
     SharkSwim sharkSwim;
+    Animator anim;
 
     public DataManager dataManager;
 
     void Start()
     {
+        playBool = false;
         sharkIndex = 1;
         SharkAdd();
         CreatePlayer(sharkIndex);
@@ -32,14 +35,21 @@ public class SharkCreate : MonoBehaviour
     // shark oluşturur
     void CreatePlayer(int sharkIndex)
     {
-        sharkPlayer =  Instantiate(shark[sharkIndex].getSharkObject(), new Vector3(0, 0.5f, 0), Quaternion.Euler(new Vector3(-90, -90, 0)));
+        sharkPlayer =  Instantiate(shark[sharkIndex].getSharkObject(), new Vector3(0, 1f, 0), Quaternion.identity);
         transform.parent = sharkPlayer.transform;
+        //anim = sharkPlayer.GetComponent<Animator>();
+        //anim.SetBool("Swim2", true);
     }
 
     // oluşturulan sharki  return eder
     public GameObject getSharkPlayer()
     {
         return sharkPlayer;
+    }
+
+    public int getSharkIndex()
+    {
+        return sharkIndex;
     }
 
     // secili sharkin canini return eder
@@ -92,5 +102,15 @@ public class SharkCreate : MonoBehaviour
         dataManager.data.coinCounter = coinCounter;
         dataManager.data.fishCounter = sharkSwim.getFishCounter();
         dataManager.Save();
+    }
+
+    public bool getPlayBool()
+    {
+        return playBool;
+    }
+
+    public bool setPlayBool(bool isPlay)
+    {
+        return playBool = isPlay;
     }
 }

@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - PlayUI
     - ScrollCamera
     - Sea
+    - SharkAnimation
     - SharkCreate
     - SharkSwim
     - StartMenu
@@ -15,6 +16,14 @@ ScriptsOnlyBuild:
     - Unity.DeviceSimulator.SimulatorWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -55,19 +64,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 11752}
+      Script: {instanceID: 11754}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12218}
     - Class: 114
-      Script: {instanceID: 12692}
+      Script: {instanceID: 12694}
     - Class: 114
-      Script: {instanceID: 13068}
+      Script: {instanceID: 13070}
     - Class: 114
-      Script: {instanceID: 13094}
+      Script: {instanceID: 13096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -109,7 +118,13 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -122,21 +137,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 12104}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 12374}
+      Script: {instanceID: 12106}
     - Class: 114
-      Script: {instanceID: 12670}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 12692}
+      Script: {instanceID: 12682}
     - Class: 114
-      Script: {instanceID: 12900}
+      Script: {instanceID: 12694}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 12902}
     - Class: 114
-      Script: {instanceID: 13094}
+      Script: {instanceID: 13068}
+    - Class: 114
+      Script: {instanceID: 13096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -181,19 +198,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12218}
     - Class: 114
-      Script: {instanceID: 12328}
+      Script: {instanceID: 12330}
     - Class: 114
-      Script: {instanceID: 12692}
+      Script: {instanceID: 12694}
     - Class: 114
-      Script: {instanceID: 13068}
+      Script: {instanceID: 13070}
     - Class: 114
-      Script: {instanceID: 13094}
+      Script: {instanceID: 13096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -236,17 +253,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11382}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 11850}
+      Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12218}
     - Class: 114
-      Script: {instanceID: 12692}
+      Script: {instanceID: 12694}
     - Class: 114
-      Script: {instanceID: 13068}
+      Script: {instanceID: 13070}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -408,6 +425,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SharkAnimation
   - hash:
       serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5

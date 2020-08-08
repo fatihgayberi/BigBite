@@ -1350,6 +1350,9 @@ MonoBehaviour:
   playBtn: {fileID: 1026160274}
   homeBtn: {fileID: 601865081}
   dataManager: {fileID: 1673678784}
+  star: {fileID: 1416470455}
+  starInActive: {fileID: 21300000, guid: 7f56a0ac4e522164eb62e11fb11ac481, type: 3}
+  starActive: {fileID: 21300000, guid: 66fefbf9a4cc17c43b7200b661b13471, type: 3}
 --- !u!114 &1673678784
 MonoBehaviour:
   m_ObjectHideFlags: 0
