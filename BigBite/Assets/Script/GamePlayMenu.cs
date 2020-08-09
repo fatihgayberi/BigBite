@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayUI : MonoBehaviour
+public class GamePlayMenu : MonoBehaviour
 {
     public Text coinCounter;
     public Text fishCounter;

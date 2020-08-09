@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1169495056278356131}
   - component: {fileID: 7881835023245195925}
   - component: {fileID: 4493869340005287532}
-  - component: {fileID: 1516391989927675842}
   m_Layer: 0
   m_Name: Shipwreck
   m_TagString: Untagged
@@ -80,20 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &1516391989927675842
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765694327225774768}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1232755445511171977, guid: db5e9356dab8f8744811a27c0c1d5673, type: 3}
 --- !u!1 &8976243213524604776
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5736615833692366522}
+  - component: {fileID: 3009888180805345288}
   m_Layer: 0
   m_Name: Shipwreck
   m_TagString: Untagged
@@ -125,3 +111,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3009888180805345288
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976243213524604776}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.7074665
+  m_Height: 1.9543369
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.47716844, z: -0.0043758154}
