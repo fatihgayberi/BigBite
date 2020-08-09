@@ -8,6 +8,8 @@ public class SharkSwim : MonoBehaviour
     Sea sea;
     SharkCreate sharkCreate;
 
+    Animation anim;
+
     float health; // oyuncunun canini saklar
     float mana; // oyuncunun mana seviyesini tutar
     public float speed; // oyuncunun hizini saklar
@@ -21,7 +23,6 @@ public class SharkSwim : MonoBehaviour
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
 
-    bool moveOn; // oyuna dokunmadan baslamasini engeller
     bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
 
@@ -35,9 +36,8 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 30f;
+        endedGameTimer = 5f;
         fishCounter = 0;
-        moveOn = false;
         powerUp = false;
         gameFinish = false;
         StartedSea();
@@ -61,7 +61,6 @@ public class SharkSwim : MonoBehaviour
     {
         if (Input.touchCount > 0 && sharkCreate.getPlayBool())
         {
-            moveOn = true;
             Touch touch;
 
             touch = Input.GetTouch(0);
@@ -85,11 +84,14 @@ public class SharkSwim : MonoBehaviour
 
         BackColliderControl(other);
 
-        DamageColliderControl(other);
+        if (!gameFinish)
+        {
+            DamageColliderControl(other);
 
-        AdvantageColliderControl(other);
+            AdvantageColliderControl(other);
 
-        CoinWin(other);
+            CoinWin(other);
+        }
 
         FinishTable(other);
 
@@ -125,7 +127,7 @@ public class SharkSwim : MonoBehaviour
     // back colliderine degdiginde yeni bir sea olusturur
     void BackColliderControl(Collider collider)
     {
-        if (collider.gameObject.name.Contains("Back") && seconds <= endedGameTimer)
+        if (collider.gameObject.name.Contains("Back"))// && seconds <= endedGameTimer)
         {
             GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
             Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
@@ -190,7 +192,7 @@ public class SharkSwim : MonoBehaviour
     // coine degdiginde yapilmasi gerekenleri yapar
     void CoinWin(Collider collider)
     {
-        if (collider.transform.name.Contains(sea.coin.gameObject.name))
+        if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
             sharkCreate.setCoinCounter(1);
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
@@ -200,10 +202,12 @@ public class SharkSwim : MonoBehaviour
     // finish e geldiginde yapilmasi gerekenleri yapar
     void FinishTable(Collider collider)
     {
-        if (collider.transform.name.Contains(finishPrefab.gameObject.name))
+        if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
         {
+            anim = GetComponent<Animation>();
+            anim.Stop("Swim");
+            anim.Play("Finish");
             sharkCreate.CoinGameSave();
-            SceneManager.LoadScene("FinishScene");
         }
     }
 
@@ -231,7 +235,7 @@ public class SharkSwim : MonoBehaviour
     // oyunun suresini tutar
     void SecondCounter()
     {
-        if (moveOn)
+        if (sharkCreate.getPlayBool())
         {
             seconds += Time.deltaTime;
         }
@@ -242,7 +246,8 @@ public class SharkSwim : MonoBehaviour
     {
         if (seconds > endedGameTimer && !gameFinish)
         {
-            Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ + 2), Quaternion.identity);
+            Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+            seaPositionZ += 15;
             gameFinish = true;
         }
     }
@@ -253,4 +258,22 @@ public class SharkSwim : MonoBehaviour
         return fishCounter;
     }
 
+    // son oluşturulan sea objesinin Z position unu return eder
+    public float getSeaPositionZ()
+    {
+        return seaPositionZ - 7.5f;
+    }
+
+    // oyunun suresinin dolup dolmadıgını return eder
+    public bool getEndedGameTimer()
+    {
+        if (seconds > endedGameTimer)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }

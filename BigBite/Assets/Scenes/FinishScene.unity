@@ -487,7 +487,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "yenen bal\u0131k"
+  m_Text: "Toplanan Alt\u0131n"
 --- !u!222 &559442086
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -16,14 +16,6 @@ ScriptsOnlyBuild:
     - Unity.DeviceSimulator.SimulatorWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -122,13 +114,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 91
-      Script: {instanceID: 0}
-    - Class: 95
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
+      Script: {instanceID: 0}
+    - Class: 111
       Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 11176}
@@ -139,7 +129,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11662}
     - Class: 114
+      Script: {instanceID: 11786}
+    - Class: 114
+      Script: {instanceID: 11852}
+    - Class: 114
       Script: {instanceID: 12106}
+    - Class: 114
+      Script: {instanceID: 12196}
+    - Class: 114
+      Script: {instanceID: 12218}
     - Class: 114
       Script: {instanceID: 12376}
     - Class: 114
@@ -153,12 +151,16 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13068}
     - Class: 114
+      Script: {instanceID: 13070}
+    - Class: 114
       Script: {instanceID: 13096}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 137
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -445,7 +447,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 9c8ab130cb36e0fafe8718757d218a83
+      Hash: d80a62bd09f21964df4c194a7f5b0e6a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishMenu
@@ -481,7 +483,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 23655409b4eec024c9e7ec35cf344133
+      Hash: 8113291c031460f8c990574b4825e353
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartMenu

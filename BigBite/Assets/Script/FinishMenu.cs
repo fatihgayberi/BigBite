@@ -39,13 +39,9 @@ public class FinishMenu : MonoBehaviour
         CoinOutput(dataManager.data.coinCounter);        
     }
 
-    IEnumerator CoinOutput(int coin)
+    void CoinOutput(int coin)
     {
-        for (int i = 1; i <= coin; i++)
-        {
-            coinSum.text = i.ToString() + " Altin";
-            yield return new WaitForSeconds(1);
-        }
+        coinSum.text = coin + " Altin";
     }
 
     void FishOutput(int fishCounter)

@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SharkCreate : MonoBehaviour
-{
+{    
+    SharkSwim sharkSwim;
     public GameObject[] sharkArray; // shark prefablarini tutar
     public List<Shark> shark = new List<Shark>(); // sharklarin ozelliklerini tutan list
+    GameObject sharkPlayer; // kopekbaligini tutar
     int coinCounter; // oyuncunun bir bolumdeki parasini saklar
-    GameObject sharkPlayer;
-    int sharkIndex;
-    bool playBool;
-    SharkSwim sharkSwim;
-    Animator anim;
-
-    public DataManager dataManager;
+    int sharkIndex; // kopekbaliginin indexini tutar
+    bool playBool; // oyunun baslamasini tutan bool 
+    public DataManager dataManager; // oyunun verilerini saklar
 
     void Start()
     {
@@ -23,6 +21,7 @@ public class SharkCreate : MonoBehaviour
         CreatePlayer(sharkIndex);
     }
 
+    // kopekbaliklarini listeye ekler
     void SharkAdd()
     {
         shark.Add(new Shark(sharkArray[0], 100f, 6f, 2f, 4f, 1));
@@ -37,8 +36,6 @@ public class SharkCreate : MonoBehaviour
     {
         sharkPlayer =  Instantiate(shark[sharkIndex].getSharkObject(), new Vector3(0, 1f, 0), Quaternion.identity);
         transform.parent = sharkPlayer.transform;
-        //anim = sharkPlayer.GetComponent<Animator>();
-        //anim.SetBool("Swim2", true);
     }
 
     // oluşturulan sharki  return eder
@@ -47,6 +44,7 @@ public class SharkCreate : MonoBehaviour
         return sharkPlayer;
     }
 
+    // kopekbaliginin indexini return eder
     public int getSharkIndex()
     {
         return sharkIndex;
@@ -94,6 +92,7 @@ public class SharkCreate : MonoBehaviour
         this.coinCounter += coinCounter;
     }
 
+    // oyun içinde tutlan parayı save eder
     public void CoinGameSave()
     {
         sharkSwim = FindObjectOfType<SharkSwim>();
@@ -104,11 +103,13 @@ public class SharkCreate : MonoBehaviour
         dataManager.Save();
     }
 
+    // oyunun baslamasini tutan bool u return eder
     public bool getPlayBool()
     {
         return playBool;
     }
 
+    // oyunun baslamasini tutan bool u set eder
     public bool setPlayBool(bool isPlay)
     {
         return playBool = isPlay;

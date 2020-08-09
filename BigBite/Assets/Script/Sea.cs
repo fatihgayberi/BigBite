@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Sea : MonoBehaviour
 {
+    SharkCreate sharkCreate;
+    SharkSwim sharkSwim;
+
     public GameObject[] seaDamageObjectArray; // unity uzerinden engeller eklenir
     public GameObject[] seaAdvantageObjectArray; // unity uzerinden engeller eklenir
     public List<SeaDamageObject> seaDamageObject = new List<SeaDamageObject>(); // engellerin ozelliklerini tutan list
     public List<SeaAdvantageObject> seaAdvantageObject = new List<SeaAdvantageObject>(); // engellerin ozelliklerini tutan list
     public GameObject coin; // oyundaki altini tutar unity uzerinden eklenir
-
-    SharkCreate sharkCreate;
 
     int level; // oyuncunun levelini tutar
     public static float damagePositionZ; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
@@ -20,9 +21,8 @@ public class Sea : MonoBehaviour
     void Start()
     {
         sharkCreate = FindObjectOfType<SharkCreate>();
+        sharkSwim = FindObjectOfType<SharkSwim>();
         level = 25;
-        //advantageFishPositionZ = damagePositionZ;
-        //advantageCoinPositionZ = damagePositionZ;
         LevelAddOject();
         SpawnDamageObject();
         SpawnAdvantageObject();
@@ -89,29 +89,13 @@ public class Sea : MonoBehaviour
     //  x duzleminde random nokta uretir
     float RandomPositionXGenarator()
     {
-        float positionX;
-
-        positionX = Random.Range(-2.5f, 2.5f);
-
-        //if (positionX < -0.5 && positionX > 0.5)
-        //{
-        //    if (Random.Range(1, 3) % 2 == 0)
-        //    {
-        //        positionX = Random.Range(-1f, 1f);
-        //    }
-        //}
-        //else
-        //{
-        //    return positionX;
-        //}
-
-        return positionX;
+        return Random.Range(-2.5f, 2.5f);
     }
 
     // randrom olarak engeller olusturur
     void RandomSeaDamageObjectGenerator(int lvl)
     {
-        if (sharkCreate.getPlayBool())
+        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer())
         {
             for (int i = 0; i < 3; i++)
             {
@@ -127,7 +111,7 @@ public class Sea : MonoBehaviour
     // random fish advantage objesi olusturur
     void RandomSeaAdvantageObjectGenerator(int fishCount)
     {
-        if (sharkCreate.getPlayBool())
+        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer())
         {
             Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
             advantageFishPositionZ += 1f;
@@ -138,7 +122,7 @@ public class Sea : MonoBehaviour
     // coin advantage objesi olusturur
     void CoinCreate()
     {
-        if (sharkCreate.getPlayBool())
+        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer())
         {
             GameObject coinObject;
 
@@ -152,11 +136,12 @@ public class Sea : MonoBehaviour
         }
     }
 
+
     void PositionControlZ()
     {
         if (!sharkCreate.getPlayBool())
         {
-            damagePositionZ = sharkCreate.getSharkPlayer().transform.position.z + 20f;
+            damagePositionZ = sharkSwim.getSeaPositionZ();
             advantageFishPositionZ = damagePositionZ;
             advantageCoinPositionZ = damagePositionZ;
         }
