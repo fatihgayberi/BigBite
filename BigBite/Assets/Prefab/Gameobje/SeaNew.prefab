@@ -482,7 +482,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 86296f9ac1b1c9e4e9a1c847c9db1864,
         type: 3}
       propertyPath: m_Name
-      value: stone
+      value: stone (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86296f9ac1b1c9e4e9a1c847c9db1864, type: 3}
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: f78b66384c3b55947ac568f73fb24e46,
         type: 3}
       propertyPath: m_Name
-      value: toprakyan (1)
+      value: toprakyan
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f78b66384c3b55947ac568f73fb24e46, type: 3}
@@ -927,7 +927,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: bc6c9d2c4ec81d249a6d3ac87e5b6c31,
         type: 3}
       propertyPath: m_Name
-      value: toprak (1)
+      value: toprak
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc6c9d2c4ec81d249a6d3ac87e5b6c31, type: 3}

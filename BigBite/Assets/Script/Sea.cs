@@ -130,7 +130,7 @@ public class Sea : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 coinObject = Instantiate(coin, new Vector3(RandomPositionXGenarator(), 0.3f, advantageCoinPositionZ), Quaternion.identity);
-                coinObject.transform.Rotate(5, 0, 0);
+                coinObject.transform.Rotate(0, 2, 0);
                 advantageCoinPositionZ += 1f;
             }
         }

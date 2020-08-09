@@ -22,10 +22,6 @@ public class FinishMenu : MonoBehaviour
     public Sprite starInActive;
     public Sprite starActive;
 
-    Animation anim;
-
-
-
     void Start()
     {
         sharkSwim = FindObjectOfType<SharkSwim>();
