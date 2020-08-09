@@ -31,10 +31,4 @@ public class MenuControl : MonoBehaviour
     {
         marketMenu.gameObject.SetActive(mode);
     }
-
-    public void ResetCounter()
-    {
-        fishCounter.text = "0 BALIK";
-        coinCounter.text = "0 ALTIN";
-    }
 }

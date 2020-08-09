@@ -71,11 +71,10 @@ public class FinishMenu : MonoBehaviour
 
     public void TaskOnTouchkHome()
     {
+        sharkSwim.ResetSecond();
         sharkCreate.getPlayBool();
         sharkSwim.setGameFinish(false);
-        sharkCreate.setPlayBool(true);
         menuControl.StartMenu(true);
-        menuControl.ResetCounter();
         menuControl.FinishMenu(false);
         sharkSwim.ResetFishCounter();
         sharkCreate.ResetCoinCounter();

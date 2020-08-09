@@ -87,14 +87,11 @@ public class SharkSwim : MonoBehaviour
 
         BackColliderControl(other);
 
-        //if (!gameFinish)
-        {
-            DamageColliderControl(other);
+        DamageColliderControl(other);
 
-            AdvantageColliderControl(other);
+        StartCoroutine(AdvantageColliderControl(other));
 
-            CoinWin(other);
-        }
+        StartCoroutine(CoinWin(other));
 
         FinishTable(other);
 
@@ -156,7 +153,7 @@ public class SharkSwim : MonoBehaviour
     }
 
     // advantage objelerine degdiginde yapilmasi gerekenleri yapar
-    void AdvantageColliderControl(Collider collider)
+    IEnumerator AdvantageColliderControl(Collider collider)
     {
         if (mana < 100)
         {
@@ -186,6 +183,8 @@ public class SharkSwim : MonoBehaviour
                     }
                     anim.Stop("Swim");
                     anim.Play("Eat");
+                    yield return new WaitForSeconds(1f);
+                    anim.Play("Swim");
                     fishCounter++;
                     break;
                 }
@@ -194,12 +193,14 @@ public class SharkSwim : MonoBehaviour
     }
 
     // coine degdiginde yapilmasi gerekenleri yapar
-    void CoinWin(Collider collider)
+    IEnumerator CoinWin(Collider collider)
     {
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
             anim.Stop("Swim");
             anim.Play("Eat");
+            yield return new WaitForSeconds(1f);
+            anim.Play("Swim");
             sharkCreate.setCoinCounter(1);
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
         }

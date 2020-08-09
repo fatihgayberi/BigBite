@@ -141,7 +141,7 @@ public class Sea : MonoBehaviour
     {
         if (sharkCreate.getPlayBool())
         {
-            damagePositionZ = sharkSwim.getSeaPositionZ();
+            damagePositionZ = sharkSwim.getSeaPositionZ() - 3.5f;
             advantageFishPositionZ = damagePositionZ;
             advantageCoinPositionZ = damagePositionZ;
         }
