@@ -28,6 +28,7 @@ public class SharkSwim : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<Animation>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
@@ -181,7 +182,8 @@ public class SharkSwim : MonoBehaviour
                     {
                         mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                     }
-
+                    //anim.Stop("Swim");
+                    //anim.Play("Eat");
                     fishCounter++;
                     break;
                 }
@@ -194,6 +196,8 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
+            //anim.Stop("Swim");
+            //anim.Play("Eat");
             sharkCreate.setCoinCounter(1);
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
         }
@@ -204,7 +208,6 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
         {
-            anim = GetComponent<Animation>();
             anim.Stop("Swim");
             anim.Play("Finish");
             sharkCreate.CoinGameSave();
