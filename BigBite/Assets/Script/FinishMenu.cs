@@ -8,7 +8,6 @@ public class FinishMenu : MonoBehaviour
     SharkSwim sharkSwim;
     SharkCreate sharkCreate;
     MenuControl menuControl;
-    PlayUI playUI;
 
     public Text coinSum;
     public Text fishSum;
@@ -23,6 +22,8 @@ public class FinishMenu : MonoBehaviour
     public Sprite starInActive;
     public Sprite starActive;
 
+    Animation anim;
+
 
 
     void Start()
@@ -30,7 +31,6 @@ public class FinishMenu : MonoBehaviour
         sharkSwim = FindObjectOfType<SharkSwim>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         menuControl = FindObjectOfType<MenuControl>();
-        playUI = FindObjectOfType<PlayUI>();
         Sea.damagePositionZ = 1.5f;
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         homeBtn.onClick.AddListener(TaskOnTouchkHome);
@@ -60,6 +60,7 @@ public class FinishMenu : MonoBehaviour
 
     public void TaskOnTouchPlay()
     {
+        sharkSwim.AnimPlay("Swim");
         sharkSwim.ResetSecond();
         sharkSwim.setGameFinish(false);
         sharkCreate.setPlayBool(true);
@@ -71,6 +72,7 @@ public class FinishMenu : MonoBehaviour
 
     public void TaskOnTouchkHome()
     {
+        sharkSwim.AnimPlay("Swim");
         sharkSwim.ResetSecond();
         sharkCreate.getPlayBool();
         sharkSwim.setGameFinish(false);

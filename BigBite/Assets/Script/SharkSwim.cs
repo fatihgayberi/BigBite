@@ -181,10 +181,10 @@ public class SharkSwim : MonoBehaviour
                     {
                         mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                     }
-                    anim.Stop("Swim");
-                    anim.Play("Eat");
+                    AnimStop("Swim");
+                    AnimPlay("Eat");
                     yield return new WaitForSeconds(1f);
-                    anim.Play("Swim");
+                    AnimPlay("Swim");
                     fishCounter++;
                     break;
                 }
@@ -197,10 +197,10 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
-            anim.Stop("Swim");
-            anim.Play("Eat");
+            AnimStop("Swim");
+            AnimPlay("Eat");
             yield return new WaitForSeconds(1f);
-            anim.Play("Swim");
+            AnimPlay("Swim");
             sharkCreate.setCoinCounter(1);
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
         }
@@ -211,8 +211,8 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
         {
-            anim.Stop("Swim");
-            anim.Play("Finish");
+            AnimStop("Swim");
+            AnimPlay("Finish");
             sharkCreate.setPlayBool(false);
             sharkCreate.CoinGameSave();
             menuControl.GamePlayMenu(false);
@@ -302,5 +302,15 @@ public class SharkSwim : MonoBehaviour
     public void setGameFinish(bool mode)
     {
         gameFinish = mode;
+    }
+
+    public void AnimPlay(string clip)
+    {
+        anim.Play(clip);
+    }
+
+    public void AnimStop(string clip)
+    {
+        anim.Stop(clip);
     }
 }
