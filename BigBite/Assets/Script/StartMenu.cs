@@ -5,21 +5,26 @@ using UnityEngine.UI;
 public class StartMenu : MonoBehaviour
 {
     SharkCreate sharkCreate;
+    MenuControl menuControl;
+    SharkSwim sharkSwim;
+
     public Button playBtn;
     public Button marketBtn;
     public Button voiceBtn;
+
     public Sprite offVoice;
     public Sprite onVoice;
-    public GameObject startMenu;
-    public GameObject gameMenu;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
+        sharkSwim = FindObjectOfType<SharkSwim>();
         voiceBtn.onClick.AddListener(TaskOnTouchVoice);
         playBtn.onClick.AddListener(TaskOnTouchPlay);
-        marketBtn.onClick.AddListener(TaskOnTouchBack);
+        marketBtn.onClick.AddListener(TaskOnTouchMarket);
     }
 
     // Update is called once per frame
@@ -28,14 +33,17 @@ public class StartMenu : MonoBehaviour
         
     }
 
+    // play butonunu dinler
     void TaskOnTouchPlay()
     {
+        sharkSwim.ResetSecond();
         sharkCreate.setPlayBool(true);
-        gameMenu.gameObject.SetActive(true);
-        startMenu.gameObject.SetActive(false);
+        menuControl.GamePlayMenu(true);
+        menuControl.StartMenu(false);
     }
 
-    void TaskOnTouchBack()
+    // market butonunu dinler
+    void TaskOnTouchMarket()
     {
         SceneManager.LoadScene("MarketScene");
     }    

@@ -7,6 +7,7 @@ public class SharkSwim : MonoBehaviour
 {
     Sea sea;
     SharkCreate sharkCreate;
+    MenuControl menuControl;
 
     Animation anim;
 
@@ -29,15 +30,16 @@ public class SharkSwim : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animation>();
+        menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
-        speedModifier = 0.005f; // 0.005f degeri ideal deger
+        speedModifier = 0.01f; // 0.005f degeri ideal deger
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 5f;
+        endedGameTimer = 30f;
         fishCounter = 0;
         powerUp = false;
         gameFinish = false;
@@ -182,8 +184,8 @@ public class SharkSwim : MonoBehaviour
                     {
                         mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                     }
-                    //anim.Stop("Swim");
-                    //anim.Play("Eat");
+                    anim.Stop("Swim");
+                    anim.Play("Eat");
                     fishCounter++;
                     break;
                 }
@@ -196,8 +198,8 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
-            //anim.Stop("Swim");
-            //anim.Play("Eat");
+            anim.Stop("Swim");
+            anim.Play("Eat");
             sharkCreate.setCoinCounter(1);
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
         }
@@ -211,6 +213,7 @@ public class SharkSwim : MonoBehaviour
             anim.Stop("Swim");
             anim.Play("Finish");
             sharkCreate.CoinGameSave();
+            menuControl.FinishMenu(true);
         }
     }
 
@@ -278,5 +281,10 @@ public class SharkSwim : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public void ResetSecond()
+    {
+        seconds = 0f;
     }
 }

@@ -5,14 +5,19 @@ using UnityEngine.UI;
 
 public class FinishMenu : MonoBehaviour
 {
-    public GameObject finishMenu;
+    SharkSwim sharkSwim;
+    SharkCreate sharkCreate;
+    MenuControl menuControl;
+
     public Text coinSum;
     public Text fishSum;
+
     public Button playBtn;
     public Button homeBtn;
-    public DataManager dataManager;
 
-    public GameObject star;
+    public GameObject star1;
+    public GameObject star2;
+    public GameObject star3;
 
     public Sprite starInActive;
     public Sprite starActive;
@@ -21,6 +26,9 @@ public class FinishMenu : MonoBehaviour
 
     void Start()
     {
+        sharkSwim = FindObjectOfType<SharkSwim>();
+        sharkCreate = FindObjectOfType<SharkCreate>();
+        menuControl = FindObjectOfType<MenuControl>();
         Sea.damagePositionZ = 1.5f;
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         homeBtn.onClick.AddListener(TaskOnTouchkHome);
@@ -34,9 +42,8 @@ public class FinishMenu : MonoBehaviour
 
     void CanvasOutput()
     {
-        dataManager.Load();
-        FishOutput(dataManager.data.fishCounter);
-        CoinOutput(dataManager.data.coinCounter);        
+        FishOutput(sharkSwim.getFishCounter());
+        CoinOutput(sharkCreate.getCoinCounter());        
     }
 
     void CoinOutput(int coin)
@@ -51,16 +58,22 @@ public class FinishMenu : MonoBehaviour
 
     public void TaskOnTouchPlay()
     {
-        SceneManager.LoadScene("GameScene");
+        sharkSwim.ResetSecond();
+        sharkCreate.setPlayBool(true);
+        menuControl.FinishMenu(false);
+        menuControl.GamePlayMenu(true);
     }
 
     public void TaskOnTouchkHome()
     {
-        SceneManager.LoadScene("StartScene");
+        sharkSwim.ResetSecond();
+        sharkCreate.setPlayBool(true);
+        menuControl.FinishMenu(false);
+        menuControl.StartMenu(true);
     }
 
     public void UpdateStar()
     {
-        star.gameObject.GetComponent<Image>().sprite = starActive;
+        //star1.gameObject.GetComponent<Image>().sprite = starActive;
     }
 }
