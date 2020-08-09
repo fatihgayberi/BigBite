@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuControl : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class MenuControl : MonoBehaviour
     public GameObject gamePlayMenu;
     public GameObject finishMenu;
     public GameObject marketMenu;
+
+    public Text coinCounter;
+    public Text fishCounter;
 
     public void StartMenu(bool mode)
     {
@@ -26,5 +30,11 @@ public class MenuControl : MonoBehaviour
     public void MarketMenu(bool mode)
     {
         marketMenu.gameObject.SetActive(mode);
+    }
+
+    public void ResetCounter()
+    {
+        fishCounter.text = "0 BALIK";
+        coinCounter.text = "0 ALTIN";
     }
 }

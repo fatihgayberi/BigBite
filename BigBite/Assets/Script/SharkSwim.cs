@@ -39,7 +39,7 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 30f;
+        endedGameTimer = 10f;
         fishCounter = 0;
         powerUp = false;
         gameFinish = false;
@@ -87,7 +87,7 @@ public class SharkSwim : MonoBehaviour
 
         BackColliderControl(other);
 
-        if (!gameFinish)
+        //if (!gameFinish)
         {
             DamageColliderControl(other);
 
@@ -212,8 +212,13 @@ public class SharkSwim : MonoBehaviour
         {
             anim.Stop("Swim");
             anim.Play("Finish");
+            sharkCreate.setPlayBool(false);
             sharkCreate.CoinGameSave();
+            menuControl.GamePlayMenu(false);
             menuControl.FinishMenu(true);
+            health = sharkCreate.getSelectHealth();
+            speed = sharkCreate.getSelectSpeed();
+            mana = 0;
         }
     }
 
@@ -264,6 +269,11 @@ public class SharkSwim : MonoBehaviour
         return fishCounter;
     }
 
+    public void ResetFishCounter()
+    {
+        fishCounter = 0;
+    }
+
     // son oluşturulan sea objesinin Z position unu return eder
     public float getSeaPositionZ()
     {
@@ -286,5 +296,10 @@ public class SharkSwim : MonoBehaviour
     public void ResetSecond()
     {
         seconds = 0f;
+    }
+
+    public void setGameFinish(bool mode)
+    {
+        gameFinish = mode;
     }
 }

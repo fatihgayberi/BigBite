@@ -73,35 +73,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11752}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11754}
     - Class: 114
-      Script: {instanceID: 11850}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 12104}
+      Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 12106}
     - Class: 114
-      Script: {instanceID: 12216}
+      Script: {instanceID: 12196}
     - Class: 114
-      Script: {instanceID: 12374}
+      Script: {instanceID: 12218}
     - Class: 114
-      Script: {instanceID: 12670}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 12692}
+      Script: {instanceID: 12682}
     - Class: 114
-      Script: {instanceID: 12900}
+      Script: {instanceID: 12694}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 12902}
     - Class: 114
       Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13094}
+      Script: {instanceID: 13070}
     - Class: 114
-      Script: {instanceID: 13490}
+      Script: {instanceID: 13096}
     - Class: 114
-      Script: {instanceID: 33848}
+      Script: {instanceID: 13732}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -285,6 +285,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 56153a417b13de401d35f89df1423824
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuControl
   - hash:
       serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
@@ -603,12 +609,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: c25b919186c2623a41b2f953dd013765
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MenuControl
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity

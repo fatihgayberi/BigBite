@@ -7,15 +7,16 @@ public class PlayUI : MonoBehaviour
 {
     public Text coinCounter;
     public Text fishCounter;
+
     SharkSwim sharkSwim;
     SharkCreate SharkCreate;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         OutputCoinAndFish();
     }
 
+    // sayaclari output eder
     void OutputCoinAndFish()
     {
         sharkSwim = FindObjectOfType<SharkSwim>();

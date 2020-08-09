@@ -263,6 +263,8 @@ MonoBehaviour:
   gamePlayMenu: {fileID: 151347840}
   finishMenu: {fileID: 8994267475596717379}
   marketMenu: {fileID: 8994267475596717379}
+  coinCounter: {fileID: 587745788}
+  fishCounter: {fileID: 313402012}
 --- !u!114 &75877347
 MonoBehaviour:
   m_ObjectHideFlags: 0

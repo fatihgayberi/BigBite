@@ -86,6 +86,11 @@ public class SharkCreate : MonoBehaviour
         return coinCounter;
     }
 
+    public void ResetCoinCounter()
+    {
+        coinCounter = 0;
+    }
+
     // oyuncunun parasini set eder
     public void setCoinCounter(int coinCounter)
     {
