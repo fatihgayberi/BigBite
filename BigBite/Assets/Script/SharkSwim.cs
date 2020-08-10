@@ -39,7 +39,7 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 10f;
+        endedGameTimer = 3f;
         fishCounter = 0;
         powerUp = false;
         gameFinish = false;
@@ -199,7 +199,7 @@ public class SharkSwim : MonoBehaviour
         {
             AnimStop("Swim");
             AnimPlay("Eat"); 
-            sharkCreate.setCoinCounter(1);
+            sharkCreate.CoinCounterPlus();
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
             yield return new WaitForSeconds(1f);
             AnimPlay("Swim");
@@ -211,13 +211,13 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
         {
+            sharkCreate.CoinGameSave();
             AnimStop("Swim");
             AnimPlay("Finish");
             sharkCreate.setPlayBool(false);
-            sharkCreate.CoinGameSave();
             menuControl.GamePlayMenu(false);
             menuControl.FinishMenu(true);
-            //health = sharkCreate.getSelectHealth();
+            health = sharkCreate.getSelectHealth();
             speed = sharkCreate.getSelectSpeed();
             mana = 0;
             powerUp = false;

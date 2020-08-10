@@ -27,11 +27,11 @@ public class MarketMenu : MonoBehaviour
 
     void TaskOnTouchBack()
     {
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     void TotalCoin(int totalCoin)
     {
-        this.totalCoin.text = totalCoin + " Coin";
+        this.totalCoin.text = totalCoin + " Altın";
     }
 }

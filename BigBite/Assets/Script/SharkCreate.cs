@@ -91,10 +91,10 @@ public class SharkCreate : MonoBehaviour
         coinCounter = 0;
     }
 
-    // oyuncunun parasini set eder
-    public void setCoinCounter(int coinCounter)
+    // oyuncunun parasini 1 arttırır
+    public void CoinCounterPlus()
     {
-        this.coinCounter += coinCounter;
+        coinCounter += 1;
     }
 
     // oyun içinde tutlan parayı save eder
@@ -103,8 +103,6 @@ public class SharkCreate : MonoBehaviour
         sharkSwim = FindObjectOfType<SharkSwim>();
         dataManager.Load();
         dataManager.data.totalCoin += coinCounter;
-        dataManager.data.coinCounter = coinCounter;
-        dataManager.data.fishCounter = sharkSwim.getFishCounter();
         dataManager.Save();
     }
 

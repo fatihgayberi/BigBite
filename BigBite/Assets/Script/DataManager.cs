@@ -7,7 +7,7 @@ public class DataManager : MonoBehaviour
 {
     public PlayerData data;
 
-    private string file = "player.txt";
+    private string file = "bigbite.txt";
 
     public void Save()
     {
