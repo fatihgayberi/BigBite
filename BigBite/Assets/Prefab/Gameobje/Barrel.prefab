@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6462860493557610695}
   - component: {fileID: 760044060296856638}
   m_Layer: 0
-  m_Name: barrel
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,6 +122,6 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.35791427
-  m_Height: 1.1024413
+  m_Height: 2.042378
   m_Direction: 1
-  m_Center: {x: -0.014649868, y: 0.20695901, z: -0.0039378405}
+  m_Center: {x: -0.014649868, y: 0.6769273, z: -0.0039378405}

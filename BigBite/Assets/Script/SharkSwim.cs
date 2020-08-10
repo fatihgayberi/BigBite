@@ -127,7 +127,7 @@ public class SharkSwim : MonoBehaviour
     // back colliderine degdiginde yeni bir sea olusturur
     void BackColliderControl(Collider collider)
     {
-        if (collider.gameObject.name.Contains("Back"))// && seconds <= endedGameTimer)
+        if (collider.gameObject.name.Contains("Back"))
         {
             GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
             Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
@@ -143,7 +143,7 @@ public class SharkSwim : MonoBehaviour
         {
             for (int i = 0; i < sea.seaDamageObject.Count; i++)
             {
-                if (sea.seaDamageObject[i].getSeaGameObject().name.Contains(collider.transform.name))
+                if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
                 {
                     health -= sea.seaDamageObject[i].getPoweOfObject();
                     break;
@@ -181,11 +181,11 @@ public class SharkSwim : MonoBehaviour
                     {
                         mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                     }
-                    AnimStop("Swim");
-                    AnimPlay("Eat");
-                    yield return new WaitForSeconds(1f);
-                    AnimPlay("Swim");
+                    //AnimStop("Swim");
+                    //AnimPlay("Eat");
                     fishCounter++;
+                    yield return new WaitForSeconds(0);
+                    //AnimPlay("Swim");                    
                     break;
                 }
             }
@@ -198,11 +198,11 @@ public class SharkSwim : MonoBehaviour
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
             AnimStop("Swim");
-            AnimPlay("Eat");
-            yield return new WaitForSeconds(1f);
-            AnimPlay("Swim");
+            AnimPlay("Eat"); 
             sharkCreate.setCoinCounter(1);
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
+            yield return new WaitForSeconds(1f);
+            AnimPlay("Swim");
         }
     }
 
@@ -217,9 +217,10 @@ public class SharkSwim : MonoBehaviour
             sharkCreate.CoinGameSave();
             menuControl.GamePlayMenu(false);
             menuControl.FinishMenu(true);
-            health = sharkCreate.getSelectHealth();
+            //health = sharkCreate.getSelectHealth();
             speed = sharkCreate.getSelectSpeed();
             mana = 0;
+            powerUp = false;
         }
     }
 
