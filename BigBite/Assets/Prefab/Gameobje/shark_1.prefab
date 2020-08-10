@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4967769364253585161}
   - component: {fileID: 4967769364253585166}
   - component: {fileID: 1700463748785786928}
-  - component: {fileID: 4016544731471333588}
   m_Layer: 0
   m_Name: shark_1
   m_TagString: Untagged
@@ -62,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6d76dda0d7f5a2843ab3d349d87397c9, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,21 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f451a32c8ebe96f46af6b91c55df1911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   speed: 0
   seaPrefab:
   - {fileID: 6286692555497245440, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
   finishPrefab: {fileID: 2719089444238964584, guid: 1f4ed0771c3b8104199c4aa02021a668,
     type: 3}
---- !u!114 &4016544731471333588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4967769364253585167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76411ad3cddf57a45b3b38e69a106e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -6,6 +6,7 @@ public class Sea : MonoBehaviour
 {
     SharkCreate sharkCreate;
     SharkSwim sharkSwim;
+    GameObject coinObject;
 
     public GameObject[] seaDamageObjectArray; // unity uzerinden engeller eklenir
     public GameObject[] seaAdvantageObjectArray; // unity uzerinden engeller eklenir
@@ -45,6 +46,7 @@ public class Sea : MonoBehaviour
 
         // advantage ogelerini ekler
         seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[0], 10, 25));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[1], 15, 30));
     }
 
     // level seviyesine gore spawn edilecek olan engeli belirler
@@ -76,13 +78,13 @@ public class Sea : MonoBehaviour
 
         if (possibility < 20) // %20 olasilik ile 1 tane advantage ogesi spawn eder
         {
-            RandomSeaAdvantageObjectGenerator(1);
+            RandomSeaAdvantageObjectGenerator();
         }
         
         else if (possibility < 35) // %35 olasilik ile 2 tane advantage ogesi spawn eder
         {
-            RandomSeaAdvantageObjectGenerator(1);
-            RandomSeaAdvantageObjectGenerator(1);
+            RandomSeaAdvantageObjectGenerator();
+            RandomSeaAdvantageObjectGenerator();
         }
     }
 
@@ -109,10 +111,11 @@ public class Sea : MonoBehaviour
     }
 
     // random fish advantage objesi olusturur
-    void RandomSeaAdvantageObjectGenerator(int fishCount)
+    void RandomSeaAdvantageObjectGenerator()
     {
         if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer())
         {
+            int fishCount = seaAdvantageObjectArray.Length;
             Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
             advantageFishPositionZ += 1f;
         }
@@ -124,13 +127,10 @@ public class Sea : MonoBehaviour
     {
         if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer())
         {
-            GameObject coinObject;
-
             int count = Random.Range(3, 5);
             for (int i = 0; i < count; i++)
             {
                 coinObject = Instantiate(coin, new Vector3(RandomPositionXGenarator(), 0.3f, advantageCoinPositionZ), Quaternion.identity);
-                coinObject.transform.Rotate(0, 2, 0);
                 advantageCoinPositionZ += 1f;
             }
         }
