@@ -25,7 +25,7 @@ public class MarketMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sharkOnTheScreen = Instantiate(sharkArray[0], new Vector3(-2f, 3.5f, 0), Quaternion.identity);
+        sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
 
         backBtn.onClick.AddListener(TaskOnTouchBack);
         leftBtn.onClick.AddListener(TaskOnTouchLeft);
@@ -35,6 +35,7 @@ public class MarketMenu : MonoBehaviour
         TotalCoin(dataManager.data.totalCoin);
 
         sharkIndex = 0;
+        BtnControl();
     }
 
     // Update is called once per frame
@@ -88,13 +89,38 @@ public class MarketMenu : MonoBehaviour
     void SelectedShark()
     {
         Destroy(sharkOnTheScreen);
-        sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, 0), Quaternion.identity);
+        switch (sharkIndex)
+        {
+
+            case 0:
+                sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
+                break;
+            case 1:
+                sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, 0.8f), Quaternion.Euler(-5, 20, 20));
+                break;
+            case 2:
+                sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, 0.3f), Quaternion.Euler(-5, 20, 20));
+                break;
+            case 3:
+                sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.2f), Quaternion.Euler(-5, 20, 20));
+                break;
+            case 4:
+                sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-3f, 3.2f, -0.3f), Quaternion.Euler(-5, 20, 20));
+                break;
+            default:
+                break;
+        }
     }
 
-    void CreatShark()
+    void BtnControl()
     {
-        for (int i = 0; i < sharkArray.Length; i++)
+        if (sharkIndex == 0)
         {
+            leftBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
+        }
+        else if (sharkIndex < sharkArray.Length - 1)
+        {
+            rightBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
         }
     }
 }
