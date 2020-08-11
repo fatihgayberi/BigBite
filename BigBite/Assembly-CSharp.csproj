@@ -64,13 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\CoinRotate.cs" />
+    <Compile Include="Assets\Script\ConfirmNotification.cs" />
     <Compile Include="Assets\Script\DataManager.cs" />
     <Compile Include="Assets\Script\DestroyLine.cs" />
     <Compile Include="Assets\Script\FinishMenu.cs" />
     <Compile Include="Assets\Script\GamePlayMenu.cs" />
     <Compile Include="Assets\Script\MarketMenu.cs" />
     <Compile Include="Assets\Script\MenuControl.cs" />
-    <Compile Include="Assets\Script\NoneLimit.cs" />
+    <Compile Include="Assets\Script\NoneLimitNotification.cs" />
     <Compile Include="Assets\Script\PlayerData.cs" />
     <Compile Include="Assets\Script\ScrollCamera.cs" />
     <Compile Include="Assets\Script\Sea.cs" />

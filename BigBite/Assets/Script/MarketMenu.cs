@@ -9,32 +9,40 @@ public class MarketMenu : MonoBehaviour
     public Button leftBtn;
     public Button rightBtn;
     public Button backBtn;
+    public Button priceBtn;
 
     public GameObject[] sharkArray;
+    public GameObject noLimitPanel;
+    public GameObject confirmPanel;
+
     GameObject sharkOnTheScreen;
 
     public Text totalCoin;
+    public Text priceOutput;
 
     public DataManager dataManager;
 
     public Sprite btnInActive;
     public Sprite btnActive;
 
-    int sharkIndex;
+    public int sharkIndex;
 
     // Start is called before the first frame update
     void Start()
     {
+        dataManager.Load();
+        sharkIndex = dataManager.data.selectedSharkIndex;
+        PriceOutput(sharkIndex);
+
         sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
 
         backBtn.onClick.AddListener(TaskOnTouchBack);
         leftBtn.onClick.AddListener(TaskOnTouchLeft);
         rightBtn.onClick.AddListener(TaskOnTouchRight);
+        priceBtn.onClick.AddListener(TaskOnTouchPrice);
 
-        dataManager.Load();
-        TotalCoin(dataManager.data.totalCoin);
+        TotalCoin();
 
-        sharkIndex = 0;
         BtnControl();
     }
 
@@ -44,14 +52,14 @@ public class MarketMenu : MonoBehaviour
         
     }
 
+    void TotalCoin()
+    {
+        dataManager.Load();
+        this.totalCoin.text = dataManager.data.totalCoin + " Altın";
+    }
     void TaskOnTouchBack()
     {
         SceneManager.LoadScene("GameScene");
-    }
-
-    void TotalCoin(int totalCoin)
-    {
-        this.totalCoin.text = totalCoin + " Altın";
     }
 
     void TaskOnTouchLeft()
@@ -89,9 +97,9 @@ public class MarketMenu : MonoBehaviour
     void SelectedShark()
     {
         Destroy(sharkOnTheScreen);
+        PriceOutput(sharkIndex);
         switch (sharkIndex)
         {
-
             case 0:
                 sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
                 break;
@@ -121,6 +129,46 @@ public class MarketMenu : MonoBehaviour
         else if (sharkIndex < sharkArray.Length - 1)
         {
             rightBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
+        }
+    }
+
+    void PriceOutput(int sharkIndex)
+    {
+        dataManager.Load();
+        if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex == sharkIndex)
+        {
+            priceOutput.text = "Secili";
+        }
+        if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex != sharkIndex) 
+        {
+            priceOutput.text = "Sec";
+        }
+        if (!dataManager.data.buyingShark[sharkIndex])
+        {
+            priceOutput.text = dataManager.data.sharkPrice[sharkIndex] + " ALTIN";
+        }
+    }
+
+    void TaskOnTouchPrice()
+    {
+        if (dataManager.data.buyingShark[sharkIndex])
+        {
+            dataManager.Load();
+            priceOutput.text = "Secili";
+            dataManager.data.selectedSharkIndex = sharkIndex;
+            dataManager.Save();
+        }
+        else
+        {
+            dataManager.Load();
+            if (dataManager.data.totalCoin >= dataManager.data.sharkPrice[sharkIndex])
+            {
+                confirmPanel.gameObject.SetActive(true);
+            }
+            else
+            {
+                noLimitPanel.gameObject.SetActive(true);
+            }
         }
     }
 }
