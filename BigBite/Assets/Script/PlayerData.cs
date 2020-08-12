@@ -10,4 +10,6 @@ public class PlayerData
     public int selectedSharkIndex = 0;
     public float[] sharkSpeed = { 6f, 6.5f, 7f, 7.5f, 8f };
     public int[] sharkSpeedPrice = { 50, 50, 50, 50, 50 };
+    public float[] sharkPower = { 2f, 4f, 6f, 8f, 10f };
+    public int[] sharkPowerPrice = { 50, 50, 50, 50, 50 };
 }

@@ -24,11 +24,11 @@ public class SharkCreate : MonoBehaviour
     // kopekbaliklarini listeye ekler
     void SharkAdd()
     {
-        shark.Add(new Shark(sharkArray[0], 100f, SelectSharkSpeed(), 2f, 4f, 1));
-        shark.Add(new Shark(sharkArray[1], 150f, SelectSharkSpeed(), 4f, 5f, 2));
-        shark.Add(new Shark(sharkArray[2], 200f, SelectSharkSpeed(), 6f, 6f, 3));
-        shark.Add(new Shark(sharkArray[3], 250f, SelectSharkSpeed(), 8f, 7f, 4));
-        shark.Add(new Shark(sharkArray[4], 300f, SelectSharkSpeed(), 10f, 8f, 5));
+        shark.Add(new Shark(sharkArray[0], 100f, SelectSharkSpeed(), SelectSharkPower(), 4f, 1));
+        shark.Add(new Shark(sharkArray[1], 150f, SelectSharkSpeed(), SelectSharkPower(), 5f, 2));
+        shark.Add(new Shark(sharkArray[2], 200f, SelectSharkSpeed(), SelectSharkPower(), 6f, 3));
+        shark.Add(new Shark(sharkArray[3], 250f, SelectSharkSpeed(), SelectSharkPower(), 7f, 4));
+        shark.Add(new Shark(sharkArray[4], 300f, SelectSharkSpeed(), SelectSharkPower(), 8f, 5));
     }
 
     // shark oluşturur
@@ -119,6 +119,13 @@ public class SharkCreate : MonoBehaviour
         dataManager.Load();
         int selectShark = dataManager.data.selectedSharkIndex;
         return dataManager.data.sharkSpeed[selectShark];
+    }
+
+    float SelectSharkPower()
+    {
+        dataManager.Load();
+        int selectShark = dataManager.data.selectedSharkIndex;
+        return dataManager.data.sharkPower[selectShark];
     }
 
     // oyunun baslamasini tutan bool u return eder

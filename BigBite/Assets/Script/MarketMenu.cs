@@ -11,20 +11,25 @@ public class MarketMenu : MonoBehaviour
     public Button backBtn;
     public Button priceBtn;
     public Button speedUpBtn;
+    public Button powerUpBtn;
 
     public GameObject[] sharkArray;
-    public GameObject noLimitPanel;
+    public GameObject notificationPanel;
     public GameObject confirmPanel;
     public GameObject specialPower;
     public GameObject[] speedBoneSprite;
     public GameObject[] speedSpineSprite;
+    public GameObject[] powerBoneSprite;
+    public GameObject[] powerSpineSprite;
 
     GameObject sharkOnTheScreen;
 
     public Text totalCoin;
     public Text priceOutput;
     public Text speedLevelTxt;
+    public Text powerLevelTxt;
     public Text speedUpTxt;
+    public Text powerUpTxt;
 
     public DataManager dataManager;
 
@@ -36,6 +41,7 @@ public class MarketMenu : MonoBehaviour
     public Sprite spineInActive;
 
     public int sharkIndex;
+    string notificationOutput;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +49,8 @@ public class MarketMenu : MonoBehaviour
         dataManager.Load();
         sharkIndex = dataManager.data.selectedSharkIndex;
         PriceOutput(sharkIndex);
-        SkeletActive(ActiveIndexFind());
+        SpeedSkeletActive(SpeedActiveIndexFind());
+        PowerSkeletActive(PowerActiveIndexFind());
 
         sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
 
@@ -52,16 +59,11 @@ public class MarketMenu : MonoBehaviour
         rightBtn.onClick.AddListener(TaskOnTouchRight);
         priceBtn.onClick.AddListener(TaskOnTouchPrice);
         speedUpBtn.onClick.AddListener(TaskOnTouchSpeed);
+        powerUpBtn.onClick.AddListener(TaskOnTouchPower);
 
         TotalCoin();
 
         BtnControl();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void TotalCoin()
@@ -89,7 +91,9 @@ public class MarketMenu : MonoBehaviour
             Debug.Log("sharkIndex left none: " + sharkIndex);
         }
         SpeedSkeletInActive();
-        SkeletActive(ActiveIndexFind());
+        PowerSkeletInActive();
+        SpeedSkeletActive(SpeedActiveIndexFind());
+        PowerSkeletActive(PowerActiveIndexFind());
     }
 
     void TaskOnTouchRight()
@@ -107,7 +111,9 @@ public class MarketMenu : MonoBehaviour
             Debug.Log("sharkIndex right none: " + sharkIndex);
         }
         SpeedSkeletInActive();
-        SkeletActive(ActiveIndexFind());
+        PowerSkeletInActive();
+        SpeedSkeletActive(SpeedActiveIndexFind());
+        PowerSkeletActive(PowerActiveIndexFind());
     }
 
     void SelectedShark()
@@ -187,7 +193,8 @@ public class MarketMenu : MonoBehaviour
             }
             else
             {
-                noLimitPanel.gameObject.SetActive(true);
+                notificationOutput = "Yeterli altın yok.";
+                notificationPanel.gameObject.SetActive(true);
             }
         }
     }
@@ -200,7 +207,7 @@ public class MarketMenu : MonoBehaviour
             dataManager.data.totalCoin -= dataManager.data.sharkSpeedPrice[sharkIndex];
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
-            SkeletActive(ActiveIndexFind());
+            SpeedSkeletActive(SpeedActiveIndexFind());
             if (dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
             {
                 speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
@@ -212,13 +219,51 @@ public class MarketMenu : MonoBehaviour
             
             dataManager.Save();
         }
-        else
+        if (dataManager.data.totalCoin < dataManager.data.sharkSpeedPrice[sharkIndex])
         {
-            noLimitPanel.gameObject.SetActive(false);
+            notificationOutput = "Yeterli altın yok.";
+            notificationPanel.gameObject.SetActive(true);
+        }
+        if (dataManager.data.sharkSpeedPrice[sharkIndex] == 100)
+        {
+            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
+            notificationPanel.gameObject.SetActive(true);
         }
     }
 
-    void SkeletActive(int activeIndex)
+    void TaskOnTouchPower()
+    {
+        if (dataManager.data.totalCoin >= dataManager.data.sharkPowerPrice[sharkIndex] && dataManager.data.sharkPowerPrice[sharkIndex] != 100)
+        {
+            dataManager.data.sharkPower[sharkIndex] += 1;
+            dataManager.data.totalCoin -= dataManager.data.sharkPowerPrice[sharkIndex];
+            totalCoin.text = dataManager.data.totalCoin + " ALTIN";
+            dataManager.data.sharkPowerPrice[sharkIndex] += 10;
+            PowerSkeletActive(PowerActiveIndexFind());
+            if (dataManager.data.sharkPowerPrice[sharkIndex] != 100)
+            {
+                powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " ALTIN";
+            }
+            else
+            {
+                powerUpTxt.text = "";
+            }
+
+            dataManager.Save();
+        }
+        if (dataManager.data.totalCoin < dataManager.data.sharkPowerPrice[sharkIndex])
+        {
+            notificationOutput = "Yeterli altın yok.";
+            notificationPanel.gameObject.SetActive(true);
+        }
+        if (dataManager.data.sharkPowerPrice[sharkIndex] == 100)
+        {
+            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
+            notificationPanel.gameObject.SetActive(true);
+        }
+    }
+
+    void SpeedSkeletActive(int activeIndex)
     {
         for (int i = 0; i < activeIndex; i++)
         {
@@ -236,9 +281,33 @@ public class MarketMenu : MonoBehaviour
         }
     }
 
-    int ActiveIndexFind()
+    void PowerSkeletActive(int activeIndex)
+    {
+        for (int i = 0; i < activeIndex; i++)
+        {
+            if (i < 4)
+            {
+                powerBoneSprite[i].gameObject.GetComponent<Image>().sprite = boneActive;
+                powerSpineSprite[i].gameObject.GetComponent<Image>().sprite = spineActive;
+                powerLevelTxt.text = i + 1 + "/5";
+            }
+            else if (i == 4)
+            {
+                powerBoneSprite[i].gameObject.GetComponent<Image>().sprite = boneActive;
+                powerLevelTxt.text = i + 1 + "/5";
+            }
+        }
+    }
+
+    int SpeedActiveIndexFind()
     {
         int activeIndex = ((dataManager.data.sharkSpeedPrice[sharkIndex] - 50) / 10);
+        return activeIndex;
+    }
+
+    int PowerActiveIndexFind()
+    {
+        int activeIndex = ((dataManager.data.sharkPowerPrice[sharkIndex] - 50) / 10);
         return activeIndex;
     }
 
@@ -253,7 +322,9 @@ public class MarketMenu : MonoBehaviour
         {
             speedSpineSprite[i].gameObject.GetComponent<Image>().sprite = spineInActive;
         }
+
         speedLevelTxt.text = "0/5";
+
         if (dataManager.data.sharkSpeedPrice[sharkIndex] == 100)
         {
             speedUpTxt.text = "";
@@ -263,5 +334,35 @@ public class MarketMenu : MonoBehaviour
             speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
         }
         
+    }
+
+    void PowerSkeletInActive()
+    {
+        for (int i = 0; i < powerBoneSprite.Length; i++)
+        {
+            powerBoneSprite[i].gameObject.GetComponent<Image>().sprite = boneInActive;
+        }
+
+        for (int i = 0; i < powerSpineSprite.Length; i++)
+        {
+            powerSpineSprite[i].gameObject.GetComponent<Image>().sprite = spineInActive;
+        }
+
+        powerLevelTxt.text = "0/5";
+
+        if (dataManager.data.sharkPowerPrice[sharkIndex] == 100)
+        {
+            powerUpTxt.text = "";
+        }
+        else
+        {
+            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " ALTIN";
+        }
+
+    }
+
+    public string getNotificationOutput()
+    {
+        return notificationOutput;
     }
 }

@@ -465,13 +465,14 @@ MonoBehaviour:
   backBtn: {fileID: 414649554}
   priceBtn: {fileID: 750668997}
   speedUpBtn: {fileID: 998089421}
+  powerUpBtn: {fileID: 1385031093}
   sharkArray:
   - {fileID: 415254773597299086, guid: 7bf024f4341d6a248a645cd07238c99c, type: 3}
   - {fileID: 2243542389016097353, guid: 41b02270040401940b58a70d21812b3b, type: 3}
   - {fileID: 1653930538485727497, guid: 3b4a47838bb2d4c4ebefc6c4785e451c, type: 3}
   - {fileID: 7075249009225350145, guid: ec4134ab28f23fc4f9753c969ff54c23, type: 3}
   - {fileID: 3196147288322883783, guid: f3be8aee4be29164db1b9575b0cc8c23, type: 3}
-  noLimitPanel: {fileID: 1820061523}
+  notificationPanel: {fileID: 1820061523}
   confirmPanel: {fileID: 1314491407}
   specialPower: {fileID: 1618339331}
   speedBoneSprite:
@@ -485,10 +486,23 @@ MonoBehaviour:
   - {fileID: 1399326932}
   - {fileID: 1892421342}
   - {fileID: 543598581}
+  powerBoneSprite:
+  - {fileID: 733200505}
+  - {fileID: 1220082787}
+  - {fileID: 1808450584}
+  - {fileID: 870225279}
+  - {fileID: 389179891}
+  powerSpineSprite:
+  - {fileID: 702774160}
+  - {fileID: 523356880}
+  - {fileID: 590139838}
+  - {fileID: 2129770049}
   totalCoin: {fileID: 829861871}
   priceOutput: {fileID: 1537821259}
   speedLevelTxt: {fileID: 216168652}
+  powerLevelTxt: {fileID: 1791709979}
   speedUpTxt: {fileID: 1112681675}
+  powerUpTxt: {fileID: 22923776}
   dataManager: {fileID: 157374205}
   btnInActive: {fileID: 21300000, guid: 87e434c92960c3141a4305390364d8f1, type: 3}
   btnActive: {fileID: 21300000, guid: cbb067a7ec10d244ab4e2753bbc91d1e, type: 3}
@@ -1041,7 +1055,7 @@ GameObject:
   - component: {fileID: 393998489}
   - component: {fileID: 393998488}
   m_Layer: 5
-  m_Name: Text
+  m_Name: NotificationOutput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1643,7 @@ GameObject:
   - component: {fileID: 606904550}
   - component: {fileID: 606904549}
   m_Layer: 5
-  m_Name: NotificationLimit
+  m_Name: Notification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3860,7 +3874,7 @@ GameObject:
   - component: {fileID: 1820061526}
   - component: {fileID: 1820061525}
   m_Layer: 5
-  m_Name: NoneLimitPanel
+  m_Name: NotificationPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3900,6 +3914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notification: {fileID: 1820061523}
   closeBtn: {fileID: 1163319903}
+  notificationOutput: {fileID: 393998488}
 --- !u!114 &1820061526
 MonoBehaviour:
   m_ObjectHideFlags: 0
