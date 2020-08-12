@@ -30,6 +30,7 @@ public class ConfirmNotification : MonoBehaviour
         dataManager.data.buyingShark[marketMenu.sharkIndex] = true;
         dataManager.data.selectedSharkIndex = marketMenu.sharkIndex;
         marketMenu.totalCoin.text = dataManager.data.totalCoin + " ALTIN";
+        marketMenu.specialPower.gameObject.SetActive(true);
         dataManager.Save();
         confirmPanel.gameObject.SetActive(false);
     }

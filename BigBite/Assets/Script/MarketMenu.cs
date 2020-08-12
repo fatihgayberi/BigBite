@@ -10,20 +10,28 @@ public class MarketMenu : MonoBehaviour
     public Button rightBtn;
     public Button backBtn;
     public Button priceBtn;
+    public Button speedUpBtn;
 
     public GameObject[] sharkArray;
     public GameObject noLimitPanel;
     public GameObject confirmPanel;
+    public GameObject specialPower;
+    public GameObject[] speedBoneSprite;
+    public GameObject[] speedSpineSprite;
 
     GameObject sharkOnTheScreen;
 
     public Text totalCoin;
     public Text priceOutput;
+    public Text speedLevelTxt;
+    public Text speedUpTxt;
 
     public DataManager dataManager;
 
     public Sprite btnInActive;
     public Sprite btnActive;
+    public Sprite boneActive;
+    public Sprite spineActive;
 
     public int sharkIndex;
 
@@ -33,6 +41,7 @@ public class MarketMenu : MonoBehaviour
         dataManager.Load();
         sharkIndex = dataManager.data.selectedSharkIndex;
         PriceOutput(sharkIndex);
+        SkeletActive(ActiveIndexFind());
 
         sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
 
@@ -40,6 +49,7 @@ public class MarketMenu : MonoBehaviour
         leftBtn.onClick.AddListener(TaskOnTouchLeft);
         rightBtn.onClick.AddListener(TaskOnTouchRight);
         priceBtn.onClick.AddListener(TaskOnTouchPrice);
+        speedUpBtn.onClick.AddListener(TaskOnTouchSpeed);
 
         TotalCoin();
 
@@ -138,14 +148,17 @@ public class MarketMenu : MonoBehaviour
         if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex == sharkIndex)
         {
             priceOutput.text = "Secili";
+            specialPower.gameObject.SetActive(true);
         }
         if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex != sharkIndex) 
         {
             priceOutput.text = "Sec";
+            specialPower.gameObject.SetActive(true);
         }
         if (!dataManager.data.buyingShark[sharkIndex])
         {
             priceOutput.text = dataManager.data.sharkPrice[sharkIndex] + " ALTIN";
+            specialPower.gameObject.SetActive(false);
         }
     }
 
@@ -157,6 +170,7 @@ public class MarketMenu : MonoBehaviour
             priceOutput.text = "Secili";
             dataManager.data.selectedSharkIndex = sharkIndex;
             dataManager.Save();
+            specialPower.gameObject.SetActive(true);
         }
         else
         {
@@ -170,5 +184,47 @@ public class MarketMenu : MonoBehaviour
                 noLimitPanel.gameObject.SetActive(true);
             }
         }
+    }
+
+    void TaskOnTouchSpeed()
+    {
+        if (dataManager.data.totalCoin >= dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
+        {
+            dataManager.data.sharkSpeed[sharkIndex] += 75;
+            dataManager.data.totalCoin -= dataManager.data.sharkSpeedPrice[sharkIndex];
+            totalCoin.text = dataManager.data.totalCoin + " ALTIN";
+            dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
+            SkeletActive(ActiveIndexFind());
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
+            dataManager.Save();
+        }
+        else
+        {
+            noLimitPanel.gameObject.SetActive(false);
+        }
+    }
+
+    void SkeletActive(int activeIndex)
+    {
+        for (int i = 0; i < activeIndex; i++)
+        {
+            if (i < 4)
+            {
+                speedBoneSprite[i].gameObject.GetComponent<Image>().sprite = boneActive;
+                speedSpineSprite[i].gameObject.GetComponent<Image>().sprite = spineActive;
+                speedLevelTxt.text = i + 1 + "/5";
+            }
+            else if (i == 4)
+            {
+                speedBoneSprite[i].gameObject.GetComponent<Image>().sprite = boneActive;
+                speedLevelTxt.text = i + 1 + "/5";
+            }
+        }
+    }
+
+    int ActiveIndexFind()
+    {
+        int activeIndex = ((dataManager.data.sharkSpeedPrice[sharkIndex] - 50) / 10);
+        return activeIndex;
     }
 }

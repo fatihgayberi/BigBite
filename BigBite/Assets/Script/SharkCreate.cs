@@ -16,7 +16,7 @@ public class SharkCreate : MonoBehaviour
     void Start()
     {
         playBool = false;
-        sharkIndex = 1;
+        SelectShark();
         SharkAdd();
         CreatePlayer(sharkIndex);
     }
@@ -104,6 +104,13 @@ public class SharkCreate : MonoBehaviour
         dataManager.Load();
         dataManager.data.totalCoin += coinCounter;
         dataManager.Save();
+    }
+
+    // secilen kopekbaligini save dosyasından ceker
+    void SelectShark()
+    {
+        dataManager.Load();
+        sharkIndex = dataManager.data.selectedSharkIndex;
     }
 
     // oyunun baslamasini tutan bool u return eder
