@@ -32,6 +32,8 @@ public class MarketMenu : MonoBehaviour
     public Sprite btnActive;
     public Sprite boneActive;
     public Sprite spineActive;
+    public Sprite boneInActive;
+    public Sprite spineInActive;
 
     public int sharkIndex;
 
@@ -86,6 +88,8 @@ public class MarketMenu : MonoBehaviour
             leftBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
             Debug.Log("sharkIndex left none: " + sharkIndex);
         }
+        SpeedSkeletInActive();
+        SkeletActive(ActiveIndexFind());
     }
 
     void TaskOnTouchRight()
@@ -102,6 +106,8 @@ public class MarketMenu : MonoBehaviour
             rightBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
             Debug.Log("sharkIndex right none: " + sharkIndex);
         }
+        SpeedSkeletInActive();
+        SkeletActive(ActiveIndexFind());
     }
 
     void SelectedShark()
@@ -190,12 +196,20 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.totalCoin >= dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
-            dataManager.data.sharkSpeed[sharkIndex] += 75;
+            dataManager.data.sharkSpeed[sharkIndex] += 1;
             dataManager.data.totalCoin -= dataManager.data.sharkSpeedPrice[sharkIndex];
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
             SkeletActive(ActiveIndexFind());
-            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
+            if (dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
+            {
+                speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
+            }
+            else
+            {
+                speedUpTxt.text = "";
+            }
+            
             dataManager.Save();
         }
         else
@@ -226,5 +240,28 @@ public class MarketMenu : MonoBehaviour
     {
         int activeIndex = ((dataManager.data.sharkSpeedPrice[sharkIndex] - 50) / 10);
         return activeIndex;
+    }
+
+    void SpeedSkeletInActive()
+    {
+        for (int i = 0; i < speedBoneSprite.Length; i++)
+        {
+            speedBoneSprite[i].gameObject.GetComponent<Image>().sprite = boneInActive;
+        }
+
+        for (int i = 0; i < speedSpineSprite.Length; i++)
+        {
+            speedSpineSprite[i].gameObject.GetComponent<Image>().sprite = spineInActive;
+        }
+        speedLevelTxt.text = "0/5";
+        if (dataManager.data.sharkSpeedPrice[sharkIndex] == 100)
+        {
+            speedUpTxt.text = "";
+        }
+        else
+        {
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
+        }
+        
     }
 }
