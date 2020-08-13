@@ -50,6 +50,8 @@ public class GameOverMenu : MonoBehaviour
         FinishSave();
         menuControl.GameOverMenu(false);
         sharkSwim.ResetFishCounter();
+        sharkSwim.ResetHealth();
+        sharkSwim.ResetGameOver();
         sharkCreate.ResetCoinCounter();
     }
 
@@ -63,6 +65,8 @@ public class GameOverMenu : MonoBehaviour
         FinishSave();
         menuControl.GameOverMenu(false);
         sharkSwim.ResetFishCounter();
+        sharkSwim.ResetHealth();
+        sharkSwim.ResetGameOver();
         sharkCreate.ResetCoinCounter();
     }
 

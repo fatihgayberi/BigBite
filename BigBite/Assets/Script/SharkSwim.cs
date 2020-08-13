@@ -19,10 +19,14 @@ public class SharkSwim : MonoBehaviour
     float seconds; // oyunun icindeki gecen zamani saklar 
     float powerTime; // ozel guc icin zaman tutar
     float endedGameTimer; // oyunun ne zaman bietecegini saklar
+    float finishPosiztionZ;
     int fishCounter;
 
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
+    GameObject finishSea;
+
+    public List<GameObject> allObject = new List<GameObject>();
 
     bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
@@ -122,9 +126,7 @@ public class SharkSwim : MonoBehaviour
     // baslangic icin bir sea prefabı baslatir
     void StartedSea()
     {
-        GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
-        Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
-        seaPositionZ += 15;
+        SeaCreate();
     }
 
     // back colliderine degdiginde yeni bir sea olusturur
@@ -132,9 +134,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.gameObject.name.Contains("Back"))
         {
-            GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
-            Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
-            seaPositionZ += 15;
+            SeaCreate();
         }
     }
 
@@ -212,7 +212,7 @@ public class SharkSwim : MonoBehaviour
     // finish e geldiginde yapilmasi gerekenleri yapar
     void FinishTable(Collider collider)
     {
-        if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name) && !gameOver)
+        if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
         {
             AnimStop("Swim");
             AnimPlay("Finish");
@@ -247,6 +247,13 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
+    void SeaCreate()
+    {
+        GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
+        Instantiate(seaObject, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+        seaPositionZ += 15;
+    }
+
     // oyunun suresini tutar
     void SecondCounter()
     {
@@ -261,7 +268,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (seconds > endedGameTimer && !gameFinish)
         {
-            Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+            finishSea = Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
             seaPositionZ += 15;
             gameFinish = true;
         }
@@ -299,11 +306,35 @@ public class SharkSwim : MonoBehaviour
 
     public void GameOver()
     {
-        if (health <= 0)
+        if (health <= 0 && gameOver)
         {
             gameOver = false;
+            gameFinish = true;
             menuControl.GameOverMenu(true);
+
+            if (allObject != null)
+            {
+                for (int i = 0; i < allObject.Count; i++)
+                {
+                    Destroy(allObject[i]);
+                }
+                allObject.Clear();
+            }
+
+            Destroy(finishSea);
+            GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
+            Instantiate(seaObject, new Vector3(0, 0, finishPosiztionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
         }
+    }
+
+    public void ResetHealth()
+    {
+        health = sharkCreate.getSelectHealth();
+    }
+
+    public void ResetGameOver()
+    {
+        gameOver = true;
     }
 
     public void ResetSecond()
@@ -324,5 +355,10 @@ public class SharkSwim : MonoBehaviour
     public void AnimStop(string clip)
     {
         anim.Stop(clip);
+    }
+
+    public bool getGameOver()
+    {
+        return gameOver;
     }
 }
