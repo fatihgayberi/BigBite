@@ -26,6 +26,7 @@ public class SharkSwim : MonoBehaviour
 
     bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
+    bool gameOver; // gameover ise false dondurur
 
     void Start()
     {
@@ -39,10 +40,11 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
-        endedGameTimer = 3f;
+        endedGameTimer = 8f;
         fishCounter = 0;
         powerUp = false;
         gameFinish = false;
+        gameOver = true;
         StartedSea();
     }
 
@@ -57,6 +59,7 @@ public class SharkSwim : MonoBehaviour
         SpecialPower();
         GameFinish();
         SecondCounter();
+        GameOver();
     }
 
     // sag sol yapmasini saglar
@@ -209,9 +212,8 @@ public class SharkSwim : MonoBehaviour
     // finish e geldiginde yapilmasi gerekenleri yapar
     void FinishTable(Collider collider)
     {
-        if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
+        if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name) && !gameOver)
         {
-            sharkCreate.CoinGameSave();
             AnimStop("Swim");
             AnimPlay("Finish");
             sharkCreate.setPlayBool(false);
@@ -292,6 +294,15 @@ public class SharkSwim : MonoBehaviour
         else
         {
             return true;
+        }
+    }
+
+    public void GameOver()
+    {
+        if (health <= 0)
+        {
+            gameOver = false;
+            menuControl.GameOverMenu(true);
         }
     }
 

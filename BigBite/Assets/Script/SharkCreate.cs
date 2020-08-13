@@ -97,15 +97,6 @@ public class SharkCreate : MonoBehaviour
         coinCounter += 1;
     }
 
-    // oyun içinde tutlan parayı save eder
-    public void CoinGameSave()
-    {
-        sharkSwim = FindObjectOfType<SharkSwim>();
-        dataManager.Load();
-        dataManager.data.totalCoin += coinCounter;
-        dataManager.Save();
-    }
-
     // secilen kopekbaligini save dosyasından ceker
     void SelectShark()
     {

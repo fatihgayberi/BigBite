@@ -8,9 +8,12 @@ public class FinishMenu : MonoBehaviour
     SharkSwim sharkSwim;
     SharkCreate sharkCreate;
     MenuControl menuControl;
+    public DataManager dataManager;
 
-    public Text coinSum;
-    public Text fishSum;
+    public Text coinSumTxt;
+    public Text fishSumTxt;
+    public Text fishPrizeTxt;
+    public Text totalCoinTxt;
 
     public Button playBtn;
     public Button homeBtn;
@@ -22,6 +25,8 @@ public class FinishMenu : MonoBehaviour
     public Sprite starInActive;
     public Sprite starActive;
 
+    int totalCoin;
+
     void Start()
     {
         sharkSwim = FindObjectOfType<SharkSwim>();
@@ -29,8 +34,7 @@ public class FinishMenu : MonoBehaviour
         menuControl = FindObjectOfType<MenuControl>();
         Sea.damagePositionZ = 1.5f;
         playBtn.onClick.AddListener(TaskOnTouchPlay);
-        homeBtn.onClick.AddListener(TaskOnTouchkHome);
-        UpdateStar();
+        homeBtn.onClick.AddListener(TaskOnTouchkHome);        
     }
 
     void Update()
@@ -40,18 +44,46 @@ public class FinishMenu : MonoBehaviour
 
     void CanvasOutput()
     {
-        FishOutput(sharkSwim.getFishCounter());
-        CoinOutput(sharkCreate.getCoinCounter());        
+        UpdateStar();
+        SumFishOutput(sharkSwim.getFishCounter());
+        SumCoinOutput(sharkCreate.getCoinCounter());
+        PrizeFishOutput();
+        TotalCoinOutput(totalCoin);
     }
 
-    void CoinOutput(int coin)
+    void PrizeOutput()
     {
-        coinSum.text = coin + " Altin";
+        PrizeFishOutput();
+        TotalCoinOutput(totalCoin);
     }
 
-    void FishOutput(int fishCounter)
+    void SumCoinOutput(int coin)
     {
-        fishSum.text = fishCounter.ToString() + " Balik";
+        coinSumTxt.text = coin.ToString();
+    }
+
+    void SumFishOutput(int fishCounter)
+    {
+        fishSumTxt.text = fishCounter.ToString();
+    }
+
+    void PrizeFishOutput()
+    {
+        int prize = totalCoin - sharkCreate.getCoinCounter();
+
+        if (prize > 0)
+        {
+            fishPrizeTxt.text = prize.ToString();
+        }
+        else
+        {
+            fishPrizeTxt.text = "0";
+        }
+    }
+
+    void TotalCoinOutput(int totalCoin)
+    {
+        totalCoinTxt.text = totalCoin.ToString();
     }
 
     public void TaskOnTouchPlay()
@@ -61,6 +93,7 @@ public class FinishMenu : MonoBehaviour
         sharkSwim.setGameFinish(false);
         sharkCreate.setPlayBool(true);
         menuControl.GamePlayMenu(true);
+        FinishSave();
         menuControl.FinishMenu(false);
         sharkSwim.ResetFishCounter();
         sharkCreate.ResetCoinCounter();
@@ -73,6 +106,7 @@ public class FinishMenu : MonoBehaviour
         sharkCreate.getPlayBool();
         sharkSwim.setGameFinish(false);
         menuControl.StartMenu(true);
+        FinishSave();
         menuControl.FinishMenu(false);
         sharkSwim.ResetFishCounter();
         sharkCreate.ResetCoinCounter();
@@ -80,6 +114,35 @@ public class FinishMenu : MonoBehaviour
 
     public void UpdateStar()
     {
-        //star1.gameObject.GetComponent<Image>().sprite = starActive;
+        totalCoin = sharkCreate.getCoinCounter();
+        if (sharkSwim.getFishCounter() >= 1)
+        {
+            star1.gameObject.GetComponent<Image>().sprite = starActive;
+            totalCoin += 25;
+        }        
+        if (sharkSwim.getFishCounter() >= 15)
+        {
+            star2.gameObject.GetComponent<Image>().sprite = starActive;
+            totalCoin += 35;
+        }
+        if (sharkSwim.getFishCounter() >= 20)
+        {
+            star3.gameObject.GetComponent<Image>().sprite = starActive;
+            totalCoin += 45;
+        }
+
+    }
+
+    void FinishSave()
+    {
+        dataManager.Load();
+        dataManager.data.totalCoin += totalCoin;
+        dataManager.Save();
+    }
+
+    IEnumerator AnimWait()
+    {
+        yield return new WaitForSeconds(2f);
+        sharkSwim.AnimPlay("Swim");
     }
 }

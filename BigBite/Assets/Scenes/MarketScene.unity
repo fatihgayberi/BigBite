@@ -1111,7 +1111,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Yeterli alt\u0131n yok"
+  m_Text: "Bu \xF6zellik daha fazla y\xFCkseltilemez"
 --- !u!222 &393998489
 CanvasRenderer:
   m_ObjectHideFlags: 0

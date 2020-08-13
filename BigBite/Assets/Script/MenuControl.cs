@@ -9,6 +9,7 @@ public class MenuControl : MonoBehaviour
     public GameObject gamePlayMenu;
     public GameObject finishMenu;
     public GameObject marketMenu;
+    public GameObject gameOverMenu;
 
     public Text coinCounter;
     public Text fishCounter;
@@ -30,5 +31,10 @@ public class MenuControl : MonoBehaviour
     public void MarketMenu(bool mode)
     {
         marketMenu.gameObject.SetActive(mode);
+    }
+
+    public void GameOverMenu(bool mode)
+    {
+        gameOverMenu.gameObject.SetActive(mode);
     }
 }
