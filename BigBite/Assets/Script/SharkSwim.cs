@@ -45,6 +45,7 @@ public class SharkSwim : MonoBehaviour
         seconds = 0;
         powerTime = 0;
         endedGameTimer = 8f;
+        finishPosiztionZ = 0;
         fishCounter = 0;
         powerUp = false;
         gameFinish = false;
@@ -69,7 +70,7 @@ public class SharkSwim : MonoBehaviour
     // sag sol yapmasini saglar
     void Move()
     {
-        if (Input.touchCount > 0 && sharkCreate.getPlayBool())
+        if (Input.touchCount > 0 && sharkCreate.getPlayBool() && gameOver)
         {
             Touch touch;
 
@@ -268,6 +269,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (seconds > endedGameTimer && !gameFinish)
         {
+            finishPosiztionZ = seaPositionZ;
             finishSea = Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
             seaPositionZ += 15;
             gameFinish = true;
@@ -330,6 +332,11 @@ public class SharkSwim : MonoBehaviour
     public void ResetHealth()
     {
         health = sharkCreate.getSelectHealth();
+    }
+
+    public void ResetMana()
+    {
+        mana = 0;
     }
 
     public void ResetGameOver()

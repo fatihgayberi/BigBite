@@ -1,11 +1,13 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CameraFollow
     - CoinRotate
     - ConfirmNotification
     - DataManager
     - DestroyLine
     - FinishMenu
+    - GameOverMenu
     - GamePlayMenu
     - MarketMenu
     - MenuControl
@@ -91,19 +93,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12384}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12404}
     - Class: 114
-      Script: {instanceID: 12690}
+      Script: {instanceID: 12682}
     - Class: 114
-      Script: {instanceID: 12702}
+      Script: {instanceID: 12692}
     - Class: 114
-      Script: {instanceID: 12910}
+      Script: {instanceID: 12704}
     - Class: 114
-      Script: {instanceID: 13078}
+      Script: {instanceID: 12912}
     - Class: 114
       Script: {instanceID: 13080}
     - Class: 114
-      Script: {instanceID: 13106}
+      Script: {instanceID: 13082}
+    - Class: 114
+      Script: {instanceID: 13108}
+    - Class: 114
+      Script: {instanceID: 17078}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -174,13 +180,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12338}
     - Class: 114
-      Script: {instanceID: 12702}
+      Script: {instanceID: 12704}
     - Class: 114
-      Script: {instanceID: 13008}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13080}
+      Script: {instanceID: 13082}
     - Class: 114
-      Script: {instanceID: 13106}
+      Script: {instanceID: 13108}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -364,13 +370,13 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 18a06e3047ae902164cb07e9e5a0aa61
+      Hash: 024f60b4d539b76f4bfee0a96deb5c59
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishMenu
   - hash:
       serializedVersion: 2
-      Hash: 56153a417b13de401d35f89df1423824
+      Hash: 894e841621f8eb6ce4bd10ae9a359048
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuControl
@@ -502,6 +508,12 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
+      Hash: e12f0a39df0f951d7306b9b45227d19a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameOverMenu
+  - hash:
+      serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -544,7 +556,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 92c7f9f1273a52190353ed88ae5f90aa
+      Hash: c04639c193ad06e2cec646cb8884f68e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SharkSwim
@@ -704,6 +716,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 7c4d61ba679beaa5d71821c8c9d31078
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraFollow
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity

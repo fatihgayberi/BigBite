@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 6286692555497245596}
   - component: {fileID: 6286692555497245605}
   m_Layer: 0
-  m_Name: SeaNew
+  m_Name: Sea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
