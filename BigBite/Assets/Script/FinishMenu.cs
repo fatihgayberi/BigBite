@@ -94,8 +94,10 @@ public class FinishMenu : MonoBehaviour
         sharkCreate.setPlayBool(true);
         menuControl.GamePlayMenu(true);
         FinishSave();
+        sharkSwim.ResetSpeed();
         menuControl.FinishMenu(false);
         sharkSwim.ResetFishCounter();
+        sharkSwim.ResetBarrelPower();
         sharkCreate.ResetCoinCounter();
     }
 
@@ -109,6 +111,8 @@ public class FinishMenu : MonoBehaviour
         FinishSave();
         menuControl.FinishMenu(false);
         sharkSwim.ResetFishCounter();
+        sharkSwim.ResetSpeed();
+        sharkSwim.ResetBarrelPower();
         sharkCreate.ResetCoinCounter();
     }
 

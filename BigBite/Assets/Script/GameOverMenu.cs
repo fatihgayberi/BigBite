@@ -53,6 +53,7 @@ public class GameOverMenu : MonoBehaviour
         sharkSwim.ResetHealth();
         sharkSwim.ResetGameOver();
         sharkSwim.ResetMana();
+        sharkSwim.ResetSpeed();
         sharkCreate.ResetCoinCounter();
     }
 
@@ -69,6 +70,7 @@ public class GameOverMenu : MonoBehaviour
         sharkSwim.ResetHealth();
         sharkSwim.ResetMana();
         sharkSwim.ResetGameOver();
+        sharkSwim.ResetSpeed();
         sharkCreate.ResetCoinCounter();
     }
 

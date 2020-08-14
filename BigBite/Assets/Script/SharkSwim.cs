@@ -20,6 +20,7 @@ public class SharkSwim : MonoBehaviour
     static float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
     float seconds; // oyunun icindeki gecen zamani saklar 
     float powerTime; // ozel guc icin zaman tutar
+    float barrelTime;
     float endedGameTimer; // oyunun ne zaman bietecegini saklar
     float finishPosiztionZ;
     int fishCounter;
@@ -32,6 +33,7 @@ public class SharkSwim : MonoBehaviour
 
     bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
+    bool barrelPower;
     bool gameOver; // gameover ise false dondurur
 
     public Action OnDamage;
@@ -47,9 +49,11 @@ public class SharkSwim : MonoBehaviour
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;
+        barrelTime = 0;
         endedGameTimer = 8f;
         finishPosiztionZ = 0;
         fishCounter = 0;
+        barrelPower = false;
         powerUp = false;
         gameFinish = false;
         gameOver = true;
@@ -65,6 +69,7 @@ public class SharkSwim : MonoBehaviour
     void Update()
     {
         SpecialPower();
+        BarrelPower();
         GameFinish();
         SecondCounter();
         GameOver();
@@ -100,11 +105,14 @@ public class SharkSwim : MonoBehaviour
 
         DamageColliderControl(other);
 
+        BarrelColliderControl(other);
+
         StartCoroutine(AdvantageColliderControl(other));
 
         StartCoroutine(CoinWin(other));
 
         FinishTable(other);
+
 
         Debug.Log("health: " + health + " mana: " + mana);
     }
@@ -145,18 +153,20 @@ public class SharkSwim : MonoBehaviour
     // damage objelerine degdiginde yapilmasi gerekenleri yapar
     void DamageColliderControl(Collider collider)
     {
-        // ozel guc baslamadigi surece calismasini saglar
-        if (!powerUp)
+        for (int i = 0; i < sea.seaDamageObject.Count; i++)
         {
-            for (int i = 0; i < sea.seaDamageObject.Count; i++)
+            if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
             {
-                if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
+                // ozel guc baslamadigi surece ve varile degmedigi surece canin azalmasini saglar
+                if (!barrelPower && !powerUp)
                 {
                     health -= sea.seaDamageObject[i].getPoweOfObject();
-                    //Çarpıştığı zaman event yayınlar
-                    OnDamage?.Invoke();
-                    break;
                 }
+                //Çarpıştığı zaman event yayınlar
+                OnDamage?.Invoke();
+                StartCoroutine(Dizzy());
+                Destroy(collider.transform.gameObject);
+                break;
             }
         }
     }
@@ -190,13 +200,41 @@ public class SharkSwim : MonoBehaviour
                     {
                         mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                     }
-                    //AnimStop("Swim");
-                    //AnimPlay("Eat");
+                    Destroy(collider.transform.gameObject);
+                    AnimStop("Swim");
+                    AnimPlay("Eat");
                     fishCounter++;
-                    yield return new WaitForSeconds(0);
-                    //AnimPlay("Swim");                    
+                    yield return new WaitForSeconds(1f);
+                    AnimPlay("Swim");                    
                     break;
                 }
+            }
+        }
+    }
+
+    void BarrelColliderControl(Collider collider)
+    {
+        if (collider.transform.gameObject.name.Contains(sea.barrel.gameObject.name))
+        {
+            barrelPower = true;
+        }
+    }
+
+    void BarrelPower()
+    {
+        if (barrelPower)
+        {
+            barrelTime += Time.deltaTime;
+
+            if (powerTime <= sharkCreate.getSelectManaTime())
+            {
+                speed = sharkCreate.getSelectManaPower();
+            }
+            else
+            {
+                barrelPower = false;
+                barrelTime = 0f;
+                speed = sharkCreate.getSelectSpeed();
             }
         }
     }
@@ -206,6 +244,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
+            Destroy(collider.transform.gameObject);
             AnimStop("Swim");
             AnimPlay("Eat"); 
             sharkCreate.CoinCounterPlus();
@@ -269,6 +308,19 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
+    IEnumerator Dizzy()
+    {
+        if (!barrelPower)
+        {
+            speedModifier = 0.001f;
+            speed = 1;
+            yield return new WaitForSeconds(0.5f);
+            speedModifier = 0.01f;
+            speed = sharkCreate.getSelectSpeed();
+        }
+
+    }
+
     // oyunu bitirir
     void GameFinish()
     {
@@ -290,6 +342,11 @@ public class SharkSwim : MonoBehaviour
     public void ResetFishCounter()
     {
         fishCounter = 0;
+    }
+
+    public void ResetSpeed()
+    {
+        speed = sharkCreate.getSelectSpeed();
     }
 
     // son oluşturulan sea objesinin Z position unu return eder
@@ -342,6 +399,12 @@ public class SharkSwim : MonoBehaviour
     public void ResetMana()
     {
         mana = 0;
+        powerUp = false;
+    }
+
+    public void ResetBarrelPower()
+    {
+        barrelPower = false;
     }
 
     public void ResetGameOver()

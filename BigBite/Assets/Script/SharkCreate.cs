@@ -24,11 +24,11 @@ public class SharkCreate : MonoBehaviour
     // kopekbaliklarini listeye ekler
     void SharkAdd()
     {
-        shark.Add(new Shark(sharkArray[0], 100f, SelectSharkSpeed(), SelectSharkPower(), 4f, 1));
-        shark.Add(new Shark(sharkArray[1], 150f, SelectSharkSpeed(), SelectSharkPower(), 5f, 2));
-        shark.Add(new Shark(sharkArray[2], 200f, SelectSharkSpeed(), SelectSharkPower(), 6f, 3));
-        shark.Add(new Shark(sharkArray[3], 250f, SelectSharkSpeed(), SelectSharkPower(), 7f, 4));
-        shark.Add(new Shark(sharkArray[4], 300f, SelectSharkSpeed(), SelectSharkPower(), 8f, 5));
+        shark.Add(new Shark(sharkArray[0], 100f, SelectSharkSpeed(), SelectSharkPower(), 8.5f, 1));
+        shark.Add(new Shark(sharkArray[1], 150f, SelectSharkSpeed(), SelectSharkPower(), 9f, 2));
+        shark.Add(new Shark(sharkArray[2], 200f, SelectSharkSpeed(), SelectSharkPower(), 9.5f, 3));
+        shark.Add(new Shark(sharkArray[3], 250f, SelectSharkSpeed(), SelectSharkPower(), 10f, 4));
+        shark.Add(new Shark(sharkArray[4], 300f, SelectSharkSpeed(), SelectSharkPower(), 10.5f, 5));
     }
 
     // shark oluşturur
