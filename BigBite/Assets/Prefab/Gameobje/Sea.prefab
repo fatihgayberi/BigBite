@@ -533,11 +533,11 @@ MonoBehaviour:
   - {fileID: 8976243213524604776, guid: 6bcd4c382963fed4180d5f07e8aa97e3, type: 3}
   - {fileID: 5155431501837867661, guid: 1dce667d4addd96459a9faed45b805a3, type: 3}
   - {fileID: 7487057835168127491, guid: 0f0c89b9773ad22409e4aa65cf979362, type: 3}
-  - {fileID: 2693514794832132624, guid: 62389de03c79e264c8b6efa8758652c9, type: 3}
   seaAdvantageObjectArray:
   - {fileID: 2878547219896972734, guid: 62c057a00b4b22d46a266184cc564e21, type: 3}
   - {fileID: 2018007052134846422, guid: 6eb29f472f9e3f741930dd27a01535e1, type: 3}
   coin: {fileID: 5222776953534899200, guid: fcca75b214b95b34db2cbf10154d74ec, type: 3}
+  barrel: {fileID: 2693514794832132624, guid: 62389de03c79e264c8b6efa8758652c9, type: 3}
 --- !u!65 &6286692555497245605
 BoxCollider:
   m_ObjectHideFlags: 0

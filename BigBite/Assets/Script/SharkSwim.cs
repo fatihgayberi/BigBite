@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class SharkSwim : MonoBehaviour
 {
@@ -32,6 +34,7 @@ public class SharkSwim : MonoBehaviour
     bool powerUp; // ozel guc durumunu saklar
     bool gameOver; // gameover ise false dondurur
 
+    public Action OnDamage;
     void Start()
     {
         anim = GetComponent<Animation>();
@@ -150,6 +153,8 @@ public class SharkSwim : MonoBehaviour
                 if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
                 {
                     health -= sea.seaDamageObject[i].getPoweOfObject();
+                    //Çarpıştığı zaman event yayınlar
+                    OnDamage?.Invoke();
                     break;
                 }
             }

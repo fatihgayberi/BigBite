@@ -21,11 +21,6 @@ public class SharkCreate : MonoBehaviour
         CreatePlayer(sharkIndex);
     }
 
-    private void Update()
-    {
-        Debug.Log("transform: " + sharkPlayer.transform.position.x + " - " + sharkPlayer.transform.position.y + " - " + sharkPlayer.transform.position.z);
-    }
-
     // kopekbaliklarini listeye ekler
     void SharkAdd()
     {

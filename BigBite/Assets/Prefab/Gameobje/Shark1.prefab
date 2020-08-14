@@ -288,11 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f451a32c8ebe96f46af6b91c55df1911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asd: {fileID: 3367883357654135314}
   speed: 0
   seaPrefab:
   - {fileID: 6286692555497245440, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
   finishPrefab: {fileID: 2069770558040581883, guid: 1f4ed0771c3b8104199c4aa02021a668,
     type: 3}
+  allObject: []
 --- !u!65 &8349633385969311576
 BoxCollider:
   m_ObjectHideFlags: 0
