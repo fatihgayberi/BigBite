@@ -11,16 +11,12 @@ public class CameraFollow : MonoBehaviour
 
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
-<<<<<<< HEAD
-
-=======
     public Vector3 offsetX;
     
     [Header("Shake")] 
     [SerializeField] float strength;
     [SerializeField] float duration;
     [SerializeField] int vibrato;
->>>>>>> 5dfd7102472a37756d820c427ae8de1765e7d096
     private void Start()
     {
         sharkCreate = FindObjectOfType<SharkCreate>();
