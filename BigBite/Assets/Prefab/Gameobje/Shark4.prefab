@@ -115,10 +115,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  barrelParticle: {fileID: 160890, guid: 81a6215dbf618d84cae2c6907f947094, type: 3}
+  mineParticle: {fileID: 183892, guid: 77aff4f1c9d07704bafd856e02a46ac9, type: 3}
+  gamaParticle: {fileID: 135720, guid: efbd9c58ba892da4ca3fa50dcfcd894d, type: 3}
+  dizzyParticle: {fileID: 109542, guid: 2ed06ab528b7c474eb9246421cd7c791, type: 3}
+  coinParticle: {fileID: 143964, guid: 09d9de58ef3bf5444ac94afa0e6013cb, type: 3}
+  fishParticle: {fileID: 147890, guid: a4a1462c4d222c040ba20b5994e8a35f, type: 3}
+  otherParticle:
+  - {fileID: 153256, guid: fe394d041df1a0547990f49cf653249f, type: 3}
+  - {fileID: 167276, guid: 48b70001f3e22c7429ee06b99087e45e, type: 3}
   seaPrefab:
   - {fileID: 6286692555497245440, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
   finishPrefab: {fileID: 2069770558040581883, guid: 1f4ed0771c3b8104199c4aa02021a668,
     type: 3}
+  allObject: []
 --- !u!65 &8886923863014177295
 BoxCollider:
   m_ObjectHideFlags: 0

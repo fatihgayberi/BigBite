@@ -13,8 +13,12 @@ public class Notification : MonoBehaviour
     void Start()
     {
         marketMenu = FindObjectOfType<MarketMenu>();
-        notificationOutput.text = marketMenu.getNotificationOutput();
         closeBtn.onClick.AddListener(TaskOnTouchClose);
+    }
+
+    private void Update()
+    {
+        notificationOutput.text = marketMenu.getNotificationOutput();
     }
 
     void TaskOnTouchClose()

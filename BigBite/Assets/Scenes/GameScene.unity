@@ -3925,6 +3925,7 @@ MonoBehaviour:
   coinSumTxt: {fileID: 8994267477051892327}
   fishSumTxt: {fileID: 8994267475849801671}
   fishPrizeTxt: {fileID: 686732809}
+  barrelCoinTxt: {fileID: 0}
   totalCoinTxt: {fileID: 1333756232}
   playBtn: {fileID: 8994267476894225515}
   homeBtn: {fileID: 8994267476671289728}

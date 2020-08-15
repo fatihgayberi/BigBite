@@ -35,6 +35,7 @@ public class SharkCreate : MonoBehaviour
     void CreatePlayer(int sharkIndex)
     {
         sharkPlayer =  Instantiate(shark[sharkIndex].getSharkObject(), new Vector3(0, 1f, 0), Quaternion.identity);
+        transform.parent = sharkPlayer.transform;
     }
 
     // oluşturulan sharki  return eder

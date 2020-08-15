@@ -54,6 +54,9 @@ public class MarketMenu : MonoBehaviour
 
         sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(-2f, 3.5f, -0.1f), Quaternion.Euler(-5, 20, 20));
 
+        SpeedUpdatePrice();
+        PowerUpdatePrice();
+
         backBtn.onClick.AddListener(TaskOnTouchBack);
         leftBtn.onClick.AddListener(TaskOnTouchLeft);
         rightBtn.onClick.AddListener(TaskOnTouchRight);
@@ -201,6 +204,16 @@ public class MarketMenu : MonoBehaviour
 
     void TaskOnTouchSpeed()
     {
+        if (dataManager.data.totalCoin < dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
+        {
+            notificationOutput = "Yeterli altın yok.";
+            notificationPanel.gameObject.SetActive(true);
+        }
+        else if (dataManager.data.sharkSpeedPrice[sharkIndex] == 100)
+        {
+            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
+            notificationPanel.gameObject.SetActive(true);
+        }
         if (dataManager.data.totalCoin >= dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
             dataManager.data.sharkSpeed[sharkIndex] += 1;
@@ -208,31 +221,37 @@ public class MarketMenu : MonoBehaviour
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
             SpeedSkeletActive(SpeedActiveIndexFind());
-            if (dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
-            {
-                speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
-            }
-            else
-            {
-                speedUpTxt.text = "";
-            }
-            
+
+            SpeedUpdatePrice();
+
             dataManager.Save();
         }
-        if (dataManager.data.totalCoin < dataManager.data.sharkSpeedPrice[sharkIndex])
+    }
+
+    void SpeedUpdatePrice()
+    {
+        if (dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
-            notificationOutput = "Yeterli altın yok.";
-            notificationPanel.gameObject.SetActive(true);
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
         }
-        if (dataManager.data.sharkSpeedPrice[sharkIndex] == 100)
+        else
         {
-            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
-            notificationPanel.gameObject.SetActive(true);
+            speedUpTxt.text = "";
         }
     }
 
     void TaskOnTouchPower()
     {
+        if (dataManager.data.totalCoin < dataManager.data.sharkPowerPrice[sharkIndex] && dataManager.data.sharkPowerPrice[sharkIndex] != 100)
+        {
+            notificationOutput = "Yeterli altın yok.";
+            notificationPanel.gameObject.SetActive(true);
+        }
+        else if(dataManager.data.sharkPowerPrice[sharkIndex] == 100)
+        {
+            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
+            notificationPanel.gameObject.SetActive(true);
+        }
         if (dataManager.data.totalCoin >= dataManager.data.sharkPowerPrice[sharkIndex] && dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
             dataManager.data.sharkPower[sharkIndex] += 1;
@@ -240,26 +259,22 @@ public class MarketMenu : MonoBehaviour
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkPowerPrice[sharkIndex] += 10;
             PowerSkeletActive(PowerActiveIndexFind());
-            if (dataManager.data.sharkPowerPrice[sharkIndex] != 100)
-            {
-                powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " ALTIN";
-            }
-            else
-            {
-                powerUpTxt.text = "";
-            }
+
+            PowerUpdatePrice();
 
             dataManager.Save();
         }
-        if (dataManager.data.totalCoin < dataManager.data.sharkPowerPrice[sharkIndex])
+    }
+
+    void PowerUpdatePrice()
+    {
+        if (dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
-            notificationOutput = "Yeterli altın yok.";
-            notificationPanel.gameObject.SetActive(true);
+            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " ALTIN";
         }
-        if (dataManager.data.sharkPowerPrice[sharkIndex] == 100)
+        else
         {
-            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
-            notificationPanel.gameObject.SetActive(true);
+            powerUpTxt.text = "";
         }
     }
 

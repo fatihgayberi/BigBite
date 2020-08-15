@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerData
 {
-    public int totalCoin = 0;
+    public int totalCoin = 1500;
     public bool[] buyingShark = { true, false, false, false, false };
     public int[] sharkPrice = { 0, 500, 1200, 2000, 3000 };
     public int selectedSharkIndex = 0;
