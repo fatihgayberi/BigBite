@@ -71,11 +71,13 @@
     <Compile Include="Assets\Script\FinishMenu.cs" />
     <Compile Include="Assets\Script\GameOverMenu.cs" />
     <Compile Include="Assets\Script\GamePlayMenu.cs" />
+    <Compile Include="Assets\Script\HealthBar.cs" />
+    <Compile Include="Assets\Script\ManaBar.cs" />
     <Compile Include="Assets\Script\MarketMenu.cs" />
     <Compile Include="Assets\Script\MenuControl.cs" />
     <Compile Include="Assets\Script\Notification.cs" />
     <Compile Include="Assets\Script\PlayerData.cs" />
-    <Compile Include="Assets\Script\ScrollCamera.cs" />
+    <Compile Include="Assets\Script\ScrollScene.cs" />
     <Compile Include="Assets\Script\Sea.cs" />
     <Compile Include="Assets\Script\SeaAdvantageObject.cs" />
     <Compile Include="Assets\Script\SeaDamageObject.cs" />

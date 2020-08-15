@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -45,6 +46,7 @@ public class SharkSwim : MonoBehaviour
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
+        PrefsReset();
         speedModifier = 0.01f; // 0.005f degeri ideal deger
         seaPositionZ = 5f;
         seconds = 0;
@@ -204,6 +206,7 @@ public class SharkSwim : MonoBehaviour
                     AnimStop("Swim");
                     AnimPlay("Eat");
                     fishCounter++;
+                    PlayerPrefs.SetInt("fish", fishCounter);
                     yield return new WaitForSeconds(1f);
                     AnimPlay("Swim");                    
                     break;
@@ -263,11 +266,12 @@ public class SharkSwim : MonoBehaviour
             AnimPlay("Finish");
             sharkCreate.setPlayBool(false);
             menuControl.GamePlayMenu(false);
-            menuControl.FinishMenu(true);
+            //menuControl.FinishMenu(true);
             health = sharkCreate.getSelectHealth();
             speed = sharkCreate.getSelectSpeed();
             mana = 0;
             powerUp = false;
+            SceneManager.LoadScene("FinishScene");
         }
     }
 
@@ -314,7 +318,7 @@ public class SharkSwim : MonoBehaviour
         {
             speedModifier = 0.001f;
             speed = 1;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             speedModifier = 0.01f;
             speed = sharkCreate.getSelectSpeed();
         }
@@ -342,6 +346,7 @@ public class SharkSwim : MonoBehaviour
     public void ResetFishCounter()
     {
         fishCounter = 0;
+        PlayerPrefs.SetInt("fish", fishCounter);
     }
 
     public void ResetSpeed()
@@ -407,6 +412,12 @@ public class SharkSwim : MonoBehaviour
         barrelPower = false;
     }
 
+    void PrefsReset()
+    {
+        PlayerPrefs.SetInt("Coin", 0);
+        PlayerPrefs.SetInt("fish", 0);
+    }
+
     public void ResetGameOver()
     {
         gameOver = true;
@@ -435,5 +446,15 @@ public class SharkSwim : MonoBehaviour
     public bool getGameOver()
     {
         return gameOver;
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public float getMana()
+    {
+        return mana;
     }
 }

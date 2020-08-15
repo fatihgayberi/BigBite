@@ -24,9 +24,8 @@ public class Sea : MonoBehaviour
     {
         sharkCreate = FindObjectOfType<SharkCreate>();
         sharkSwim = FindObjectOfType<SharkSwim>();
-        //level = 25;
         LevelAddOject();
-        SpawnDamageObject();
+        RandomSeaDamageObjectGenerator(seaDamageObject.Count);
         SpawnAdvantageObject();
         RandomBarrelGenerator();
         CoinCreate();
@@ -50,28 +49,6 @@ public class Sea : MonoBehaviour
         // advantage ogelerini ekler
         seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[0], 10, 25));
         seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[1], 15, 30));
-    }
-
-    // level seviyesine gore spawn edilecek olan engeli belirler
-    void SpawnDamageObject()
-    {
-        RandomSeaDamageObjectGenerator(seaDamageObject.Count);
-        //if (level <= 10)
-        //{
-        //    RandomSeaDamageObjectGenerator(1);
-        //}
-        //else if (level <= 15)
-        //{
-        //    RandomSeaDamageObjectGenerator(2);
-        //}
-        //else if (level <= 20)
-        //{
-        //    RandomSeaDamageObjectGenerator(3);
-        //}
-        //else if (level > 20)
-        //{
-        //    RandomSeaDamageObjectGenerator(4);
-        //}
     }
 
     // advantage ogesi spawn eder
@@ -142,10 +119,13 @@ public class Sea : MonoBehaviour
 
         if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
         {
-            int fishCount = seaAdvantageObjectArray.Length;
-            fish = Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
-            sharkSwim.allObject.Add(fish);
-            advantageFishPositionZ += 1f;
+            for (int i = 0; i < 3; i++)
+            {
+                int fishCount = seaAdvantageObjectArray.Length;
+                fish = Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
+                sharkSwim.allObject.Add(fish);
+                advantageFishPositionZ += 1f;
+            }
         }
 
     }

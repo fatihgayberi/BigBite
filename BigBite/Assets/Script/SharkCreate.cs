@@ -88,12 +88,14 @@ public class SharkCreate : MonoBehaviour
     public void ResetCoinCounter()
     {
         coinCounter = 0;
+        PlayerPrefs.SetInt("Coin", coinCounter);
     }
 
     // oyuncunun parasini 1 arttırır
     public void CoinCounterPlus()
     {
         coinCounter += 1;
+        PlayerPrefs.SetInt("Coin", coinCounter);
     }
 
     // secilen kopekbaligini save dosyasından ceker

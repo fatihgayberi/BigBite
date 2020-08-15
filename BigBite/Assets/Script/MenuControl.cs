@@ -7,7 +7,6 @@ public class MenuControl : MonoBehaviour
 {
     public GameObject startMenu;
     public GameObject gamePlayMenu;
-    public GameObject finishMenu;
     public GameObject marketMenu;
     public GameObject gameOverMenu;
 
@@ -21,11 +20,6 @@ public class MenuControl : MonoBehaviour
     public void GamePlayMenu(bool mode)
     {
         gamePlayMenu.gameObject.SetActive(mode);
-    }
-
-    public void FinishMenu(bool mode)
-    {
-        finishMenu.gameObject.SetActive(mode);
     }
 
     public void MarketMenu(bool mode)

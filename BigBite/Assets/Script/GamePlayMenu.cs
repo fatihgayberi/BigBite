@@ -10,10 +10,23 @@ public class GamePlayMenu : MonoBehaviour
 
     SharkSwim sharkSwim;
     SharkCreate SharkCreate;
+    HealthBar healthBar;
+    ManaBar manaBar;
 
+
+    private void Start()
+    {
+        healthBar = FindObjectOfType<HealthBar>();
+        manaBar = FindObjectOfType<ManaBar>();
+        sharkSwim = FindObjectOfType<SharkSwim>();
+        healthBar.SetMaxHealth(sharkSwim.getHealth());
+        manaBar.SetMaxMana(100f);
+    }
     private void Update()
     {
         OutputCoinAndFish();
+        healthBar.SetHealth(sharkSwim.getHealth());
+        manaBar.SetMana(sharkSwim.getMana());
     }
 
     // sayaclari output eder
