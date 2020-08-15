@@ -86,52 +86,30 @@ public class FinishMenu : MonoBehaviour
 
     public void TaskOnTouchPlay()
     {
-        //sharkSwim.AnimPlay("Swim");
-        //sharkSwim.ResetSecond();
-        //sharkSwim.setGameFinish(false);
-        //sharkCreate.setPlayBool(true);
-        //menuControl.GamePlayMenu(true);
         FinishSave();
-        //PrefsReset();
-        //sharkSwim.ResetSpeed();
-        //menuControl.FinishMenu(false);
-        //sharkSwim.ResetFishCounter();
-        //sharkSwim.ResetBarrelPower();
-        //sharkCreate.ResetCoinCounter();
         SceneManager.LoadScene("GameScene");
     }
 
     public void TaskOnTouchkHome()
     {
-        //sharkSwim.AnimPlay("Swim");
-        //sharkSwim.ResetSecond();
-        //sharkCreate.getPlayBool();
-        //sharkSwim.setGameFinish(false);
-        //menuControl.StartMenu(true);
         FinishSave();
-        //PrefsReset();
-        //menuControl.FinishMenu(false);
-        //sharkSwim.ResetFishCounter();
-        //sharkSwim.ResetSpeed();
-        //sharkSwim.ResetBarrelPower();
-        //sharkCreate.ResetCoinCounter();
         SceneManager.LoadScene("GameScene");
     }
 
     public void UpdateStar()
     {
         totalCoin = PlayerPrefs.GetInt("Coin");//sharkCreate.getCoinCounter();
-        if (PlayerPrefs.GetInt("fish") >= 1)
+        if (PlayerPrefs.GetInt("fish") >= 3)
         {
             star1.gameObject.GetComponent<Image>().sprite = starActive;
             totalCoin += 25;
         }        
-        if (PlayerPrefs.GetInt("fish") >= 15)
+        if (PlayerPrefs.GetInt("fish") >= 5)
         {
             star2.gameObject.GetComponent<Image>().sprite = starActive;
             totalCoin += 35;
         }
-        if (PlayerPrefs.GetInt("fish") >= 20)
+        if (PlayerPrefs.GetInt("fish") >= 10)
         {
             star3.gameObject.GetComponent<Image>().sprite = starActive;
             totalCoin += 45;

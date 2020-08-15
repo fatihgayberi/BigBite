@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -26,9 +25,19 @@ public class SharkSwim : MonoBehaviour
     float finishPosiztionZ;
     int fishCounter;
 
+    public GameObject barrelParticle;
+    public GameObject mineParticle;
+    public GameObject gamaParticle;
+    public GameObject dizzyParticle;
+    public GameObject coinParticle;
+    public GameObject fishParticle;
+    public GameObject[] otherParticle;
+
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
     GameObject finishSea;
+    GameObject gamaCreatedParticle;
+    GameObject dizzyCreatedParticle;
 
     public List<GameObject> allObject = new List<GameObject>();
 
@@ -52,7 +61,7 @@ public class SharkSwim : MonoBehaviour
         seconds = 0;
         powerTime = 0;
         barrelTime = 0;
-        endedGameTimer = 8f;
+        endedGameTimer = 30f;
         finishPosiztionZ = 0;
         fishCounter = 0;
         barrelPower = false;
@@ -70,6 +79,7 @@ public class SharkSwim : MonoBehaviour
 
     void Update()
     {
+        ParticlePositionUpdate();
         SpecialPower();
         BarrelPower();
         GameFinish();
@@ -159,6 +169,7 @@ public class SharkSwim : MonoBehaviour
         {
             if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
             {
+                DamageParticle(collider);
                 // ozel guc baslamadigi surece ve varile degmedigi surece canin azalmasini saglar
                 if (!barrelPower && !powerUp)
                 {
@@ -172,11 +183,56 @@ public class SharkSwim : MonoBehaviour
                 //Çarpıştığı zaman event yayınlar
                 OnDamage?.Invoke();
                 StartCoroutine(Dizzy());
-                Destroy(collider.transform.gameObject);
+                
                 break;
             }
         }
     }
+    
+    void DamageParticle(Collider collider)
+    {
+        if (collider.transform.name.Contains("Mine"))
+        {
+            Instantiate(mineParticle, collider.transform.position, Quaternion.identity);
+        }
+        else
+        {
+            for (int i = 0; i < otherParticle.Length; i++)
+            {
+                Instantiate(otherParticle[i], collider.transform.position, Quaternion.identity);
+            }
+        }
+        Destroy(collider.transform.gameObject);
+    }
+
+    IEnumerator Dizzy()
+    {
+        if (!barrelPower)
+        {
+            dizzyCreatedParticle = Instantiate(dizzyParticle, GetComponent<Collider>().transform.position, Quaternion.identity);
+            speedModifier = 0.001f;
+            speed = 1;
+            yield return new WaitForSeconds(2f);
+            Destroy(dizzyCreatedParticle);
+            speedModifier = 0.01f;
+            speed = sharkCreate.getSelectSpeed();
+        }
+
+    }
+
+    void ParticlePositionUpdate()
+    {
+        if (dizzyCreatedParticle != null)
+        {
+            dizzyCreatedParticle.transform.position = transform.position;
+        }
+
+        if (gamaCreatedParticle != null)
+        {
+            gamaCreatedParticle.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f);
+        }
+    }
+
 
     // advantage objelerine degdiginde yapilmasi gerekenleri yapar
     IEnumerator AdvantageColliderControl(Collider collider)
@@ -191,6 +247,7 @@ public class SharkSwim : MonoBehaviour
                     {
                         if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name))
                         {
+                            Instantiate(fishParticle, collider.transform.position, Quaternion.identity);
 
                             if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
                             {
@@ -232,6 +289,9 @@ public class SharkSwim : MonoBehaviour
         if (collider.transform.gameObject.name.Contains(sea.barrel.gameObject.name))
         {
             barrelPower = true;
+            Instantiate(barrelParticle, collider.transform.position, Quaternion.identity);
+            gamaCreatedParticle = Instantiate(gamaParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Quaternion.Euler(0, 180, 0));
+            Destroy(collider.transform.gameObject);
         }
     }
 
@@ -239,9 +299,10 @@ public class SharkSwim : MonoBehaviour
     {
         if (barrelPower)
         {
+ 
             barrelTime += Time.deltaTime;
 
-            if (powerTime <= sharkCreate.getSelectManaTime())
+            if (barrelTime <= sharkCreate.getSelectManaTime())
             {
                 speed = sharkCreate.getSelectManaPower();
             }
@@ -249,16 +310,20 @@ public class SharkSwim : MonoBehaviour
             {
                 barrelPower = false;
                 barrelTime = 0f;
+                Destroy(gamaCreatedParticle);
                 speed = sharkCreate.getSelectSpeed();
             }
         }
     }
+
+
 
     // coine degdiginde yapilmasi gerekenleri yapar
     IEnumerator CoinWin(Collider collider)
     {
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
+            Instantiate(coinParticle, collider.transform.position, Quaternion.identity);
             Destroy(collider.transform.gameObject);
             AnimStop("Swim");
             AnimPlay("Eat"); 
@@ -275,10 +340,8 @@ public class SharkSwim : MonoBehaviour
         if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
         {
             AnimStop("Swim");
-            AnimPlay("Finish");
             sharkCreate.setPlayBool(false);
             menuControl.GamePlayMenu(false);
-            //menuControl.FinishMenu(true);
             health = sharkCreate.getSelectHealth();
             speed = sharkCreate.getSelectSpeed();
             mana = 0;
@@ -324,18 +387,7 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
-    IEnumerator Dizzy()
-    {
-        if (!barrelPower)
-        {
-            speedModifier = 0.001f;
-            speed = 1;
-            yield return new WaitForSeconds(2f);
-            speedModifier = 0.01f;
-            speed = sharkCreate.getSelectSpeed();
-        }
 
-    }
 
     // oyunu bitirir
     void GameFinish()
