@@ -56,15 +56,9 @@ public class Sea : MonoBehaviour
     {
         int possibility;
         possibility = Random.Range(0, 100);
-
-        if (possibility < 20) // %20 olasilik ile 1 tane advantage ogesi spawn eder
-        {
-            RandomSeaAdvantageObjectGenerator();
-        }
         
-        else if (possibility < 35) // %35 olasilik ile 2 tane advantage ogesi spawn eder
+        if (possibility < 35) // %35 olasilik ile 1 tane advantage ogesi spawn eder
         {
-            RandomSeaAdvantageObjectGenerator();
             RandomSeaAdvantageObjectGenerator();
         }
     }
@@ -119,13 +113,10 @@ public class Sea : MonoBehaviour
 
         if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
         {
-            for (int i = 0; i < 3; i++)
-            {
-                int fishCount = seaAdvantageObjectArray.Length;
-                fish = Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
-                sharkSwim.allObject.Add(fish);
-                advantageFishPositionZ += 1f;
-            }
+            int fishCount = seaAdvantageObjectArray.Length;
+            fish = Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
+            sharkSwim.allObject.Add(fish);
+            advantageFishPositionZ += 1f;
         }
 
     }

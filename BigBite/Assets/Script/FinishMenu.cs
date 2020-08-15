@@ -10,6 +10,7 @@ public class FinishMenu : MonoBehaviour
     public Text coinSumTxt;
     public Text fishSumTxt;
     public Text fishPrizeTxt;
+    public Text barrelCoinTxt;
     public Text totalCoinTxt;
 
     public Button playBtn;
@@ -44,6 +45,7 @@ public class FinishMenu : MonoBehaviour
         SumFishOutput(PlayerPrefs.GetInt("fish"));
         SumCoinOutput(PlayerPrefs.GetInt("Coin"));
         PrizeFishOutput();
+        BarrielCoinOutput();
         TotalCoinOutput(totalCoin);
     }
 
@@ -71,9 +73,15 @@ public class FinishMenu : MonoBehaviour
         }
     }
 
+    void BarrielCoinOutput()
+    {
+        totalCoin += PlayerPrefs.GetInt("CoinBarrel");
+        barrelCoinTxt.text = PlayerPrefs.GetInt("CoinBarrel") + "";
+    }
+
     void TotalCoinOutput(int totalCoin)
     {
-        totalCoinTxt.text = totalCoin.ToString();
+        totalCoinTxt.text = totalCoin + "";
     }
 
     public void TaskOnTouchPlay()

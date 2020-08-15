@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SharkCreate : MonoBehaviour
 {    
-    SharkSwim sharkSwim;
     public GameObject[] sharkArray; // shark prefablarini tutar
     public List<Shark> shark = new List<Shark>(); // sharklarin ozelliklerini tutan list
     GameObject sharkPlayer; // kopekbaligini tutar
     int coinCounter; // oyuncunun bir bolumdeki parasini saklar
+    int barrelCoinCounter; // oyuncunun bir bolumdeki parasini saklar
     int sharkIndex; // kopekbaliginin indexini tutar
     bool playBool; // oyunun baslamasini tutan bool 
     public DataManager dataManager; // oyunun verilerini saklar
@@ -96,6 +96,12 @@ public class SharkCreate : MonoBehaviour
     {
         coinCounter += 1;
         PlayerPrefs.SetInt("Coin", coinCounter);
+    }
+
+    public void BarrierCoinPlus()
+    {
+        barrelCoinCounter += 5;
+        PlayerPrefs.SetInt("CoinBarrel", barrelCoinCounter);
     }
 
     // secilen kopekbaligini save dosyasından ceker

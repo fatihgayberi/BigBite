@@ -164,6 +164,11 @@ public class SharkSwim : MonoBehaviour
                 {
                     health -= sea.seaDamageObject[i].getPoweOfObject();
                 }
+
+                if (barrelPower)
+                {
+                    sharkCreate.BarrierCoinPlus();
+                }
                 //Çarpıştığı zaman event yayınlar
                 OnDamage?.Invoke();
                 StartCoroutine(Dizzy());
@@ -180,36 +185,43 @@ public class SharkSwim : MonoBehaviour
         {
             for (int i = 0; i < sea.seaAdvantageObject.Count; i++)
             {
-                if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().name))
+                for (int j = 0; j < 3; j++)
                 {
-                    if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
+                    if (collider != null)
                     {
-                        health = sharkCreate.getSelectHealth();
-                    }
+                        if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name))
+                        {
 
-                    if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() <= sharkCreate.getSelectHealth())
-                    {
-                        health += sea.seaAdvantageObject[i].getPowerOfObjectHP();
-                    }
+                            if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
+                            {
+                                health = sharkCreate.getSelectHealth();
+                            }
 
-                    if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() >= 100f)
-                    {
-                        mana = 100f;
-                        powerUp = true;
-                    }
+                            if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() <= sharkCreate.getSelectHealth())
+                            {
+                                health += sea.seaAdvantageObject[i].getPowerOfObjectHP();
+                            }
 
-                    if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() < 100f)
-                    {
-                        mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
-                    }
-                    Destroy(collider.transform.gameObject);
-                    AnimStop("Swim");
-                    AnimPlay("Eat");
-                    fishCounter++;
-                    PlayerPrefs.SetInt("fish", fishCounter);
-                    yield return new WaitForSeconds(1f);
-                    AnimPlay("Swim");                    
-                    break;
+                            if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() >= 100f)
+                            {
+                                mana = 100f;
+                                powerUp = true;
+                            }
+
+                            if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() < 100f)
+                            {
+                                mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
+                            }
+                            Destroy(collider.transform.gameObject);
+                            AnimStop("Swim");
+                            AnimPlay("Eat");
+                            fishCounter++;
+                            PlayerPrefs.SetInt("fish", fishCounter);
+                            yield return new WaitForSeconds(1f);
+                            AnimPlay("Swim");
+                            break;
+                        }
+                    }                    
                 }
             }
         }
@@ -416,6 +428,8 @@ public class SharkSwim : MonoBehaviour
     {
         PlayerPrefs.SetInt("Coin", 0);
         PlayerPrefs.SetInt("fish", 0);
+        PlayerPrefs.SetInt("CoinBarrel", 0);
+
     }
 
     public void ResetGameOver()

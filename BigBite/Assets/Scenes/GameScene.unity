@@ -338,7 +338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startMenu: {fileID: 2124758013517709265}
   gamePlayMenu: {fileID: 151347840}
-  finishMenu: {fileID: 8994267475596717379}
   marketMenu: {fileID: 8994267475596717379}
   gameOverMenu: {fileID: 615566915}
   coinCounter: {fileID: 587745788}
