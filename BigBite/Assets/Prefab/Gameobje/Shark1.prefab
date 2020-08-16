@@ -298,6 +298,9 @@ MonoBehaviour:
   otherParticle:
   - {fileID: 153256, guid: fe394d041df1a0547990f49cf653249f, type: 3}
   - {fileID: 167276, guid: 48b70001f3e22c7429ee06b99087e45e, type: 3}
+  respawnParticle: {fileID: 1250201152801508, guid: dd46de4320f3d1b4087b5f9c0a24ab36,
+    type: 3}
+  manaParticle: {fileID: 185442, guid: 8118656e898f2fb4daa469e2393514dd, type: 3}
   seaPrefab:
   - {fileID: 6286692555497245440, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
   finishPrefab: {fileID: 2069770558040581883, guid: 1f4ed0771c3b8104199c4aa02021a668,

@@ -12,9 +12,8 @@ public class StartMenu : MonoBehaviour
     public Button marketBtn;
     public Button voiceBtn;
 
-    public Sprite offVoice;
     public Sprite onVoice;
-
+    public Sprite offVoice;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +24,7 @@ public class StartMenu : MonoBehaviour
         voiceBtn.onClick.AddListener(TaskOnTouchVoice);
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         marketBtn.onClick.AddListener(TaskOnTouchMarket);
+        VoiceStart();
     }
 
     // Update is called once per frame
@@ -50,7 +50,26 @@ public class StartMenu : MonoBehaviour
     
     void TaskOnTouchVoice()
     {
-        if (voiceBtn.image.sprite == onVoice)
+        VoiceIconChange();
+    }
+
+    void VoiceIconChange()
+    {
+        if (PlayerPrefs.GetInt("voice") == 0)
+        {
+            voiceBtn.image.sprite = onVoice;
+            PlayerPrefs.SetInt("voice", 1);
+        }
+        else
+        {
+            voiceBtn.image.sprite = offVoice;
+            PlayerPrefs.SetInt("voice", 0);
+        }
+    }
+
+    void VoiceStart()
+    {
+        if (PlayerPrefs.GetInt("voice") == 0)
         {
             voiceBtn.image.sprite = offVoice;
         }

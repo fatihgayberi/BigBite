@@ -89,6 +89,7 @@
     <Compile Include="Assets\Script\MarketMenu.cs" />
     <Compile Include="Assets\Script\MenuControl.cs" />
     <Compile Include="Assets\Script\Notification.cs" />
+    <Compile Include="Assets\Script\PausePanel.cs" />
     <Compile Include="Assets\Script\PlayerData.cs" />
     <Compile Include="Assets\Script\ScrollScene.cs" />
     <Compile Include="Assets\Script\Sea.cs" />

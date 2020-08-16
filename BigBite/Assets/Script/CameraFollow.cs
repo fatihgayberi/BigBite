@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     Transform target;
     Transform childTarget;
 
+    public float lookY;
     public float smoothSpeed = 0.125f;
     public Vector3 offset;
     public Vector3 offsetX;
@@ -41,6 +42,7 @@ public class CameraFollow : MonoBehaviour
     void LookAt(Transform target)
     {
         var lookPos = target.position - transform.position;
+        lookPos.y = lookY;
         lookPos.x = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 1);

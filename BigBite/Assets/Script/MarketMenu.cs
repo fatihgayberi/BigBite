@@ -216,7 +216,7 @@ public class MarketMenu : MonoBehaviour
         }
         if (dataManager.data.totalCoin >= dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
-            dataManager.data.sharkSpeed[sharkIndex] += 1;
+            dataManager.data.sharkSpeed[sharkIndex] += 0.5f;
             dataManager.data.totalCoin -= dataManager.data.sharkSpeedPrice[sharkIndex];
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
@@ -254,7 +254,7 @@ public class MarketMenu : MonoBehaviour
         }
         if (dataManager.data.totalCoin >= dataManager.data.sharkPowerPrice[sharkIndex] && dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
-            dataManager.data.sharkPower[sharkIndex] += 1;
+            dataManager.data.sharkPower[sharkIndex] += 0.5f;
             dataManager.data.totalCoin -= dataManager.data.sharkPowerPrice[sharkIndex];
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkPowerPrice[sharkIndex] += 10;

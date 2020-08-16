@@ -32,12 +32,15 @@ public class SharkSwim : MonoBehaviour
     public GameObject coinParticle;
     public GameObject fishParticle;
     public GameObject[] otherParticle;
+    public GameObject respawnParticle;
+    public GameObject manaParticle;
 
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
     GameObject finishSea;
     GameObject gamaCreatedParticle;
     GameObject dizzyCreatedParticle;
+    GameObject manaCreatedParticle;
 
     public List<GameObject> allObject = new List<GameObject>();
 
@@ -69,6 +72,7 @@ public class SharkSwim : MonoBehaviour
         gameFinish = false;
         gameOver = true;
         StartedSea();
+        RespawnParticle();
     }
 
     void FixedUpdate()
@@ -79,6 +83,7 @@ public class SharkSwim : MonoBehaviour
 
     void Update()
     {
+        SmoothDirection();
         ParticlePositionUpdate();
         SpecialPower();
         BarrelPower();
@@ -108,6 +113,13 @@ public class SharkSwim : MonoBehaviour
         sharkCreate.getSharkPlayer().transform.position =  new Vector3(sharkCreate.getSharkPlayer().transform.position.x, sharkCreate.getSharkPlayer().transform.position.y, sharkCreate.getSharkPlayer().transform.position.z + speed * Time.deltaTime);
     }
 
+    void SmoothDirection()
+    {
+        float x = transform.position.x;
+        x = Mathf.Clamp(x, -2.30f, 2.30f);
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
+    }
+
     // objelere degdiginde yapilmasi gereken islemleri yapar
     void OnTriggerEnter(Collider other)
     {
@@ -135,6 +147,7 @@ public class SharkSwim : MonoBehaviour
         if (collision.gameObject.name.Contains("Edge"))
         {
             speed = 1;
+            Vibrator();
         }
     }
 
@@ -169,6 +182,7 @@ public class SharkSwim : MonoBehaviour
         {
             if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
             {
+                Vibrator();
                 DamageParticle(collider);
                 // ozel guc baslamadigi surece ve varile degmedigi surece canin azalmasini saglar
                 if (!barrelPower && !powerUp)
@@ -217,7 +231,6 @@ public class SharkSwim : MonoBehaviour
             speedModifier = 0.01f;
             speed = sharkCreate.getSelectSpeed();
         }
-
     }
 
     void ParticlePositionUpdate()
@@ -230,6 +243,11 @@ public class SharkSwim : MonoBehaviour
         if (gamaCreatedParticle != null)
         {
             gamaCreatedParticle.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f);
+        }
+
+        if (powerUp)
+        {
+            manaCreatedParticle.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f);
         }
     }
 
@@ -263,6 +281,7 @@ public class SharkSwim : MonoBehaviour
                             {
                                 mana = 100f;
                                 powerUp = true;
+                                manaCreatedParticle = Instantiate(manaParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Quaternion.Euler(0, 180, 0));
                             }
 
                             if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() < 100f)
@@ -316,7 +335,11 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
+    void RespawnParticle()
+    {
+        Instantiate(respawnParticle, transform.position, Quaternion.identity);
 
+    }
 
     // coine degdiginde yapilmasi gerekenleri yapar
     IEnumerator CoinWin(Collider collider)
@@ -331,6 +354,14 @@ public class SharkSwim : MonoBehaviour
             Debug.Log("Coin: " + sharkCreate.getCoinCounter());
             yield return new WaitForSeconds(1f);
             AnimPlay("Swim");
+        }
+    }
+
+    void Vibrator()
+    {
+        if (PlayerPrefs.GetInt("Vibrate") == 1)
+        {
+            Handheld.Vibrate();
         }
     }
 

@@ -15,6 +15,7 @@ ScriptsOnlyBuild:
     - MarketMenu
     - MenuControl
     - Notification
+    - PausePanel
     - ScrollScene
     - Sea
     - SharkCreate
@@ -75,25 +76,25 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11190}
+      Script: {instanceID: 11188}
     - Class: 114
-      Script: {instanceID: 11366}
+      Script: {instanceID: 11370}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11410}
     - Class: 114
-      Script: {instanceID: 11782}
+      Script: {instanceID: 11788}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11822}
     - Class: 114
-      Script: {instanceID: 12246}
+      Script: {instanceID: 12258}
     - Class: 114
-      Script: {instanceID: 12268}
+      Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12748}
+      Script: {instanceID: 12768}
     - Class: 114
-      Script: {instanceID: 13128}
+      Script: {instanceID: 13152}
     - Class: 114
-      Script: {instanceID: 13154}
+      Script: {instanceID: 13178}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -146,57 +147,57 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11182}
+      Script: {instanceID: 11180}
     - Class: 114
-      Script: {instanceID: 11190}
+      Script: {instanceID: 11188}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 11220}
     - Class: 114
-      Script: {instanceID: 11366}
+      Script: {instanceID: 11370}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11410}
     - Class: 114
-      Script: {instanceID: 11558}
+      Script: {instanceID: 11564}
     - Class: 114
-      Script: {instanceID: 11620}
+      Script: {instanceID: 11626}
     - Class: 114
-      Script: {instanceID: 11782}
+      Script: {instanceID: 11790}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11822}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11890}
     - Class: 114
-      Script: {instanceID: 11884}
+      Script: {instanceID: 12160}
     - Class: 114
-      Script: {instanceID: 12148}
+      Script: {instanceID: 12166}
     - Class: 114
-      Script: {instanceID: 12154}
+      Script: {instanceID: 12258}
     - Class: 114
-      Script: {instanceID: 12246}
+      Script: {instanceID: 12260}
     - Class: 114
-      Script: {instanceID: 12268}
+      Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12446}
+      Script: {instanceID: 12460}
     - Class: 114
-      Script: {instanceID: 12726}
+      Script: {instanceID: 12746}
     - Class: 114
-      Script: {instanceID: 12736}
+      Script: {instanceID: 12756}
     - Class: 114
-      Script: {instanceID: 12748}
+      Script: {instanceID: 12768}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 13126}
+      Script: {instanceID: 13150}
     - Class: 114
-      Script: {instanceID: 13128}
+      Script: {instanceID: 13152}
     - Class: 114
-      Script: {instanceID: 13154}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13160}
+      Script: {instanceID: 13184}
     - Class: 114
-      Script: {instanceID: 16950}
+      Script: {instanceID: 48312}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -255,29 +256,29 @@ ScriptsOnlyBuild:
     - Class: 111
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11190}
+      Script: {instanceID: 11188}
     - Class: 114
-      Script: {instanceID: 11366}
+      Script: {instanceID: 11370}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11410}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11822}
     - Class: 114
-      Script: {instanceID: 12094}
+      Script: {instanceID: 12106}
     - Class: 114
-      Script: {instanceID: 12246}
+      Script: {instanceID: 12258}
     - Class: 114
-      Script: {instanceID: 12268}
+      Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12380}
+      Script: {instanceID: 12394}
     - Class: 114
-      Script: {instanceID: 12748}
+      Script: {instanceID: 12768}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 13078}
     - Class: 114
-      Script: {instanceID: 13128}
+      Script: {instanceID: 13152}
     - Class: 114
-      Script: {instanceID: 13154}
+      Script: {instanceID: 13178}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -323,6 +324,12 @@ ScriptsOnlyBuild:
     className: CoinRotate
   - hash:
       serializedVersion: 2
+      Hash: b41f6a02beff5d31b9210834dce1767e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UICanvasManager
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -333,6 +340,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 0e2dcecfc1a59863d6161482eaa244b3
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXPitchRandomizer
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -351,6 +364,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 096a50f6a3d89528ac732e9bb63631c7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ETFXSceneManager
   - hash:
       serializedVersion: 2
       Hash: 72712369a7c681ad84fc255a5ec0b333
@@ -393,6 +412,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
+  - hash:
+      serializedVersion: 2
+      Hash: 5058e62971372d10db24fe80294c7a3d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ETFXProjectileScript
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -449,7 +474,7 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
-      Hash: 9294b8413881933fd54733d15dc5b954
+      Hash: 38866c5918fd3bcb045feb1ec5d5d63e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CameraFollow
@@ -521,10 +546,22 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 41000f94cb1bad5c319ac39d3c0afece
+      Hash: da7e71dd9dad5c16cc7bfebb6bb488fd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartMenu
+  - hash:
+      serializedVersion: 2
+      Hash: b5aaf686465544e9e949e46e293afee1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXMouseOrbit
+  - hash:
+      serializedVersion: 2
+      Hash: 0912db8419735ecb16044b834208729d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXLoopScript
   - hash:
       serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
@@ -543,6 +580,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalTrack
+  - hash:
+      serializedVersion: 2
+      Hash: e888ef4305b8fac9cd5510fefa0636bf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXFireProjectile
   - hash:
       serializedVersion: 2
       Hash: 4859514b1f140b7aeffb37330387d139
@@ -593,6 +636,12 @@ ScriptsOnlyBuild:
     className: Button
   - hash:
       serializedVersion: 2
+      Hash: 79566861074b80c5467fa81dddcf4f5a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXRotation
+  - hash:
+      serializedVersion: 2
       Hash: feb9a5a121d15fa3654d4e50a5233045
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -611,7 +660,7 @@ ScriptsOnlyBuild:
     className: MarketMenu
   - hash:
       serializedVersion: 2
-      Hash: 295db680bdede11b536d0ab1ab8ffd7a
+      Hash: 67e4b8a0cc0269cb62f49ae2a053b479
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GamePlayMenu
@@ -671,13 +720,31 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
+      Hash: 8e5e00ca42eeebc1eae2f91fabb1ee02
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXButtonScript
+  - hash:
+      serializedVersion: 2
+      Hash: a4900d574c1d1a9001f0f83b0dddb24d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ParticleEffectsLibrary
+  - hash:
+      serializedVersion: 2
+      Hash: 32cebb2ae4cddf0e4d07ddef22ca3a5c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXTarget
+  - hash:
+      serializedVersion: 2
       Hash: 3b760e6526e13f7504f59e210145899a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: b9c5125e402407d647093b761aa202bc
+      Hash: f6d0172a4cf2a0e0e6aff125f9c3abb2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SharkSwim
@@ -705,6 +772,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: 2890c468cf196dca883ea02bde96343e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: EpicToonFX
+    className: ETFXLightFade
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -759,6 +832,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Outline
+  - hash:
+      serializedVersion: 2
+      Hash: 24b2edb739e02ab9678256f4cc52b87d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PEButtonScript
   - hash:
       serializedVersion: 2
       Hash: a63fc1a3b035e5a0b5839cd7f7b3086e
@@ -839,82 +918,10 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: b41f6a02beff5d31b9210834dce1767e
+      Hash: 286892a523d96e639cbcc4a2a2e4b559
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: UICanvasManager
-  - hash:
-      serializedVersion: 2
-      Hash: 0e2dcecfc1a59863d6161482eaa244b3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXPitchRandomizer
-  - hash:
-      serializedVersion: 2
-      Hash: 096a50f6a3d89528ac732e9bb63631c7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ETFXSceneManager
-  - hash:
-      serializedVersion: 2
-      Hash: 5058e62971372d10db24fe80294c7a3d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ETFXProjectileScript
-  - hash:
-      serializedVersion: 2
-      Hash: b5aaf686465544e9e949e46e293afee1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXMouseOrbit
-  - hash:
-      serializedVersion: 2
-      Hash: 0912db8419735ecb16044b834208729d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXLoopScript
-  - hash:
-      serializedVersion: 2
-      Hash: e888ef4305b8fac9cd5510fefa0636bf
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXFireProjectile
-  - hash:
-      serializedVersion: 2
-      Hash: 79566861074b80c5467fa81dddcf4f5a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXRotation
-  - hash:
-      serializedVersion: 2
-      Hash: 8e5e00ca42eeebc1eae2f91fabb1ee02
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXButtonScript
-  - hash:
-      serializedVersion: 2
-      Hash: a4900d574c1d1a9001f0f83b0dddb24d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ParticleEffectsLibrary
-  - hash:
-      serializedVersion: 2
-      Hash: 32cebb2ae4cddf0e4d07ddef22ca3a5c
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXTarget
-  - hash:
-      serializedVersion: 2
-      Hash: 2890c468cf196dca883ea02bde96343e
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: EpicToonFX
-    className: ETFXLightFade
-  - hash:
-      serializedVersion: 2
-      Hash: 24b2edb739e02ab9678256f4cc52b87d
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PEButtonScript
+    className: PausePanel
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity
