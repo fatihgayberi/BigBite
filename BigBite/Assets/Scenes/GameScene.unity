@@ -121,6 +121,83 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44156519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44156520}
+  - component: {fileID: 44156522}
+  - component: {fileID: 44156521}
+  m_Layer: 5
+  m_Name: PauseText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &44156520
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44156519}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1091135386}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 450}
+  m_SizeDelta: {x: 500, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &44156521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44156519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 1f0b296536844b9409d9e37e8703f1fd, type: 3}
+    m_FontSize: 150
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 150
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: durdu
+--- !u!222 &44156522
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44156519}
+  m_CullTransparentMesh: 0
 --- !u!1 &56073304
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +659,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1316323059}
+  - {fileID: 1843253733}
   m_Father: {fileID: 508075011}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -851,7 +929,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 376521985}
-  - {fileID: 1843253733}
   m_Father: {fileID: 615566921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -993,7 +1070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &615566916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,6 +1961,7 @@ GameObject:
   - component: {fileID: 1033504720}
   - component: {fileID: 1033504722}
   - component: {fileID: 1033504721}
+  - component: {fileID: 1033504723}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -1947,6 +2025,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033504719}
   m_CullTransparentMesh: 0
+--- !u!114 &1033504723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033504719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 535738488db734e4684ab44c5116c568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voiceBtn: {fileID: 401827476}
+  closeBtn: {fileID: 1174905866}
+  vibrateBtn: {fileID: 2055745974}
+  offVoice: {fileID: 21300000, guid: ba86baf6661ee6341a709cc37b8bdc1f, type: 3}
+  onVoice: {fileID: 21300000, guid: 483f41f0ba842484db7dc14fc6dc75e6, type: 3}
+  offVibrate: {fileID: 21300000, guid: 9aace52b65403c0409a7331db7eb4b58, type: 3}
+  onVibrate: {fileID: 21300000, guid: bb9d5fc7f8d4c1f498d585e2eca55c22, type: 3}
 --- !u!1 &1091135385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1979,6 +2076,7 @@ RectTransform:
   - {fileID: 2042941913}
   - {fileID: 942754331}
   - {fileID: 1928641573}
+  - {fileID: 44156520}
   m_Father: {fileID: 931852941}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3075,7 +3173,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843253732}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3083,12 +3181,12 @@ RectTransform:
   - {fileID: 56073305}
   - {fileID: 1132414215}
   - {fileID: 721935151}
-  m_Father: {fileID: 508075011}
+  m_Father: {fileID: 376521985}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: -110}
   m_SizeDelta: {x: 434, y: 101}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1843253734
@@ -3135,7 +3233,6 @@ GameObject:
   - component: {fileID: 1919307125}
   - component: {fileID: 1919307128}
   - component: {fileID: 1919307127}
-  - component: {fileID: 1919307126}
   m_Layer: 5
   m_Name: SettingsWindow
   m_TagString: Untagged
@@ -3165,25 +3262,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 578, y: 262}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1919307126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919307124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 535738488db734e4684ab44c5116c568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceBtn: {fileID: 401827476}
-  closeBtn: {fileID: 1174905866}
-  vibrateBtn: {fileID: 2055745974}
-  offVoice: {fileID: 21300000, guid: ba86baf6661ee6341a709cc37b8bdc1f, type: 3}
-  onVoice: {fileID: 21300000, guid: 483f41f0ba842484db7dc14fc6dc75e6, type: 3}
-  offVibrate: {fileID: 21300000, guid: 9aace52b65403c0409a7331db7eb4b58, type: 3}
-  onVibrate: {fileID: 21300000, guid: bb9d5fc7f8d4c1f498d585e2eca55c22, type: 3}
 --- !u!114 &1919307127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4060,7 +4138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &2124758013517709268
 Canvas:
   m_ObjectHideFlags: 0

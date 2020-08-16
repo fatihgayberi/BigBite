@@ -475,6 +475,7 @@ public class SharkSwim : MonoBehaviour
             gameOver = false;
             gameFinish = true;
             menuControl.GameOverMenu(true);
+            menuControl.GamePlayMenu(false);
 
             if (allObject != null)
             {
