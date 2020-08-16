@@ -51,10 +51,12 @@ public class MarketMenu : MonoBehaviour
         dataManager.Load();
         sharkIndex = dataManager.data.selectedSharkIndex;
         PriceOutput(sharkIndex);
+        SelectedShark();
+        BtnControl();
         SpeedSkeletActive(SpeedActiveIndexFind());
         PowerSkeletActive(PowerActiveIndexFind());
 
-        StartCoroutine(SharkOnTheScreenStart());
+        //StartCoroutine(SharkOnTheScreenStart());
 
         SpeedUpdatePrice();
         PowerUpdatePrice();
@@ -68,12 +70,7 @@ public class MarketMenu : MonoBehaviour
 
         TotalCoin();
 
-        BtnControl();
-    }
 
-    private void Update()
-    {
-        //StartCoroutine(AnimWaited());
     }
 
     void TotalCoin()
@@ -90,6 +87,7 @@ public class MarketMenu : MonoBehaviour
     {
         if (sharkIndex > 0)
         {
+            //AnimStop(sharkOnTheScreen);
             sharkIndex--;
             SelectedShark();
             rightBtn.gameObject.GetComponent<Image>().sprite = btnActive;
@@ -110,6 +108,7 @@ public class MarketMenu : MonoBehaviour
     {
         if (sharkIndex < sharkArray.Length - 1)
         {
+            //AnimStop(sharkOnTheScreen);
             sharkIndex++;
             SelectedShark();
             Debug.Log("sharkIndex right: " + sharkIndex);
@@ -150,26 +149,48 @@ public class MarketMenu : MonoBehaviour
             default:
                 break;
         }
+        Debug.Log("asdf");
         StartCoroutine(AnimWaited(sharkOnTheScreen));
     }
 
     IEnumerator AnimWaited(GameObject shark)
     {
-        anim = shark.transform.GetChild(0).gameObject.GetComponent<Animation>();
-        anim.Play("Swim");
-        yield return new WaitForSeconds(8f);
-        anim.Play("Finish");
+        dataManager.Load();
+        if (sharkIndex == dataManager.data.selectedSharkIndex)
+        {
+            anim = shark.transform.GetChild(0).gameObject.GetComponent<Animation>();
+            anim.Play("Swim");
+            yield return new WaitForSeconds(8f);
+            anim.Play("Finish");
+        }
     }
 
-    IEnumerator SharkOnTheScreenStart()
+    void AnimStop(GameObject shark)
     {
-        sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
-
-        anim = sharkOnTheScreen.transform.GetChild(0).gameObject.GetComponent<Animation>();
-        anim.Play("Swim");
-        yield return new WaitForSeconds(8f);
-        anim.Play("Finish");
+        anim = shark.transform.GetChild(0).gameObject.GetComponent<Animation>();
+        if (anim.IsPlaying("Swim"))
+        {
+            anim.Stop("Swim");
+        }
+        else if (anim.IsPlaying("Finish"))
+        {
+            anim.Stop("Finish");
+        }
     }
+
+    //IEnumerator SharkOnTheScreenStart()
+    //{
+    //    sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
+    //
+    //    dataManager.Load();
+    //    if (sharkIndex == dataManager.data.selectedSharkIndex)
+    //    {
+    //        anim = sharkOnTheScreen.transform.GetChild(0).gameObject.GetComponent<Animation>();
+    //        anim.Play("Swim");
+    //        yield return new WaitForSeconds(8f);
+    //        anim.Play("Finish");
+    //    }
+    //}
 
     void BtnControl()
     {
@@ -177,7 +198,7 @@ public class MarketMenu : MonoBehaviour
         {
             leftBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
         }
-        else if (sharkIndex < sharkArray.Length - 1)
+        else if (sharkIndex == sharkArray.Length - 1)
         {
             rightBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
         }

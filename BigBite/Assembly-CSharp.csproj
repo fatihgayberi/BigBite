@@ -85,6 +85,7 @@
     <Compile Include="Assets\Script\GameOverMenu.cs" />
     <Compile Include="Assets\Script\GamePlayMenu.cs" />
     <Compile Include="Assets\Script\HealthBar.cs" />
+    <Compile Include="Assets\Script\InterAdManager.cs" />
     <Compile Include="Assets\Script\ManaBar.cs" />
     <Compile Include="Assets\Script\MarketMenu.cs" />
     <Compile Include="Assets\Script\MenuControl.cs" />
@@ -660,6 +661,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{D74A7ED5-2657-25F3-E5CD-62C3F241F97E}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.csproj">
+      <Project>{67C1F74F-87E2-D2E9-BE46-902A4FFF0E1F}</Project>
+      <Name>GoogleMobileAds</Name>
+    </ProjectReference>
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj">
+      <Project>{467ABC26-E413-9ACF-68A6-4CB5BD234E24}</Project>
+      <Name>GoogleMobileAds.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

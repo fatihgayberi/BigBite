@@ -52,6 +52,7 @@ public class SharkSwim : MonoBehaviour
     public Action OnDamage;
     void Start()
     {
+        InterAdManager.instance.ShowAd();
         anim = GetComponent<Animation>();
         menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
@@ -377,6 +378,12 @@ public class SharkSwim : MonoBehaviour
             speed = sharkCreate.getSelectSpeed();
             mana = 0;
             powerUp = false;
+            PlayerPrefs.SetInt("AddMobWinnerCounter", 1 + PlayerPrefs.GetInt("AddMobWinnerCounter"));
+            if (PlayerPrefs.GetInt("AddMobWinnerCounter") == 5)
+            {
+                InterAdManager.instance.ShowAd();
+                PlayerPrefs.SetInt("AddMobWinnerCounter", 0);
+            }
             SceneManager.LoadScene("FinishScene");
         }
     }
@@ -472,6 +479,13 @@ public class SharkSwim : MonoBehaviour
     {
         if (health <= 0 && gameOver)
         {
+            PlayerPrefs.SetInt("AddMobGameOverCounter", 1 + PlayerPrefs.GetInt("AddMobGameOverCounter"));
+            if (PlayerPrefs.GetInt("AddMobGameOverCounter") == 2)
+            {
+                InterAdManager.instance.ShowAd();
+                PlayerPrefs.SetInt("AddMobGameOverCounter", 0);
+            }
+
             gameOver = false;
             gameFinish = true;
             menuControl.GameOverMenu(true);
@@ -485,7 +499,6 @@ public class SharkSwim : MonoBehaviour
                 }
                 allObject.Clear();
             }
-
             Destroy(finishSea);
             GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
             Instantiate(seaObject, new Vector3(0, 0, finishPosiztionZ), Quaternion.Euler(new Vector3(0, 90, 0)));

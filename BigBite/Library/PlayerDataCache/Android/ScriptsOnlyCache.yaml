@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - GameOverMenu
     - GamePlayMenu
     - HealthBar
+    - InterAdManager
     - ManaBar
     - MarketMenu
     - MenuControl
@@ -26,6 +27,10 @@ ScriptsOnlyBuild:
     - DG.Tweening.Core.DOTweenSettings
     DOTweenUpgradeManager.dll:
     - DG.DOTweenUpgradeManager.UpgradeWindow
+    GoogleMobileAds.Editor.dll:
+    - GoogleMobileAds.Editor.GoogleMobileAdsSettings
+    GoogleMobileAds.dll:
+    - GoogleMobileAds.Common.MobileAdsEventExecutor
     Unity.DeviceSimulator.Editor.dll:
     - Unity.DeviceSimulator.SimulatorWindow
     Unity.Rider.Editor.dll:
@@ -201,6 +206,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13182}
     - Class: 114
       Script: {instanceID: 13188}
+    - Class: 114
+      Script: {instanceID: 18570}
+    - Class: 114
+      Script: {instanceID: 20308}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -513,7 +522,7 @@ ScriptsOnlyBuild:
     className: FinishMenu
   - hash:
       serializedVersion: 2
-      Hash: 14c618d536a6cf6864ed6d64f4de7b56
+      Hash: 884df4d4fd35d52ae1a295540f527ebe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuControl
@@ -931,6 +940,24 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 6fb512c6733e02f441372611e6f94f11
+    assemblyName: GoogleMobileAds.Editor.dll
+    namespaceName: GoogleMobileAds.Editor
+    className: GoogleMobileAdsSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: GoogleMobileAds.dll
+    namespaceName: GoogleMobileAds.Common
+    className: MobileAdsEventExecutor
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InterAdManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity
