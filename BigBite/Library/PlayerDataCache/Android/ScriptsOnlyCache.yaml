@@ -18,6 +18,7 @@ ScriptsOnlyBuild:
     - PausePanel
     - ScrollScene
     - Sea
+    - Settings
     - SharkCreate
     - SharkSwim
     - StartMenu
@@ -90,11 +91,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12768}
+      Script: {instanceID: 12770}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13154}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13180}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -183,21 +184,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12746}
     - Class: 114
-      Script: {instanceID: 12756}
+      Script: {instanceID: 12754}
     - Class: 114
-      Script: {instanceID: 12768}
+      Script: {instanceID: 12758}
     - Class: 114
-      Script: {instanceID: 12980}
+      Script: {instanceID: 12770}
     - Class: 114
-      Script: {instanceID: 13150}
+      Script: {instanceID: 12982}
     - Class: 114
       Script: {instanceID: 13152}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13154}
     - Class: 114
-      Script: {instanceID: 13184}
+      Script: {instanceID: 13180}
     - Class: 114
-      Script: {instanceID: 48312}
+      Script: {instanceID: 13186}
+    - Class: 114
+      Script: {instanceID: 23622}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -272,13 +275,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12394}
     - Class: 114
-      Script: {instanceID: 12768}
+      Script: {instanceID: 12770}
     - Class: 114
-      Script: {instanceID: 13078}
+      Script: {instanceID: 13080}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13154}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13180}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -546,7 +549,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: da7e71dd9dad5c16cc7bfebb6bb488fd
+      Hash: 2831c1a907f4f8a6898aef8a5796e4d2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartMenu
@@ -744,7 +747,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: f6d0172a4cf2a0e0e6aff125f9c3abb2
+      Hash: 0529bdf634822de655b93ec94209e4af
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SharkSwim
@@ -754,6 +757,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AudioTrack
+  - hash:
+      serializedVersion: 2
+      Hash: e34e1fd82e988b7dfd81351577eb4848
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PausePanel
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -918,10 +927,10 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 286892a523d96e639cbcc4a2a2e4b559
+      Hash: 54f343ae678b06023ae9959fe4c11e2c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PausePanel
+    className: Settings
   platform: 13
   scenePathNames:
   - Assets/Scenes/GameScene.unity

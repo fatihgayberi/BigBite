@@ -8,9 +8,12 @@ public class StartMenu : MonoBehaviour
     MenuControl menuControl;
     SharkSwim sharkSwim;
 
+    public GameObject settingsPanel;
+
     public Button playBtn;
     public Button marketBtn;
     public Button voiceBtn;
+    public Button settingsBtn;
 
     public Sprite onVoice;
     public Sprite offVoice;
@@ -21,10 +24,9 @@ public class StartMenu : MonoBehaviour
         menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         sharkSwim = FindObjectOfType<SharkSwim>();
-        voiceBtn.onClick.AddListener(TaskOnTouchVoice);
+        settingsBtn.onClick.AddListener(TaskOnTouchSettings);
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         marketBtn.onClick.AddListener(TaskOnTouchMarket);
-        VoiceStart();
     }
 
     // Update is called once per frame
@@ -46,36 +48,11 @@ public class StartMenu : MonoBehaviour
     void TaskOnTouchMarket()
     {
         SceneManager.LoadScene("MarketScene");
-    }    
-    
-    void TaskOnTouchVoice()
-    {
-        VoiceIconChange();
     }
 
-    void VoiceIconChange()
+    void TaskOnTouchSettings()
     {
-        if (PlayerPrefs.GetInt("voice") == 0)
-        {
-            voiceBtn.image.sprite = onVoice;
-            PlayerPrefs.SetInt("voice", 1);
-        }
-        else
-        {
-            voiceBtn.image.sprite = offVoice;
-            PlayerPrefs.SetInt("voice", 0);
-        }
+        settingsPanel.gameObject.SetActive(true);
     }
 
-    void VoiceStart()
-    {
-        if (PlayerPrefs.GetInt("voice") == 0)
-        {
-            voiceBtn.image.sprite = offVoice;
-        }
-        else
-        {
-            voiceBtn.image.sprite = onVoice;
-        }
-    }
 }
