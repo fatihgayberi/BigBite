@@ -59,7 +59,7 @@ public class SharkSwim : MonoBehaviour
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
         PrefsReset();
-        speedModifier = 0.01f; // 0.005f degeri ideal deger
+        speedModifier = 0.005f; // 0.005f degeri ideal deger
         seaPositionZ = 5f;
         seconds = 0;
         powerTime = 0;

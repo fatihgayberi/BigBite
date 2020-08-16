@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class MarketMenu : MonoBehaviour
 {
+    Animation anim;
+
     public Button leftBtn;
     public Button rightBtn;
     public Button backBtn;
@@ -52,7 +54,7 @@ public class MarketMenu : MonoBehaviour
         SpeedSkeletActive(SpeedActiveIndexFind());
         PowerSkeletActive(PowerActiveIndexFind());
 
-        sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
+        StartCoroutine(SharkOnTheScreenStart());
 
         SpeedUpdatePrice();
         PowerUpdatePrice();
@@ -67,6 +69,11 @@ public class MarketMenu : MonoBehaviour
         TotalCoin();
 
         BtnControl();
+    }
+
+    private void Update()
+    {
+        //StartCoroutine(AnimWaited());
     }
 
     void TotalCoin()
@@ -143,6 +150,25 @@ public class MarketMenu : MonoBehaviour
             default:
                 break;
         }
+        StartCoroutine(AnimWaited(sharkOnTheScreen));
+    }
+
+    IEnumerator AnimWaited(GameObject shark)
+    {
+        anim = shark.transform.GetChild(0).gameObject.GetComponent<Animation>();
+        anim.Play("Swim");
+        yield return new WaitForSeconds(8f);
+        anim.Play("Finish");
+    }
+
+    IEnumerator SharkOnTheScreenStart()
+    {
+        sharkOnTheScreen = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
+
+        anim = sharkOnTheScreen.transform.GetChild(0).gameObject.GetComponent<Animation>();
+        anim.Play("Swim");
+        yield return new WaitForSeconds(8f);
+        anim.Play("Finish");
     }
 
     void BtnControl()
