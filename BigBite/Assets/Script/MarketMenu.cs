@@ -249,9 +249,12 @@ public class MarketMenu : MonoBehaviour
             totalCoin.text = dataManager.data.totalCoin + " ALTIN";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
             SpeedSkeletActive(SpeedActiveIndexFind());
-
-            audioSrc.clip = updateClip;
-            audioSrc.Play();
+            
+            if (PlayerPrefs.GetInt("Voice") != 0)
+            {
+                audioSrc.clip = updateClip;
+                audioSrc.Play();
+            }
 
             SpeedUpdatePrice();
 
@@ -291,8 +294,11 @@ public class MarketMenu : MonoBehaviour
             dataManager.data.sharkPowerPrice[sharkIndex] += 10;
             PowerSkeletActive(PowerActiveIndexFind());
 
-            audioSrc.clip = updateClip;
-            audioSrc.Play();
+            if (PlayerPrefs.GetInt("Voice") != 0)
+            {
+                audioSrc.clip = updateClip;
+                audioSrc.Play();
+            }
 
             PowerUpdatePrice();
 

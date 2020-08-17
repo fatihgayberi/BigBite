@@ -11,6 +11,10 @@ public class SharkSwim : MonoBehaviour
     SharkCreate sharkCreate;
     MenuControl menuControl;
 
+    AudioSource audioSrcShark;
+    [SerializeField] AudioClip gameOverClip;
+    [SerializeField] AudioClip manaClip;
+
     Animation anim;
 
     float health; // oyuncunun canini saklar
@@ -52,7 +56,8 @@ public class SharkSwim : MonoBehaviour
     public Action OnDamage;
     void Start()
     {
-        InterAdManager.instance.ShowAd();
+        audioSrcShark = GetComponent<AudioSource>();
+        //InterAdManager.instance.ShowAd();
         anim = GetComponent<Animation>();
         menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
@@ -259,51 +264,62 @@ public class SharkSwim : MonoBehaviour
     // advantage objelerine degdiginde yapilmasi gerekenleri yapar
     IEnumerator AdvantageColliderControl(Collider collider)
     {
-        if (mana < 100)
+        for (int i = 0; i < sea.seaAdvantageObject.Count; i++)
         {
-            for (int i = 0; i < sea.seaAdvantageObject.Count; i++)
+            for (int j = 0; j < 3; j++)
             {
-                for (int j = 0; j < 3; j++)
+                if (collider != null)
                 {
-                    if (collider != null)
+                    if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name))
                     {
-                        if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name))
+                        Instantiate(fishParticle, collider.transform.position, Quaternion.identity);
+
+                        if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
                         {
-                            Instantiate(fishParticle, collider.transform.position, Quaternion.identity);
-
-                            if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
-                            {
-                                health = sharkCreate.getSelectHealth();
-                            }
-
-                            if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() <= sharkCreate.getSelectHealth())
-                            {
-                                health += sea.seaAdvantageObject[i].getPowerOfObjectHP();
-                            }
-
-                            if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() >= 100f)
-                            {
-                                mana = 100f;
-                                powerUp = true;
-                                manaCreatedParticle = Instantiate(manaParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Quaternion.Euler(0, 180, 0));
-                            }
-
-                            if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() < 100f)
-                            {
-                                mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
-                            }
-                            Destroy(collider.transform.GetChild(0).gameObject);
-                            AnimStop("Swim");
-                            AnimPlay("Eat");
-                            fishCounter++;
-                            PlayerPrefs.SetInt("fish", fishCounter);
-                            yield return new WaitForSeconds(1f);
-                            AnimPlay("Swim");
-                            break;
+                            health = sharkCreate.getSelectHealth();
                         }
-                    }                    
+
+                        if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() <= sharkCreate.getSelectHealth())
+                        {
+                            health += sea.seaAdvantageObject[i].getPowerOfObjectHP();
+                        }
+
+                        if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() >= 100f)
+                        {
+                            ManaAudio();
+                            mana = 100f;
+                            powerUp = true;
+                            manaCreatedParticle = Instantiate(manaParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Quaternion.Euler(0, 180, 0));
+                        }
+
+                        if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() < 100f)
+                        {
+                            mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
+                        }
+                        if (collider.transform.childCount > 0)
+                        {
+                            Destroy(collider.transform.GetChild(0).gameObject);
+                        }
+
+                        AnimStop("Swim");
+                        AnimPlay("Eat");
+                        fishCounter++;
+                        PlayerPrefs.SetInt("fish", fishCounter);
+                        yield return new WaitForSeconds(1f);
+                        AnimPlay("Swim");
+                        break;
+                    }
                 }
             }
+        }
+    }
+
+    void ManaAudio()
+    {
+        if (PlayerPrefs.GetInt("Voice") != 0)
+        {
+            audioSrcShark.clip = manaClip;
+            audioSrcShark.Play();
         }
     }
 
@@ -314,7 +330,11 @@ public class SharkSwim : MonoBehaviour
             barrelPower = true;
             Instantiate(barrelParticle, collider.transform.position, Quaternion.identity);
             gamaCreatedParticle = Instantiate(gamaParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Quaternion.Euler(0, 180, 0));
-            Destroy(collider.transform.GetChild(0).gameObject);
+            if (collider.transform.childCount > 0)
+            {
+                Destroy(collider.transform.GetChild(0).gameObject);
+            }
+            
         }
     }
 
@@ -350,7 +370,12 @@ public class SharkSwim : MonoBehaviour
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
             Instantiate(coinParticle, collider.transform.position, Quaternion.identity);
-            Destroy(collider.transform.GetChild(0).gameObject);
+
+            if (collider.transform.childCount > 0)
+            {
+                Destroy(collider.transform.GetChild(0).gameObject);
+            }
+            
             AnimStop("Swim");
             AnimPlay("Eat"); 
             sharkCreate.CoinCounterPlus();
@@ -380,12 +405,12 @@ public class SharkSwim : MonoBehaviour
             speed = sharkCreate.getSelectSpeed();
             mana = 0;
             powerUp = false;
-            PlayerPrefs.SetInt("AddMobWinnerCounter", 1 + PlayerPrefs.GetInt("AddMobWinnerCounter"));
-            if (PlayerPrefs.GetInt("AddMobWinnerCounter") == 5)
-            {
-                InterAdManager.instance.ShowAd();
-                PlayerPrefs.SetInt("AddMobWinnerCounter", 0);
-            }
+            //PlayerPrefs.SetInt("AddMobWinnerCounter", 1 + PlayerPrefs.GetInt("AddMobWinnerCounter"));
+            //if (PlayerPrefs.GetInt("AddMobWinnerCounter") == 5)
+            //{
+            //    InterAdManager.instance.ShowAd();
+            //    PlayerPrefs.SetInt("AddMobWinnerCounter", 0);
+            //}
             SceneManager.LoadScene("FinishScene");
         }
     }
@@ -481,13 +506,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (health <= 0 && gameOver)
         {
-            PlayerPrefs.SetInt("AddMobGameOverCounter", 1 + PlayerPrefs.GetInt("AddMobGameOverCounter"));
-            if (PlayerPrefs.GetInt("AddMobGameOverCounter") == 2)
-            {
-                InterAdManager.instance.ShowAd();
-                PlayerPrefs.SetInt("AddMobGameOverCounter", 0);
-            }
-
+            GameOverAudio();
             gameOver = false;
             gameFinish = true;
             menuControl.GameOverMenu(true);
@@ -504,6 +523,15 @@ public class SharkSwim : MonoBehaviour
             Destroy(finishSea);
             GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
             Instantiate(seaObject, new Vector3(0, 0, finishPosiztionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+        }
+    }
+
+    void GameOverAudio()
+    {
+        if (PlayerPrefs.GetInt("Voice") != 0)
+        {
+            audioSrcShark.clip = gameOverClip;
+            audioSrcShark.Play();
         }
     }
 

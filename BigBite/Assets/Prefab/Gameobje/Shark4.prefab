@@ -116,6 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f451a32c8ebe96f46af6b91c55df1911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverClip: {fileID: 8300000, guid: b38176214b325964c84aa87a02c03c3a, type: 3}
+  manaClip: {fileID: 8300000, guid: 9359e6e9fb6d6554da6c574e20459c64, type: 3}
   speed: 0
   barrelParticle: {fileID: 160890, guid: 81a6215dbf618d84cae2c6907f947094, type: 3}
   mineParticle: {fileID: 183892, guid: 77aff4f1c9d07704bafd856e02a46ac9, type: 3}
@@ -161,7 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaClip: {fileID: 8300000, guid: 9359e6e9fb6d6554da6c574e20459c64, type: 3}
   respawnClip: {fileID: 8300000, guid: 126209bbefed49e42a7d2e1cea9abe87, type: 3}
-  gameOverClip: {fileID: 8300000, guid: b38176214b325964c84aa87a02c03c3a, type: 3}
 --- !u!82 &3918906016294195754
 AudioSource:
   m_ObjectHideFlags: 0

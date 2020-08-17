@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class FinishMenu : MonoBehaviour
 {
+    AudioSource audioSrc;
+    [SerializeField] AudioClip finishClip;
+
     public DataManager dataManager;
 
     public Text coinSumTxt;
@@ -24,11 +27,14 @@ public class FinishMenu : MonoBehaviour
     public Sprite starActive;
 
     public GameObject[] sharkArray;
+    public GameObject seaArea;
 
     int totalCoin;
 
     void Start()
     {
+        audioSrc = seaArea.GetComponent<AudioSource>();
+        FinishAudio();
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         homeBtn.onClick.AddListener(TaskOnTouchkHome);
         SelectedShark();
@@ -148,5 +154,14 @@ public class FinishMenu : MonoBehaviour
         dataManager.Load();
         dataManager.data.totalCoin += totalCoin;
         dataManager.Save();
+    }
+
+    void FinishAudio()
+    {
+        if (PlayerPrefs.GetInt("Voice") != 0)
+        {
+            audioSrc.clip = finishClip;
+            audioSrc.Play();
+        }
     }
 }

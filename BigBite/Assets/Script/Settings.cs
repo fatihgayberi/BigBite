@@ -37,21 +37,21 @@ public class Settings : MonoBehaviour
 
     void VoiceIconChange()
     {
-        if (PlayerPrefs.GetInt("voice") == 0)
+        if (PlayerPrefs.GetInt("Voice") == 0)
         {
             voiceBtn.image.sprite = onVoice;
-            PlayerPrefs.SetInt("voice", 1);
+            PlayerPrefs.SetInt("Voice", 1);
         }
         else
         {
             voiceBtn.image.sprite = offVoice;
-            PlayerPrefs.SetInt("voice", 0);
+            PlayerPrefs.SetInt("Voice", 0);
         }
     }
 
     void VoiceStart()
     {
-        if (PlayerPrefs.GetInt("voice") == 0)
+        if (PlayerPrefs.GetInt("Voice") == 0)
         {
             voiceBtn.image.sprite = offVoice;
         }

@@ -50,8 +50,11 @@ public class ConfirmNotification : MonoBehaviour
 
     void ConfirmAudio()
     {
-        audioSrc = marketArea.GetComponent<AudioSource>();
-        audioSrc.clip = buyClip;
-        audioSrc.Play();
+        if (PlayerPrefs.GetInt("Voice") != 0)
+        {
+            audioSrc = marketArea.GetComponent<AudioSource>();
+            audioSrc.clip = buyClip;
+            audioSrc.Play();
+        }
     }
 }

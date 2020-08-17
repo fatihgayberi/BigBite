@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GameOverMenu : MonoBehaviour
 {
+
+
+    //GameObject gameOverMenu;
+
     SharkSwim sharkSwim;
     SharkCreate sharkCreate;
     MenuControl menuControl;
@@ -17,9 +21,12 @@ public class GameOverMenu : MonoBehaviour
 
     void Start()
     {
+
         sharkSwim = FindObjectOfType<SharkSwim>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         menuControl = FindObjectOfType<MenuControl>();
+        //audioSrcShark = sharkCreate.getSharkPlayer().GetComponent<AudioSource>();
+        //GameOverAudio();
         Sea.damagePositionZ = 1.5f;
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         homeBtn.onClick.AddListener(TaskOnTouchkHome);
