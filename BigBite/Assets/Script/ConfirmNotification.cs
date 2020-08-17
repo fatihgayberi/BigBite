@@ -5,6 +5,12 @@ using UnityEngine.UI;
 
 public class ConfirmNotification : MonoBehaviour
 {
+    AudioSource audioSrc;
+
+    public GameObject marketArea;
+
+    public AudioClip buyClip;
+
     MarketMenu marketMenu;
 
     public DataManager dataManager;
@@ -17,6 +23,7 @@ public class ConfirmNotification : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSrc = marketArea.GetComponent<AudioSource>();
         marketMenu = FindObjectOfType<MarketMenu>();
         confirmBtn.onClick.AddListener(TaskOnTouchConfirm);
         closeBtn.onClick.AddListener(TaskOnTouchClose);
@@ -24,6 +31,7 @@ public class ConfirmNotification : MonoBehaviour
 
     void TaskOnTouchConfirm()
     {
+        ConfirmAudio();
         dataManager.Load();
         marketMenu.priceOutput.text = "Secili";
         dataManager.data.totalCoin -= dataManager.data.sharkPrice[marketMenu.sharkIndex];
@@ -38,5 +46,12 @@ public class ConfirmNotification : MonoBehaviour
     void TaskOnTouchClose()
     {
         confirmPanel.gameObject.SetActive(false);
+    }
+
+    void ConfirmAudio()
+    {
+        audioSrc = marketArea.GetComponent<AudioSource>();
+        audioSrc.clip = buyClip;
+        audioSrc.Play();
     }
 }

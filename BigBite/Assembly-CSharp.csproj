@@ -76,6 +76,7 @@
     <Compile Include="Assets\Epic Toon FX\Epic Toon FX\Scripts\ETFXLightFade.cs" />
     <Compile Include="Assets\Epic Toon FX\Epic Toon FX\Scripts\ETFXPitchRandomizer.cs" />
     <Compile Include="Assets\Epic Toon FX\Epic Toon FX\Scripts\ETFXRotation.cs" />
+    <Compile Include="Assets\Script\Audio.cs" />
     <Compile Include="Assets\Script\CameraFollow.cs" />
     <Compile Include="Assets\Script\CoinRotate.cs" />
     <Compile Include="Assets\Script\ConfirmNotification.cs" />

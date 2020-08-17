@@ -138,7 +138,6 @@ public class SharkSwim : MonoBehaviour
 
         FinishTable(other);
 
-
         Debug.Log("health: " + health + " mana: " + mana);
     }
 
@@ -196,8 +195,13 @@ public class SharkSwim : MonoBehaviour
                     sharkCreate.BarrierCoinPlus();
                 }
                 //Çarpıştığı zaman event yayınlar
-                OnDamage?.Invoke();
+                OnDamage?.Invoke(); 
                 StartCoroutine(Dizzy());
+
+                if (collider.transform.childCount > 0)
+                {
+                    Destroy(collider.transform.GetChild(0).gameObject);
+                }
                 
                 break;
             }
@@ -217,7 +221,6 @@ public class SharkSwim : MonoBehaviour
                 Instantiate(otherParticle[i], collider.transform.position, Quaternion.identity);
             }
         }
-        Destroy(collider.transform.gameObject);
     }
 
     IEnumerator Dizzy()
@@ -289,7 +292,7 @@ public class SharkSwim : MonoBehaviour
                             {
                                 mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                             }
-                            Destroy(collider.transform.gameObject);
+                            Destroy(collider.transform.GetChild(0).gameObject);
                             AnimStop("Swim");
                             AnimPlay("Eat");
                             fishCounter++;
@@ -311,7 +314,7 @@ public class SharkSwim : MonoBehaviour
             barrelPower = true;
             Instantiate(barrelParticle, collider.transform.position, Quaternion.identity);
             gamaCreatedParticle = Instantiate(gamaParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Quaternion.Euler(0, 180, 0));
-            Destroy(collider.transform.gameObject);
+            Destroy(collider.transform.GetChild(0).gameObject);
         }
     }
 
@@ -339,7 +342,6 @@ public class SharkSwim : MonoBehaviour
     void RespawnParticle()
     {
         Instantiate(respawnParticle, transform.position, Quaternion.identity);
-
     }
 
     // coine degdiginde yapilmasi gerekenleri yapar
@@ -348,7 +350,7 @@ public class SharkSwim : MonoBehaviour
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
             Instantiate(coinParticle, collider.transform.position, Quaternion.identity);
-            Destroy(collider.transform.gameObject);
+            Destroy(collider.transform.GetChild(0).gameObject);
             AnimStop("Swim");
             AnimPlay("Eat"); 
             sharkCreate.CoinCounterPlus();
