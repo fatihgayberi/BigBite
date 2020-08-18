@@ -114,7 +114,9 @@ MonoBehaviour:
     type: 3}
   manaParticle: {fileID: 185442, guid: 8118656e898f2fb4daa469e2393514dd, type: 3}
   seaPrefab:
-  - {fileID: 6286692555497245440, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
+  - {fileID: 6702771209383813778, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
+  - {fileID: 4405318667982597018, guid: b3cc18da106184a418654e5fd9ca3f76, type: 3}
+  - {fileID: 1022911341711757526, guid: 0d54fb618dd55384bb546d1bfb012f89, type: 3}
   finishPrefab: {fileID: 2069770558040581883, guid: 1f4ed0771c3b8104199c4aa02021a668,
     type: 3}
   allObject: []

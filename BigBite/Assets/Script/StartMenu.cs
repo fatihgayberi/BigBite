@@ -6,7 +6,7 @@ public class StartMenu : MonoBehaviour
 {
     SharkCreate sharkCreate;
     MenuControl menuControl;
-    SharkSwim sharkSwim;
+    //SharkSwim sharkSwim;
 
     public GameObject settingsPanel;
 
@@ -18,12 +18,15 @@ public class StartMenu : MonoBehaviour
     public Sprite onVoice;
     public Sprite offVoice;
 
+    bool startedControl;
+
     // Start is called before the first frame update
     void Start()
     {
         menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
-        sharkSwim = FindObjectOfType<SharkSwim>();
+        //sharkSwim = FindObjectOfType<SharkSwim>();
+        PlayerPrefs.SetInt("Start", 0);
         settingsBtn.onClick.AddListener(TaskOnTouchSettings);
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         marketBtn.onClick.AddListener(TaskOnTouchMarket);
@@ -38,7 +41,9 @@ public class StartMenu : MonoBehaviour
     // play butonunu dinler
     void TaskOnTouchPlay()
     {
-        sharkSwim.ResetSecond();
+        //Debug.Log("StartedPositionZ: " + StartedPositionZ());
+        //sharkSwim.ResetSecond();
+        PlayerPrefs.SetInt("Start", 1);
         sharkCreate.setPlayBool(true);
         menuControl.GamePlayMenu(true);
         menuControl.StartMenu(false);
@@ -54,5 +59,4 @@ public class StartMenu : MonoBehaviour
     {
         settingsPanel.gameObject.SetActive(true);
     }
-
 }

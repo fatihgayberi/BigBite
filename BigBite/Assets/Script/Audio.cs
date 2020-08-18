@@ -7,15 +7,11 @@ public class Audio : MonoBehaviour
     AudioSource audioSrcOther;
     AudioSource audioSrcShark;
 
-    SharkSwim sharkSwim;
-
     [SerializeField] AudioClip manaClip;
     [SerializeField] AudioClip respawnClip;
 
     private void Start()
     {
-        sharkSwim = FindObjectOfType<SharkSwim>();
-
         audioSrcShark = GetComponent<AudioSource>();
 
         RespawnAudio();
@@ -56,16 +52,16 @@ public class Audio : MonoBehaviour
             {
                 audioSrcOther.Play();
             }
+            if (name.Contains("Propeller"))
+            {
+                audioSrcOther.Play();
+            }
+            if (name.Contains("Wheel"))
+            {
+                audioSrcOther.Play();
+            }
         }
     }
-
-    //void ManaAudio()
-    //{
-    //    if (sharkSwim.getMana() == 100)// && PlayerPrefs.GetInt("Voice") == 0)
-    //    {
-    //
-    //    }
-    //}
 
     void RespawnAudio()
     {

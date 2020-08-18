@@ -9,7 +9,9 @@ public class SharkSwim : MonoBehaviour
 {
     Sea sea;
     SharkCreate sharkCreate;
-    MenuControl menuControl;
+    //StartMenu startMenu;
+    GamePlayMenu gamePlayMenu;
+    //MenuControl menuControl;
 
     AudioSource audioSrcShark;
     [SerializeField] AudioClip gameOverClip;
@@ -22,12 +24,14 @@ public class SharkSwim : MonoBehaviour
     public float speed; // oyuncunun hizini saklar
     float speedModifier; // ekranda kaydırma islemi hassasiyetini saglar
     static float seaPositionZ; // sea prefabının ilerleyecek bi sekilde olusmasi icin Z duzleminin pozisyonunu saklar
-    float seconds; // oyunun icindeki gecen zamani saklar 
+    //float seconds; // oyunun icindeki gecen zamani saklar 
     float powerTime; // ozel guc icin zaman tutar
     float barrelTime;
-    float endedGameTimer; // oyunun ne zaman bietecegini saklar
-    float finishPosiztionZ;
+    //float endedGameTimer; // oyunun ne zaman bietecegini saklar
+    //float finishPosiztionZ;
     int fishCounter;
+    float movePositionZ;
+    float positionScor;
 
     public GameObject barrelParticle;
     public GameObject mineParticle;
@@ -41,14 +45,14 @@ public class SharkSwim : MonoBehaviour
 
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
-    GameObject finishSea;
+    //GameObject finishSea;
     GameObject gamaCreatedParticle;
     GameObject dizzyCreatedParticle;
     GameObject manaCreatedParticle;
 
     public List<GameObject> allObject = new List<GameObject>();
 
-    bool gameFinish; // oyunun bitisini saglar
+    //bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
     bool barrelPower;
     bool gameOver; // gameover ise false dondurur
@@ -59,7 +63,8 @@ public class SharkSwim : MonoBehaviour
         audioSrcShark = GetComponent<AudioSource>();
         //InterAdManager.instance.ShowAd();
         anim = GetComponent<Animation>();
-        menuControl = FindObjectOfType<MenuControl>();
+        //menuControl = FindObjectOfType<MenuControl>();
+        //startMenu = FindObjectOfType<StartMenu>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
@@ -67,15 +72,15 @@ public class SharkSwim : MonoBehaviour
         PrefsReset();
         speedModifier = 0.005f; // 0.005f degeri ideal deger
         seaPositionZ = 5f;
-        seconds = 0;
+        //seconds = 0;
         powerTime = 0;
         barrelTime = 0;
-        endedGameTimer = 30f;
-        finishPosiztionZ = 0;
+        //endedGameTimer = 30f;
+        //finishPosiztionZ = 0;
         fishCounter = 0;
         barrelPower = false;
         powerUp = false;
-        gameFinish = false;
+        //gameFinish = false;
         gameOver = true;
         StartedSea();
         RespawnParticle();
@@ -93,8 +98,9 @@ public class SharkSwim : MonoBehaviour
         ParticlePositionUpdate();
         SpecialPower();
         BarrelPower();
-        GameFinish();
-        SecondCounter();
+        PositionWithScoreCounter();
+        //GameFinish();
+        //SecondCounter();
         GameOver();
     }
 
@@ -117,6 +123,22 @@ public class SharkSwim : MonoBehaviour
     void MoveSpeed()
     {
         sharkCreate.getSharkPlayer().transform.position =  new Vector3(sharkCreate.getSharkPlayer().transform.position.x, sharkCreate.getSharkPlayer().transform.position.y, sharkCreate.getSharkPlayer().transform.position.z + speed * Time.deltaTime);
+        movePositionZ = sharkCreate.getSharkPlayer().transform.position.z;
+        if (PlayerPrefs.GetInt("Start") == 1)
+        {
+            positionScor = sharkCreate.getSharkPlayer().transform.position.z;
+            PlayerPrefs.SetInt("Start", 0);
+        }
+    }
+
+    void PositionWithScoreCounter()
+    {        
+        if (movePositionZ - positionScor >= 5f && positionScor != 0)
+        {
+            gamePlayMenu = FindObjectOfType<GamePlayMenu>();
+            gamePlayMenu.setScorePlus(2);
+            positionScor += 5;
+        }
     }
 
     void SmoothDirection()
@@ -141,7 +163,7 @@ public class SharkSwim : MonoBehaviour
 
         StartCoroutine(CoinWin(other));
 
-        FinishTable(other);
+        //FinishTable(other);
 
         Debug.Log("health: " + health + " mana: " + mana);
     }
@@ -272,6 +294,8 @@ public class SharkSwim : MonoBehaviour
                 {
                     if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name))
                     {
+                        gamePlayMenu = FindObjectOfType<GamePlayMenu>();
+                        gamePlayMenu.setScorePlus(20);
                         Instantiate(fishParticle, collider.transform.position, Quaternion.identity);
 
                         if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
@@ -367,8 +391,10 @@ public class SharkSwim : MonoBehaviour
     // coine degdiginde yapilmasi gerekenleri yapar
     IEnumerator CoinWin(Collider collider)
     {
+        gamePlayMenu = FindObjectOfType<GamePlayMenu>();
         if (collider.transform.gameObject.name.Contains(sea.coin.gameObject.name))
         {
+            gamePlayMenu.setScorePlus(5);
             Instantiate(coinParticle, collider.transform.position, Quaternion.identity);
 
             if (collider.transform.childCount > 0)
@@ -394,26 +420,20 @@ public class SharkSwim : MonoBehaviour
     }
 
     // finish e geldiginde yapilmasi gerekenleri yapar
-    void FinishTable(Collider collider)
-    {
-        if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
-        {
-            AnimStop("Swim");
-            sharkCreate.setPlayBool(false);
-            menuControl.GamePlayMenu(false);
-            health = sharkCreate.getSelectHealth();
-            speed = sharkCreate.getSelectSpeed();
-            mana = 0;
-            powerUp = false;
-            //PlayerPrefs.SetInt("AddMobWinnerCounter", 1 + PlayerPrefs.GetInt("AddMobWinnerCounter"));
-            //if (PlayerPrefs.GetInt("AddMobWinnerCounter") == 5)
-            //{
-            //    InterAdManager.instance.ShowAd();
-            //    PlayerPrefs.SetInt("AddMobWinnerCounter", 0);
-            //}
-            SceneManager.LoadScene("FinishScene");
-        }
-    }
+    //void FinishTable(Collider collider)
+    //{
+    //    if (collider.transform.gameObject.name.Contains(finishPrefab.gameObject.name))
+    //    {
+    //        AnimStop("Swim");
+    //        sharkCreate.setPlayBool(false);
+    //        menuControl.GamePlayMenu(false);
+    //        health = sharkCreate.getSelectHealth();
+    //        speed = sharkCreate.getSelectSpeed();
+    //        mana = 0;
+    //        powerUp = false;
+    //        SceneManager.LoadScene("FinishScene");
+    //    }
+    //}
 
     // ozel gucu gercekler
     void SpecialPower()
@@ -444,27 +464,27 @@ public class SharkSwim : MonoBehaviour
     }
 
     // oyunun suresini tutar
-    void SecondCounter()
-    {
-        if (sharkCreate.getPlayBool())
-        {
-            seconds += Time.deltaTime;
-        }
-    }
+    //void SecondCounter()
+    //{
+    //    if (sharkCreate.getPlayBool())
+    //    {
+    //        seconds += Time.deltaTime;
+    //    }
+    //}
 
 
 
     // oyunu bitirir
-    void GameFinish()
-    {
-        if (seconds > endedGameTimer && !gameFinish)
-        {
-            finishPosiztionZ = seaPositionZ;
-            finishSea = Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
-            seaPositionZ += 15;
-            gameFinish = true;
-        }
-    }
+    //void GameFinish()
+    //{
+    //    if (seconds > endedGameTimer && !gameFinish)
+    //    {
+    //        finishPosiztionZ = seaPositionZ;
+    //        finishSea = Instantiate(finishPrefab, new Vector3(0, 0, seaPositionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+    //        seaPositionZ += 15;
+    //        gameFinish = true;
+    //    }
+    //}
 
     // yenen balık sayisini return eder
     public int getFishCounter()
@@ -490,50 +510,51 @@ public class SharkSwim : MonoBehaviour
     }
 
     // oyunun suresinin dolup dolmadıgını return eder
-    public bool getEndedGameTimer()
-    {
-        if (seconds > endedGameTimer)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+    //public bool getEndedGameTimer()
+    //{
+    //    if (seconds > endedGameTimer)
+    //    {
+    //        return false;
+    //    }
+    //    else
+    //    {
+    //        return true;
+    //    }
+    //}
 
     public void GameOver()
     {
         if (health <= 0 && gameOver)
         {
-            GameOverAudio();
-            gameOver = false;
-            gameFinish = true;
-            menuControl.GameOverMenu(true);
-            menuControl.GamePlayMenu(false);
-
-            if (allObject != null)
-            {
-                for (int i = 0; i < allObject.Count; i++)
-                {
-                    Destroy(allObject[i]);
-                }
-                allObject.Clear();
-            }
-            Destroy(finishSea);
-            GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
-            Instantiate(seaObject, new Vector3(0, 0, finishPosiztionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
+            SceneManager.LoadScene("FinishScene");
+            //GameOverAudio();
+            //gameOver = false;
+            //gameFinish = true;
+            //menuControl.GameOverMenu(true);
+            //menuControl.GamePlayMenu(false);
+            //
+            //if (allObject != null)
+            //{
+            //    for (int i = 0; i < allObject.Count; i++)
+            //    {
+            //        Destroy(allObject[i]);
+            //    }
+            //    allObject.Clear();
+            //}
+            //Destroy(finishSea);
+            //GameObject seaObject = seaPrefab[Random.Range(0, seaPrefab.Length)];
+            //Instantiate(seaObject, new Vector3(0, 0, finishPosiztionZ), Quaternion.Euler(new Vector3(0, 90, 0)));
         }
     }
 
-    void GameOverAudio()
-    {
-        if (PlayerPrefs.GetInt("Voice") != 0)
-        {
-            audioSrcShark.clip = gameOverClip;
-            audioSrcShark.Play();
-        }
-    }
+    //void GameOverAudio()
+    //{
+    //    if (PlayerPrefs.GetInt("Voice") != 0)
+    //    {
+    //        audioSrcShark.clip = gameOverClip;
+    //        audioSrcShark.Play();
+    //    }
+    //}
 
     public void ResetHealth()
     {
@@ -559,20 +580,20 @@ public class SharkSwim : MonoBehaviour
 
     }
 
-    public void ResetGameOver()
-    {
-        gameOver = true;
-    }
+    //public void ResetGameOver()
+    //{
+    //    gameOver = true;
+    //}
 
-    public void ResetSecond()
-    {
-        seconds = 0f;
-    }
+    //public void ResetSecond()
+    //{
+    //    seconds = 0f;
+    //}
 
-    public void setGameFinish(bool mode)
-    {
-        gameFinish = mode;
-    }
+    //public void setGameFinish(bool mode)
+    //{
+    //    gameFinish = mode;
+    //}
 
     public void AnimPlay(string clip)
     {

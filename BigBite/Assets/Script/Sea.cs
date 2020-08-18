@@ -40,10 +40,12 @@ public class Sea : MonoBehaviour
     void LevelAddOject()
     {
         // damage ogelerini ekler
-        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[0], 5, 1)); // 0-10 bölüm arası basit bölümlerden oluşacak
-        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[1], 10, 2)); // 10 - 15 bölüm arası kutular dahil edilecek
-        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[2], 15, 3)); // 15 - 20 bölüm arası mayın dahil edilecek
-        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[3], 20, 4)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
+        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[0], 15, 1)); // 0-10 bölüm arası basit bölümlerden oluşacak
+        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[1], 20, 2)); // 10 - 15 bölüm arası kutular dahil edilecek
+        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[2], 25, 3)); // 15 - 20 bölüm arası mayın dahil edilecek
+        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[3], 30, 4)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
+        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[4], 35, 5)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
+        seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[5], 40, 6)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
         //seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[4], 25, 5)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
 
         // advantage ogelerini ekler
@@ -74,7 +76,7 @@ public class Sea : MonoBehaviour
     {
         GameObject barrier;
 
-        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
+        if (sharkCreate.getPlayBool()) //&& sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
         {
             for (int i = 0; i < 3; i++)
             {
@@ -89,12 +91,12 @@ public class Sea : MonoBehaviour
 
     void RandomBarrelGenerator()
     {
-        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
+        if (sharkCreate.getPlayBool()) //&& sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
         {
             GameObject brl;
             int possibility = Random.Range(0, 100);
 
-            if (possibility <= 30)
+            if (possibility <= 10)
             {
                 brl = Instantiate(barrel, new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
                 sharkSwim.allObject.Add(brl);
@@ -111,7 +113,7 @@ public class Sea : MonoBehaviour
     {
         GameObject fish;
 
-        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
+        if (sharkCreate.getPlayBool()) //&& sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
         {
             int fishCount = seaAdvantageObjectArray.Length;
             fish = Instantiate(seaAdvantageObject[Random.Range(0, fishCount)].getSeaGameObject(), new Vector3(RandomPositionXGenarator(), 0.3f, advantageFishPositionZ), Quaternion.identity);
@@ -125,7 +127,7 @@ public class Sea : MonoBehaviour
     void CoinCreate()
     {
         GameObject coinObject;
-        if (sharkCreate.getPlayBool() && sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
+        if (sharkCreate.getPlayBool()) //&& sharkSwim.getEndedGameTimer() && sharkSwim.getGameOver())
         {
             int count = Random.Range(3, 5);
             for (int i = 0; i < count; i++)
