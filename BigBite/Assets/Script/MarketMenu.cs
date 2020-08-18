@@ -28,6 +28,7 @@ public class MarketMenu : MonoBehaviour
     public GameObject[] powerSpineSprite;
 
     public GameObject marketArea;
+    public GameObject updateParticle;
 
     GameObject sharkOnTheScreen;
 
@@ -61,8 +62,6 @@ public class MarketMenu : MonoBehaviour
         BtnControl();
         SpeedSkeletActive(SpeedActiveIndexFind());
         PowerSkeletActive(PowerActiveIndexFind());
-
-        //StartCoroutine(SharkOnTheScreenStart());
 
         SpeedUpdatePrice();
         PowerUpdatePrice();
@@ -256,6 +255,8 @@ public class MarketMenu : MonoBehaviour
                 audioSrc.Play();
             }
 
+            UpdateParticle();
+
             SpeedUpdatePrice();
 
             dataManager.Save();
@@ -300,10 +301,17 @@ public class MarketMenu : MonoBehaviour
                 audioSrc.Play();
             }
 
+            UpdateParticle();
+
             PowerUpdatePrice();
 
             dataManager.Save();
         }
+    }
+
+    void UpdateParticle()
+    {
+        Instantiate(updateParticle, sharkOnTheScreen.transform.position, Quaternion.identity);
     }
 
     void PowerUpdatePrice()

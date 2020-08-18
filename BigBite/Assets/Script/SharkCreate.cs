@@ -24,11 +24,11 @@ public class SharkCreate : MonoBehaviour
     // kopekbaliklarini listeye ekler
     void SharkAdd()
     {
-        shark.Add(new Shark(sharkArray[0], 100f, SelectSharkSpeed(), SelectSharkPower(), 9.5f, 1));
-        shark.Add(new Shark(sharkArray[1], 150f, SelectSharkSpeed(), SelectSharkPower(), 10f, 2));
-        shark.Add(new Shark(sharkArray[2], 200f, SelectSharkSpeed(), SelectSharkPower(), 10.5f, 3));
-        shark.Add(new Shark(sharkArray[3], 250f, SelectSharkSpeed(), SelectSharkPower(), 11f, 4));
-        shark.Add(new Shark(sharkArray[4], 300f, SelectSharkSpeed(), SelectSharkPower(), 11.5f, 5));
+        shark.Add(new Shark(sharkArray[0], 100f, SelectSharkSpeed(), SelectSharkPower(), 9.5f));
+        shark.Add(new Shark(sharkArray[1], 150f, SelectSharkSpeed(), SelectSharkPower(), 10f));
+        shark.Add(new Shark(sharkArray[2], 200f, SelectSharkSpeed(), SelectSharkPower(), 10.5f));
+        shark.Add(new Shark(sharkArray[3], 250f, SelectSharkSpeed(), SelectSharkPower(), 11f));
+        shark.Add(new Shark(sharkArray[4], 300f, SelectSharkSpeed(), SelectSharkPower(), 11.5f));
     }
 
     // shark oluşturur
@@ -42,12 +42,6 @@ public class SharkCreate : MonoBehaviour
     public GameObject getSharkPlayer()
     {
         return sharkPlayer;
-    }
-
-    // kopekbaliginin indexini return eder
-    public int getSharkIndex()
-    {
-        return sharkIndex;
     }
 
     // secili sharkin canini return eder
@@ -74,22 +68,10 @@ public class SharkCreate : MonoBehaviour
         return shark[sharkIndex].getManaPower();
     }
 
-    // secili sharkin seviyesini return eder
-    public int getSelectLevel()
-    {
-        return shark[sharkIndex].getLevel();
-    }
-
     // oyuncunun parasini return eder
     public int getCoinCounter()
     {
         return coinCounter;
-    }
-
-    public void ResetCoinCounter()
-    {
-        coinCounter = 0;
-        PlayerPrefs.SetInt("Coin", coinCounter);
     }
 
     // oyuncunun parasini 1 arttırır

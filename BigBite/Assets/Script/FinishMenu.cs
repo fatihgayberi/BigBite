@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FinishMenu : MonoBehaviour
 {
     AudioSource audioSrc;
-    [SerializeField] AudioClip finishClip;
+    public AudioClip finishClip;
 
     public DataManager dataManager;
 
@@ -15,6 +15,7 @@ public class FinishMenu : MonoBehaviour
     public Text fishPrizeTxt;
     public Text barrelCoinTxt;
     public Text totalCoinTxt;
+    public Text totalScoreTxt;
 
     public Button playBtn;
     public Button homeBtn;
@@ -35,6 +36,7 @@ public class FinishMenu : MonoBehaviour
     {
         audioSrc = seaArea.GetComponent<AudioSource>();
         FinishAudio();
+        HighScoreSave();
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         homeBtn.onClick.AddListener(TaskOnTouchkHome);
         SelectedShark();
@@ -48,6 +50,7 @@ public class FinishMenu : MonoBehaviour
     void CanvasOutput()
     {
         UpdateStar();
+        TotalScoreOutput();
         SumFishOutput(PlayerPrefs.GetInt("fish"));
         SumCoinOutput(PlayerPrefs.GetInt("Coin"));
         PrizeFishOutput();
@@ -90,8 +93,14 @@ public class FinishMenu : MonoBehaviour
         totalCoinTxt.text = totalCoin + "";
     }
 
+    void TotalScoreOutput()
+    {
+        totalScoreTxt.text = PlayerPrefs.GetInt("GameScore").ToString();
+    }
+
     public void TaskOnTouchPlay()
     {
+        PlayerPrefs.SetInt("Start", 1);
         FinishSave();
         SceneManager.LoadScene("GameScene");
     }
@@ -104,7 +113,7 @@ public class FinishMenu : MonoBehaviour
 
     public void UpdateStar()
     {
-        totalCoin = PlayerPrefs.GetInt("Coin");//sharkCreate.getCoinCounter();
+        totalCoin = PlayerPrefs.GetInt("Coin");
         if (PlayerPrefs.GetInt("fish") >= 3)
         {
             star1.gameObject.GetComponent<Image>().sprite = starActive;
@@ -154,6 +163,16 @@ public class FinishMenu : MonoBehaviour
         dataManager.Load();
         dataManager.data.totalCoin += totalCoin;
         dataManager.Save();
+    }
+
+    void HighScoreSave()
+    {
+        dataManager.Load();
+        if (PlayerPrefs.GetInt("GameScore") > dataManager.data.HighScore)
+        {
+            dataManager.data.HighScore = PlayerPrefs.GetInt("GameScore");
+            dataManager.Save();
+        }
     }
 
     void FinishAudio()

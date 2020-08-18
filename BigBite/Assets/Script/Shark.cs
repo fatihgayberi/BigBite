@@ -9,16 +9,14 @@ public class Shark
     float sharkSpeed; // sharkin hizini tutar
     float sharkManaTime; // sharkin manasi fullendiginde sharkManaTime kadar mana ozel guc calisir
     float sharkManaPower; // ozel guc calistiginda hizi sharkManaPower kadar olur
-    int sharkLevel; // sharkin level duzeyini tutar
 
-    public Shark(GameObject sharkObject, float sharkHP, float sharkSpeed, float sharkManaTime, float sharkManaPower, int sharkLevel)
+    public Shark(GameObject sharkObject, float sharkHP, float sharkSpeed, float sharkManaTime, float sharkManaPower)
     {
         this.sharkObject = sharkObject;
         this.sharkHP = sharkHP;
         this.sharkSpeed = sharkSpeed;
         this.sharkManaTime = sharkManaTime;
         this.sharkManaPower = sharkManaPower;
-        this.sharkLevel = sharkLevel;
     }
 
     public GameObject getSharkObject()
@@ -44,10 +42,5 @@ public class Shark
     public float getManaPower()
     {
         return sharkManaPower;
-    }
-
-    public int getLevel()
-    {
-        return sharkLevel;
     }
 }

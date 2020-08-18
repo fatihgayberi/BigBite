@@ -24,12 +24,6 @@ public class PausePanel : MonoBehaviour
         VibrateStart();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void TaskOnTouchVoice()
     {
         VoiceIconChange();

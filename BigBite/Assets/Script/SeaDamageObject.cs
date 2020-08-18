@@ -9,11 +9,10 @@ public class SeaDamageObject
     public float powerOfObject;
     public int levelRating;
 
-    public SeaDamageObject(GameObject seaGameObject, float powerOfObject, int levelRating)
+    public SeaDamageObject(GameObject seaGameObject, float powerOfObject)
     {
         this.seaGameObject = seaGameObject;
         this.powerOfObject = powerOfObject;
-        this.levelRating = levelRating;
     }
 
     // engel objesini return eder
@@ -28,9 +27,4 @@ public class SeaDamageObject
         return powerOfObject;
     }
 
-    // engel seviyesini return eder
-    public int getLevelRating()
-    {
-        return levelRating;
-    }
 }

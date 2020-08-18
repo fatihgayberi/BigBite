@@ -8,7 +8,6 @@ public class GamePlayMenu : MonoBehaviour
     SharkSwim sharkSwim;
     SharkCreate SharkCreate;
     HealthBar healthBar;
-    //ManaBar manaBar;
 
     public Text coinCounter;
     public Text fishCounter;
@@ -23,20 +22,16 @@ public class GamePlayMenu : MonoBehaviour
 
     private void Start()
     {
-        //totalScore = 0;
         healthBar = FindObjectOfType<HealthBar>();
-        //manaBar = FindObjectOfType<ManaBar>();
         sharkSwim = FindObjectOfType<SharkSwim>();
         pauseBtn.onClick.AddListener(TaskOnTouchPause);
         healthBar.SetMaxHealth(sharkSwim.getHealth());
-        //manaBar.SetMaxMana(100f);
     }
     private void Update()
     {
         OutputCoinAndFish();
         healthBar.SetHealth(sharkSwim.getHealth());
         ScoreOutput();
-        //manaBar.SetMana(sharkSwim.getMana());
     }
 
     // sayaclari output eder

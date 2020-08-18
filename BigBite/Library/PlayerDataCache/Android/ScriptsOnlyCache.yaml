@@ -9,7 +9,6 @@ ScriptsOnlyBuild:
     - DestroyLine
     - EpicToonFX.ETFXRotation
     - FinishMenu
-    - GameOverMenu
     - GamePlayMenu
     - HealthBar
     - InterAdManager
@@ -198,8 +197,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12670}
     - Class: 114
-      Script: {instanceID: 12690}
-    - Class: 114
       Script: {instanceID: 12770}
     - Class: 114
       Script: {instanceID: 13018}
@@ -315,6 +312,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -531,13 +532,13 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: e8f65db25176028245a1ed482974be61
+      Hash: 8e9bd2eedc73fd92ce838a4f69dbca00
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishMenu
   - hash:
       serializedVersion: 2
-      Hash: 884df4d4fd35d52ae1a295540f527ebe
+      Hash: 6e44e801f14dc1cdecb9bf84fca7b555
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuControl
@@ -573,7 +574,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 2831c1a907f4f8a6898aef8a5796e4d2
+      Hash: 3322067a8278d67808508340685865af
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartMenu
@@ -693,7 +694,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 6381897866261931fee2c5e59d34e8df
+      Hash: c41f0fdc723aa70e88f812423caabee7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MarketMenu
@@ -715,12 +716,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalReceiver
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameOverMenu
   - hash:
       serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a

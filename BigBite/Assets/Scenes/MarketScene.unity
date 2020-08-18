@@ -499,6 +499,8 @@ MonoBehaviour:
   - {fileID: 590139838}
   - {fileID: 2129770049}
   marketArea: {fileID: 6286692556639198183}
+  updateParticle: {fileID: 5913830630216273532, guid: e8bd265efc2d41e4f85c385fb1b848d5,
+    type: 3}
   totalCoin: {fileID: 829861871}
   priceOutput: {fileID: 1537821259}
   speedLevelTxt: {fileID: 216168652}

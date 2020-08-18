@@ -7,8 +7,8 @@ public class Audio : MonoBehaviour
     AudioSource audioSrcOther;
     AudioSource audioSrcShark;
 
-    [SerializeField] AudioClip manaClip;
-    [SerializeField] AudioClip respawnClip;
+    public AudioClip manaClip;
+    public AudioClip respawnClip;
 
     private void Start()
     {

@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
+    public DataManager dataManager;
     SharkCreate sharkCreate;
     MenuControl menuControl;
-    //SharkSwim sharkSwim;
 
     public GameObject settingsPanel;
 
@@ -15,34 +15,26 @@ public class StartMenu : MonoBehaviour
     public Button voiceBtn;
     public Button settingsBtn;
 
+    public Text highScoreTxt;
+
     public Sprite onVoice;
     public Sprite offVoice;
-
-    bool startedControl;
 
     // Start is called before the first frame update
     void Start()
     {
         menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
-        //sharkSwim = FindObjectOfType<SharkSwim>();
+        HighScore();
         PlayerPrefs.SetInt("Start", 0);
         settingsBtn.onClick.AddListener(TaskOnTouchSettings);
         playBtn.onClick.AddListener(TaskOnTouchPlay);
         marketBtn.onClick.AddListener(TaskOnTouchMarket);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // play butonunu dinler
     void TaskOnTouchPlay()
     {
-        //Debug.Log("StartedPositionZ: " + StartedPositionZ());
-        //sharkSwim.ResetSecond();
         PlayerPrefs.SetInt("Start", 1);
         sharkCreate.setPlayBool(true);
         menuControl.GamePlayMenu(true);
@@ -58,5 +50,11 @@ public class StartMenu : MonoBehaviour
     void TaskOnTouchSettings()
     {
         settingsPanel.gameObject.SetActive(true);
+    }
+
+    void HighScore()
+    {
+        dataManager.Load();
+        highScoreTxt.text = "EN YÜKSEK PUAN: " + dataManager.data.HighScore;
     }
 }
