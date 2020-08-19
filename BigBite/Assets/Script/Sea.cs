@@ -49,7 +49,9 @@ public class Sea : MonoBehaviour
 
         // advantage ogelerini ekler
         seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[0], 10, 25));
-        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[1], 15, 30));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[1], 10, 25));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[2], 15, 30));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[3], 15, 30));
     }
 
     // advantage ogesi spawn eder
@@ -142,7 +144,7 @@ public class Sea : MonoBehaviour
     {
         int possibility = Random.Range(0, 100);
 
-        if (possibility <= 10 && sharkCreate.getSelectHealth()/2 >= sharkCreate.getSelectHealth())
+        if (possibility <= 10 && sharkCreate.getSelectHealth() * 0.75f >= sharkSwim.getHealth())
         {
             Instantiate(health, new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
         }        

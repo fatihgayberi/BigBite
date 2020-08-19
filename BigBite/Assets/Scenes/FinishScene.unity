@@ -2693,6 +2693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finishClip: {fileID: 8300000, guid: 327a4f15cbc66a342ad3bba5f9fca0a8, type: 3}
+  highScoreClip: {fileID: 8300000, guid: 490dcfe3a96634e42a85def1bc7115a0, type: 3}
   dataManager: {fileID: 4629309535745622669}
   coinSumTxt: {fileID: 4629309534249029075}
   fishSumTxt: {fileID: 4629309535995592819}

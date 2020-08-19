@@ -8,6 +8,7 @@ public class FinishMenu : MonoBehaviour
     AudioSource audioSrc;
     Animation anim;
     public AudioClip finishClip;
+    public AudioClip highScoreClip;
 
     public DataManager dataManager;
 
@@ -187,8 +188,16 @@ public class FinishMenu : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Voice") != 0)
         {
-            audioSrc.clip = finishClip;
-            audioSrc.Play();
+            if (PlayerPrefs.GetInt("GameScore") > dataManager.data.HighScore)
+            {
+                audioSrc.clip = highScoreClip;
+                audioSrc.Play();
+            }
+            else
+            {
+                audioSrc.clip = finishClip;
+                audioSrc.Play();
+            }
         }
     }
 

@@ -3,7 +3,6 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Audio
     - CameraFollow
-    - CoinRotate
     - ConfirmNotification
     - DataManager
     - DestroyLine
@@ -16,6 +15,7 @@ ScriptsOnlyBuild:
     - MarketMenu
     - MenuControl
     - Notification
+    - ObjectRotate
     - PausePanel
     - ScrollScene
     - Sea
@@ -100,11 +100,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12492}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 13480}
     - Class: 114
-      Script: {instanceID: 13510}
+      Script: {instanceID: 13508}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -114,6 +114,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -197,27 +201,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12670}
     - Class: 114
-      Script: {instanceID: 12770}
+      Script: {instanceID: 12768}
     - Class: 114
-      Script: {instanceID: 13018}
+      Script: {instanceID: 13016}
     - Class: 114
-      Script: {instanceID: 13026}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13030}
+      Script: {instanceID: 13028}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13276}
+      Script: {instanceID: 13274}
     - Class: 114
-      Script: {instanceID: 13320}
+      Script: {instanceID: 13318}
+    - Class: 114
+      Script: {instanceID: 13478}
     - Class: 114
       Script: {instanceID: 13480}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 13508}
     - Class: 114
-      Script: {instanceID: 13510}
-    - Class: 114
-      Script: {instanceID: 13516}
+      Script: {instanceID: 13514}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -296,13 +300,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12612}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 13386}
     - Class: 114
-      Script: {instanceID: 13482}
+      Script: {instanceID: 13480}
     - Class: 114
-      Script: {instanceID: 13510}
+      Script: {instanceID: 13508}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -349,7 +353,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: CoinRotate
+    className: ObjectRotate
   - hash:
       serializedVersion: 2
       Hash: b41f6a02beff5d31b9210834dce1767e
@@ -532,7 +536,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: 8e9bd2eedc73fd92ce838a4f69dbca00
+      Hash: 88e745054598338d7fbfc9fb182d95f7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FinishMenu
@@ -700,7 +704,7 @@ ScriptsOnlyBuild:
     className: MarketMenu
   - hash:
       serializedVersion: 2
-      Hash: 39c9c2826fdacdf16d2ba65e2f1d2d98
+      Hash: b43cc62d393ee4331d14415aed0e3ee6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GamePlayMenu
@@ -790,7 +794,7 @@ ScriptsOnlyBuild:
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: 8dd404dcf7f0cd495b6e18fd659297d4
+      Hash: f84998a227a49e7c475b2ec6f0800aa5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SharkSwim
@@ -928,7 +932,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 1d834dbdec28d6e271560aec8ff02bf4
+      Hash: 3190119aae2eb8232d8adea9c36780ea
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Sea

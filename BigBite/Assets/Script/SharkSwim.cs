@@ -196,6 +196,8 @@ public class SharkSwim : MonoBehaviour
         {
             if (collider.transform.name.Contains(sea.seaDamageObject[i].getSeaGameObject().name))
             {
+                gamePlayMenu = FindObjectOfType<GamePlayMenu>();
+                gamePlayMenu.ResetCombatFishCounterPlus();
                 Vibrator();
                 DamageParticle(collider);
                 // ozel guc baslamadigi surece ve varile degmedigi surece canin azalmasini saglar
@@ -243,7 +245,7 @@ public class SharkSwim : MonoBehaviour
         {
             dizzyCreatedParticle = Instantiate(dizzyParticle, GetComponent<Collider>().transform.position, Quaternion.identity);
             speedModifier = 0.001f;
-            speed = 1;
+            speed /= 2;
             yield return new WaitForSeconds(2f);
             Destroy(dizzyCreatedParticle);
             speedModifier = 0.01f;
@@ -284,6 +286,7 @@ public class SharkSwim : MonoBehaviour
                         gamePlayMenu = FindObjectOfType<GamePlayMenu>();
                         gamePlayMenu.setScorePlus(20);
                         Instantiate(fishParticle, collider.transform.position, Quaternion.identity);
+                        gamePlayMenu.CombatFishCounterPlus();
 
                         if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() >= 100f)
                         {
@@ -434,6 +437,7 @@ public class SharkSwim : MonoBehaviour
                 mana = 0;
                 powerTime = 0f;
                 speed = sharkCreate.getSelectSpeed();
+                Destroy(manaCreatedParticle);
             }
         }
     }

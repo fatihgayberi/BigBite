@@ -13,12 +13,20 @@ public class GamePlayMenu : MonoBehaviour
     public Text fishCounter;
     public Text totalScoreOutput;
 
+    public GameObject[] combatImg;
+
     public Button pauseBtn;
 
     public GameObject pausePanel;
 
     int totalScore = 0;
+    int combatFishCounter = 0;
 
+    bool combatController = false;
+
+    public Sprite killer;
+    public Sprite hunter;
+    public Sprite dread;
 
     private void Start()
     {
@@ -32,6 +40,8 @@ public class GamePlayMenu : MonoBehaviour
         OutputCoinAndFish();
         healthBar.SetHealth(sharkSwim.getHealth());
         ScoreOutput();
+        CombatSystem();
+        StartCoroutine(CombatImageRemove());
     }
 
     // sayaclari output eder
@@ -51,6 +61,46 @@ public class GamePlayMenu : MonoBehaviour
         pausePanel.gameObject.SetActive(true);
     }
 
+    void CombatSystem()
+    {
+        if (combatFishCounter > 0 && combatController)
+        {
+            combatController = false;
+            int randomIndex;
+            randomIndex = Random.Range(0, combatImg.Length);
+
+            while (combatImg[randomIndex].gameObject.GetComponent<Image>().sprite == null)
+            {
+                combatImg[randomIndex].SetActive(true);
+                if (combatFishCounter < 3)
+                {
+                    combatImg[randomIndex].gameObject.GetComponent<Image>().sprite = killer;
+                }
+                else if (combatFishCounter < 5)
+                {
+                    combatImg[randomIndex].gameObject.GetComponent<Image>().sprite = hunter;
+                }
+                else if(combatFishCounter > 5)
+                {
+                    combatImg[randomIndex].gameObject.GetComponent<Image>().sprite = dread;
+                }
+            }
+        }
+    }
+
+    IEnumerator CombatImageRemove()
+    {
+        for (int i = 0; i < combatImg.Length; i++)
+        {
+            if (combatImg[i].gameObject.GetComponent<Image>().sprite != null)
+            {
+                yield return new WaitForSeconds(0.5f);
+                combatImg[i].gameObject.GetComponent<Image>().sprite = null;
+                combatImg[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
     void ScoreOutput()
     {
         totalScoreOutput.text = totalScore + "";
@@ -64,5 +114,16 @@ public class GamePlayMenu : MonoBehaviour
     public int getScore()
     {
         return totalScore;
+    }
+
+    public void CombatFishCounterPlus()
+    {
+        combatFishCounter++;
+        combatController = true;
+    }
+
+    public void ResetCombatFishCounterPlus()
+    {
+        combatFishCounter = 0;
     }
 }
