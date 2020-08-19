@@ -78,7 +78,6 @@
     <Compile Include="Assets\Epic Toon FX\Epic Toon FX\Scripts\ETFXRotation.cs" />
     <Compile Include="Assets\Script\Audio.cs" />
     <Compile Include="Assets\Script\CameraFollow.cs" />
-    <Compile Include="Assets\Script\CoinRotate.cs" />
     <Compile Include="Assets\Script\ConfirmNotification.cs" />
     <Compile Include="Assets\Script\DataManager.cs" />
     <Compile Include="Assets\Script\DestroyLine.cs" />
@@ -90,6 +89,7 @@
     <Compile Include="Assets\Script\MarketMenu.cs" />
     <Compile Include="Assets\Script\MenuControl.cs" />
     <Compile Include="Assets\Script\Notification.cs" />
+    <Compile Include="Assets\Script\ObjectRotate.cs" />
     <Compile Include="Assets\Script\PausePanel.cs" />
     <Compile Include="Assets\Script\PlayerData.cs" />
     <Compile Include="Assets\Script\ScrollScene.cs" />

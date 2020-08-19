@@ -60,6 +60,10 @@ public class Audio : MonoBehaviour
             {
                 audioSrcOther.Play();
             }
+            if (name.Contains("Health"))
+            {
+                audioSrcOther.Play();
+            }
         }
     }
 

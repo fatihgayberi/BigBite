@@ -49,7 +49,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0251470399692f14a98369a02ad9d275, type: 2}
+  - {fileID: 2100000, guid: 9aa6173bd86f0774499481170d79b61a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -349,13 +349,15 @@ MonoBehaviour:
   gamaParticle: {fileID: 135720, guid: efbd9c58ba892da4ca3fa50dcfcd894d, type: 3}
   dizzyParticle: {fileID: 109542, guid: 2ed06ab528b7c474eb9246421cd7c791, type: 3}
   coinParticle: {fileID: 143964, guid: 09d9de58ef3bf5444ac94afa0e6013cb, type: 3}
-  fishParticle: {fileID: 147890, guid: a4a1462c4d222c040ba20b5994e8a35f, type: 3}
+  fishParticle: {fileID: 352343774753480462, guid: 83f78c60b294897459a1d7ab54e1f498,
+    type: 3}
   otherParticle:
   - {fileID: 153256, guid: fe394d041df1a0547990f49cf653249f, type: 3}
   - {fileID: 167276, guid: 48b70001f3e22c7429ee06b99087e45e, type: 3}
   respawnParticle: {fileID: 1250201152801508, guid: dd46de4320f3d1b4087b5f9c0a24ab36,
     type: 3}
   manaParticle: {fileID: 185442, guid: 8118656e898f2fb4daa469e2393514dd, type: 3}
+  healthParticle: {fileID: 147890, guid: a4a1462c4d222c040ba20b5994e8a35f, type: 3}
   seaPrefab:
   - {fileID: 6702771209383813778, guid: 32cdd0912a38af84cb4a95dd94632716, type: 3}
   - {fileID: 4405318667982597018, guid: b3cc18da106184a418654e5fd9ca3f76, type: 3}

@@ -13,6 +13,7 @@ public class Sea : MonoBehaviour
     public List<SeaAdvantageObject> seaAdvantageObject = new List<SeaAdvantageObject>(); // engellerin ozelliklerini tutan list
     public GameObject coin; // oyundaki altini tutar unity uzerinden eklenir
     public GameObject barrel;
+    public GameObject health;
 
     public static float damagePositionZ; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageFishPositionZ; // advantage objelerinin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
@@ -27,6 +28,7 @@ public class Sea : MonoBehaviour
         SpawnAdvantageObject();
         RandomBarrelGenerator();
         CoinCreate();
+        HealthCreate();
     }
 
     private void Update()
@@ -134,6 +136,16 @@ public class Sea : MonoBehaviour
                 advantageCoinPositionZ += 1f;
             }
         }
+    }
+
+    void HealthCreate()
+    {
+        int possibility = Random.Range(0, 100);
+
+        if (possibility <= 10 && sharkCreate.getSelectHealth()/2 >= sharkCreate.getSelectHealth())
+        {
+            Instantiate(health, new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
+        }        
     }
 
     void PositionControlZ()

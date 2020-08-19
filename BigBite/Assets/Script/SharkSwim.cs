@@ -37,6 +37,7 @@ public class SharkSwim : MonoBehaviour
     public GameObject[] otherParticle;
     public GameObject respawnParticle;
     public GameObject manaParticle;
+    public GameObject healthParticle;
 
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
@@ -50,7 +51,7 @@ public class SharkSwim : MonoBehaviour
     //bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
     bool barrelPower;
-    bool gameOver; // gameover ise false dondurur
+    //bool gameOver; // gameover ise false dondurur
 
     public Action OnDamage;
     void Start()
@@ -69,7 +70,7 @@ public class SharkSwim : MonoBehaviour
         fishCounter = 0;
         barrelPower = false;
         powerUp = false;
-        gameOver = true;
+        //gameOver = true;
         StartedSea();
         RespawnParticle();
     }
@@ -93,7 +94,7 @@ public class SharkSwim : MonoBehaviour
     // sag sol yapmasini saglar
     void Move()
     {
-        if (Input.touchCount > 0 && sharkCreate.getPlayBool() && gameOver)
+        if (Input.touchCount > 0 && sharkCreate.getPlayBool())
         {
             Touch touch;
 
@@ -130,7 +131,7 @@ public class SharkSwim : MonoBehaviour
     void SmoothDirection()
     {
         float x = transform.position.x;
-        x = Mathf.Clamp(x, -2.30f, 2.30f);
+        x = Mathf.Clamp(x, -3.75f, 3f);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 
@@ -149,6 +150,8 @@ public class SharkSwim : MonoBehaviour
 
         StartCoroutine(CoinWin(other));
 
+        HealthColliderControl(other);
+
         Debug.Log("health: " + health + " mana: " + mana);
     }
 
@@ -157,7 +160,7 @@ public class SharkSwim : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("Edge"))
         {
-            speed = 1;
+            speed = sharkCreate.getSelectSpeed()/2;
             Vibrator();
         }
     }
@@ -282,16 +285,6 @@ public class SharkSwim : MonoBehaviour
                         gamePlayMenu.setScorePlus(20);
                         Instantiate(fishParticle, collider.transform.position, Quaternion.identity);
 
-                        //if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() > sharkCreate.getSelectHealth())
-                        //{
-                        //    health = sharkCreate.getSelectHealth();
-                        //}
-                        //
-                        //if (health + sea.seaAdvantageObject[i].getPowerOfObjectHP() <= sharkCreate.getSelectHealth())
-                        //{
-                        //    health += sea.seaAdvantageObject[i].getPowerOfObjectHP();
-                        //}
-
                         if (mana + sea.seaAdvantageObject[i].getPowerOfObjectMana() >= 100f)
                         {
                             ManaAudio();
@@ -331,6 +324,29 @@ public class SharkSwim : MonoBehaviour
         }
     }
 
+    void HealthColliderControl(Collider collider)
+    {
+        if (collider.transform.gameObject.name.Contains(sea.health.gameObject.name))
+        {
+            Instantiate(healthParticle, collider.transform.position, Quaternion.identity);
+
+            if (health + 25 > sharkCreate.getSelectHealth())
+            {
+                health = sharkCreate.getSelectHealth();
+            }
+
+            if (health + 25 <= sharkCreate.getSelectHealth())
+            {
+                health += 25;
+            }
+
+            if (collider.transform.childCount > 0)
+            {
+                Destroy(collider.transform.GetChild(0).gameObject);
+            }
+        }
+    }
+
     void BarrelColliderControl(Collider collider)
     {
         if (collider.transform.gameObject.name.Contains(sea.barrel.gameObject.name))
@@ -341,16 +357,14 @@ public class SharkSwim : MonoBehaviour
             if (collider.transform.childCount > 0)
             {
                 Destroy(collider.transform.GetChild(0).gameObject);
-            }
-            
+            }            
         }
     }
 
     void BarrelPower()
     {
         if (barrelPower)
-        {
- 
+        { 
             barrelTime += Time.deltaTime;
 
             if (barrelTime <= sharkCreate.getSelectManaTime())
@@ -456,7 +470,7 @@ public class SharkSwim : MonoBehaviour
 
     public void GameOver()
     {
-        if (health <= 0 && gameOver)
+        if (health <= 0)
         {
             PlayerPrefs.SetInt("GameScore", gamePlayMenu.getScore());
             SceneManager.LoadScene("FinishScene");

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FinishMenu : MonoBehaviour
 {
     AudioSource audioSrc;
+    Animation anim;
     public AudioClip finishClip;
 
     public DataManager dataManager;
@@ -29,17 +30,21 @@ public class FinishMenu : MonoBehaviour
 
     public GameObject[] sharkArray;
     public GameObject seaArea;
+    public GameObject highScoreParticle;
+    public GameObject highScoreAlert;
+    GameObject screenShark;
+
 
     int totalCoin;
 
     void Start()
     {
         audioSrc = seaArea.GetComponent<AudioSource>();
+        SelectedShark();
         FinishAudio();
         HighScoreSave();
         playBtn.onClick.AddListener(TaskOnTouchPlay);
-        homeBtn.onClick.AddListener(TaskOnTouchkHome);
-        SelectedShark();
+        homeBtn.onClick.AddListener(TaskOnTouchkHome);        
     }
 
     void Update()
@@ -139,23 +144,24 @@ public class FinishMenu : MonoBehaviour
         switch (sharkIndex)
         {
             case 0:
-                Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
+                screenShark = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
                 break;
             case 1:
-                Instantiate(sharkArray[sharkIndex], new Vector3(-1f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
+                screenShark = Instantiate(sharkArray[sharkIndex], new Vector3(-1f, 3.5f, 0f), Quaternion.Euler(0, -90, 10));
                 break;
             case 2:
-                Instantiate(sharkArray[sharkIndex], new Vector3(-0.5f, 3.7f, 0f), Quaternion.Euler(0, -90, 0));
+                screenShark = Instantiate(sharkArray[sharkIndex], new Vector3(-0.5f, 3.7f, 0f), Quaternion.Euler(0, -90, 0));
                 break;
             case 3:
-                Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.7f, -0.5f), Quaternion.Euler(0, -90, 0));
+                screenShark = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.7f, -0.5f), Quaternion.Euler(0, -90, 0));
                 break;
             case 4:
-                Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.7f, -0.5f), Quaternion.Euler(0, -90, 0));
+                screenShark = Instantiate(sharkArray[sharkIndex], new Vector3(0f, 3.7f, -0.5f), Quaternion.Euler(0, -90, 0));
                 break;
             default:
                 break;
         }
+        AnimPlay(screenShark);
     }
 
     void FinishSave()
@@ -172,6 +178,8 @@ public class FinishMenu : MonoBehaviour
         {
             dataManager.data.HighScore = PlayerPrefs.GetInt("GameScore");
             dataManager.Save();
+            Instantiate(highScoreParticle, screenShark.transform.position, Quaternion.identity);
+            highScoreAlert.SetActive(true);
         }
     }
 
@@ -182,5 +190,11 @@ public class FinishMenu : MonoBehaviour
             audioSrc.clip = finishClip;
             audioSrc.Play();
         }
+    }
+
+    void AnimPlay(GameObject finishShark)
+    {
+        anim = finishShark.transform.GetChild(0).gameObject.GetComponent<Animation>();
+        anim.Play("Finish");
     }
 }
