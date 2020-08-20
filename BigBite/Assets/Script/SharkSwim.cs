@@ -10,6 +10,7 @@ public class SharkSwim : MonoBehaviour
     Sea sea;
     SharkCreate sharkCreate;
     GamePlayMenu gamePlayMenu;
+    MenuControl menuControl;
 
     AudioSource audioSrcShark;
     public AudioClip gameOverClip;
@@ -56,11 +57,12 @@ public class SharkSwim : MonoBehaviour
         audioSrcShark = GetComponent<AudioSource>();
         anim = GetComponent<Animation>();
         sharkCreate = FindObjectOfType<SharkCreate>();
+        menuControl = FindObjectOfType<MenuControl>();
         health = sharkCreate.getSelectHealth();
         speed = sharkCreate.getSelectSpeed();
         mana = 0;
         PrefsReset();
-        speedModifier = 0.005f; // 0.005f degeri ideal deger
+        speedModifier = 0.01f; // 0.005f degeri ideal deger
         seaPositionZ = 5f;
         powerTime = 0;
         barrelTime = 0;
@@ -277,7 +279,7 @@ public class SharkSwim : MonoBehaviour
             {
                 if (collider != null)
                 {
-                    if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name))
+                    if (collider.transform.name.Contains(sea.seaAdvantageObject[i].getSeaGameObject().transform.GetChild(j).gameObject.name) && collider.transform.childCount > 0)
                     {
                         gamePlayMenu = FindObjectOfType<GamePlayMenu>();
                         gamePlayMenu.setScorePlus(20);
@@ -296,7 +298,7 @@ public class SharkSwim : MonoBehaviour
                         {
                             mana += sea.seaAdvantageObject[i].getPowerOfObjectMana();
                         }
-                        if (collider.transform.childCount > 0)
+                        //if ()
                         {
                             Destroy(collider.transform.GetChild(0).gameObject);
                         }

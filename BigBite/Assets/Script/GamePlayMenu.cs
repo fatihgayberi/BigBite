@@ -74,14 +74,17 @@ public class GamePlayMenu : MonoBehaviour
                 if (combatFishCounter < 3)
                 {
                     combatImg[randomIndex].gameObject.GetComponent<Image>().sprite = killer;
+                    break;
                 }
-                else if (combatFishCounter < 5)
+                else if (3 <= combatFishCounter && combatFishCounter < 5)
                 {
                     combatImg[randomIndex].gameObject.GetComponent<Image>().sprite = hunter;
+                    break;
                 }
-                else if(combatFishCounter > 5)
+                else if(combatFishCounter >= 5)
                 {
                     combatImg[randomIndex].gameObject.GetComponent<Image>().sprite = dread;
+                    break;
                 }
             }
         }

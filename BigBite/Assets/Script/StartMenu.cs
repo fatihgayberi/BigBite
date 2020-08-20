@@ -26,6 +26,7 @@ public class StartMenu : MonoBehaviour
         menuControl = FindObjectOfType<MenuControl>();
         sharkCreate = FindObjectOfType<SharkCreate>();
         HighScore();
+        GamePlay();
         PlayerPrefs.SetInt("Start", 0);
         settingsBtn.onClick.AddListener(TaskOnTouchSettings);
         playBtn.onClick.AddListener(TaskOnTouchPlay);
@@ -39,6 +40,15 @@ public class StartMenu : MonoBehaviour
         sharkCreate.setPlayBool(true);
         menuControl.GamePlayMenu(true);
         menuControl.StartMenu(false);
+    }
+    void GamePlay()
+    {
+        if (PlayerPrefs.GetInt("Start") == 1)
+        {
+            sharkCreate.setPlayBool(true);
+            menuControl.GamePlayMenu(true);
+            menuControl.StartMenu(false);
+        }
     }
 
     // market butonunu dinler

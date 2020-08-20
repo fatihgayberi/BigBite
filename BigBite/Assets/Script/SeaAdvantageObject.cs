@@ -6,13 +6,11 @@ using UnityEngine;
 public class SeaAdvantageObject
 {
     public GameObject seaGameObject;
-    public float powerOfObjectHP;
     public float powerOfObjectMana;
 
-    public SeaAdvantageObject(GameObject seaGameObject, float powerOfObjectHP, float powerOfObjectMana)
+    public SeaAdvantageObject(GameObject seaGameObject, float powerOfObjectMana)
     {
         this.seaGameObject = seaGameObject;
-        this.powerOfObjectHP = powerOfObjectHP;
         this.powerOfObjectMana = powerOfObjectMana;
     }
 
@@ -20,12 +18,6 @@ public class SeaAdvantageObject
     public GameObject getSeaGameObject()
     {
         return seaGameObject;
-    }
-
-    // faydali objenin kazandirdigi cani return eder
-    public float getPowerOfObjectHP()
-    {
-        return powerOfObjectHP;
     }
 
     // faydali objenin kazandirdigi manayi return eder

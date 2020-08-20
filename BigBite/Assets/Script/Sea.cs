@@ -18,6 +18,8 @@ public class Sea : MonoBehaviour
     public static float damagePositionZ; // engellerin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageFishPositionZ; // advantage objelerinin ilerleyecek bi sekilde olusmasi icin z duzleminin pozisyonunu tutar
     static float advantageCoinPositionZ;
+    static float advantageBarrelPositionZ;
+    static float advantageHealthPositionZ;
 
     void Start()
     {
@@ -48,10 +50,10 @@ public class Sea : MonoBehaviour
         seaDamageObject.Add(new SeaDamageObject(seaDamageObjectArray[5], 40)); // 20 -… bölümlerde radyo aktif kutular dahil edilecek ve hepsi karışık gelmeye başlayacak
 
         // advantage ogelerini ekler
-        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[0], 10, 25));
-        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[1], 10, 25));
-        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[2], 15, 30));
-        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[3], 15, 30));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[0], 10));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[1], 10));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[2], 20));
+        seaAdvantageObject.Add(new SeaAdvantageObject(seaAdvantageObjectArray[3], 20));
     }
 
     // advantage ogesi spawn eder
@@ -86,6 +88,8 @@ public class Sea : MonoBehaviour
                 damagePositionZ += 4.8f;
                 advantageFishPositionZ = damagePositionZ - 0.5f;
                 advantageCoinPositionZ = damagePositionZ - 0.8f;
+                advantageBarrelPositionZ = damagePositionZ - 1f;
+                advantageHealthPositionZ = damagePositionZ - 1.3f;
             }
         }
     }
@@ -99,11 +103,8 @@ public class Sea : MonoBehaviour
 
             if (possibility <= 10)
             {
-                brl = Instantiate(barrel, new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
+                brl = Instantiate(barrel, new Vector3(RandomPositionXGenarator(), 0.3f, advantageBarrelPositionZ), Quaternion.identity);
                 sharkSwim.allObject.Add(brl);
-                damagePositionZ += 4.8f;
-                advantageFishPositionZ = damagePositionZ - 0.5f;
-                advantageCoinPositionZ = damagePositionZ - 0.8f;
             }
         }
 
@@ -146,7 +147,7 @@ public class Sea : MonoBehaviour
 
         if (possibility <= 10 && sharkCreate.getSelectHealth() * 0.75f >= sharkSwim.getHealth())
         {
-            Instantiate(health, new Vector3(RandomPositionXGenarator(), 0.3f, damagePositionZ), Quaternion.identity);
+            Instantiate(health, new Vector3(RandomPositionXGenarator(), 0.3f, advantageHealthPositionZ), Quaternion.identity);
         }        
     }
 
