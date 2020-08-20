@@ -41,17 +41,14 @@ public class SharkSwim : MonoBehaviour
 
     public GameObject[] seaPrefab; // sea prefablarını tutan array unity uzerinden duzenlenir
     public GameObject finishPrefab; // bitis prefabı unity uzerinden atamasi yapilir
-    //GameObject finishSea;
     GameObject gamaCreatedParticle;
     GameObject dizzyCreatedParticle;
     GameObject manaCreatedParticle;
 
     public List<GameObject> allObject = new List<GameObject>();
 
-    //bool gameFinish; // oyunun bitisini saglar
     bool powerUp; // ozel guc durumunu saklar
     bool barrelPower;
-    //bool gameOver; // gameover ise false dondurur
 
     public Action OnDamage;
     void Start()
@@ -70,7 +67,6 @@ public class SharkSwim : MonoBehaviour
         fishCounter = 0;
         barrelPower = false;
         powerUp = false;
-        //gameOver = true;
         StartedSea();
         RespawnParticle();
     }

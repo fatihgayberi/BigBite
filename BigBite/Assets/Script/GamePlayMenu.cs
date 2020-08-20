@@ -67,9 +67,8 @@ public class GamePlayMenu : MonoBehaviour
         {
             combatController = false;
             int randomIndex;
-            randomIndex = Random.Range(0, combatImg.Length);
 
-            while (combatImg[randomIndex].gameObject.GetComponent<Image>().sprite == null)
+            while (combatImg[randomIndex = Random.Range(0, combatImg.Length)].gameObject.GetComponent<Image>().sprite == null)
             {
                 combatImg[randomIndex].SetActive(true);
                 if (combatFishCounter < 3)
@@ -95,8 +94,8 @@ public class GamePlayMenu : MonoBehaviour
             if (combatImg[i].gameObject.GetComponent<Image>().sprite != null)
             {
                 yield return new WaitForSeconds(0.5f);
-                combatImg[i].gameObject.GetComponent<Image>().sprite = null;
                 combatImg[i].gameObject.SetActive(false);
+                combatImg[i].gameObject.GetComponent<Image>().sprite = null;
             }
         }
     }
