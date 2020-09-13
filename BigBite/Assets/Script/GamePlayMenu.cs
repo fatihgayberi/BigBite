@@ -50,8 +50,8 @@ public class GamePlayMenu : MonoBehaviour
         sharkSwim = FindObjectOfType<SharkSwim>();
         SharkCreate = FindObjectOfType<SharkCreate>();
 
-        fishCounter.text = sharkSwim.getFishCounter() + " BALIK";
-        coinCounter.text = SharkCreate.getCoinCounter() + " ALTIN";
+        fishCounter.text = sharkSwim.getFishCounter() + " FISH";
+        coinCounter.text = SharkCreate.getCoinCounter() + " GOLD";
     }
 
     // pause panelini active eder

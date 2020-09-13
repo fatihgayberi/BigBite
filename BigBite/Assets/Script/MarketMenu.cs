@@ -86,7 +86,7 @@ public class MarketMenu : MonoBehaviour
     void TotalCoin()
     {
         dataManager.Load();
-        this.totalCoin.text = dataManager.data.totalCoin + " Altın";
+        this.totalCoin.text = dataManager.data.totalCoin + " Gold";
     }
     void TaskOnTouchBack()
     {
@@ -189,17 +189,17 @@ public class MarketMenu : MonoBehaviour
         dataManager.Load();
         if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex == sharkIndex)
         {
-            priceOutput.text = "Secili";
+            priceOutput.text = "Chosen";
             specialPower.gameObject.SetActive(true);
         }
         if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex != sharkIndex) 
         {
-            priceOutput.text = "Sec";
+            priceOutput.text = "Choose";
             specialPower.gameObject.SetActive(true);
         }
         if (!dataManager.data.buyingShark[sharkIndex])
         {
-            priceOutput.text = dataManager.data.sharkPrice[sharkIndex] + " ALTIN";
+            priceOutput.text = dataManager.data.sharkPrice[sharkIndex] + " GOLD";
             specialPower.gameObject.SetActive(false);
         }
     }
@@ -209,7 +209,7 @@ public class MarketMenu : MonoBehaviour
         if (dataManager.data.buyingShark[sharkIndex])
         {
             dataManager.Load();
-            priceOutput.text = "Secili";
+            priceOutput.text = "Chosen";
             dataManager.data.selectedSharkIndex = sharkIndex;
             dataManager.Save();
             specialPower.gameObject.SetActive(true);
@@ -245,7 +245,7 @@ public class MarketMenu : MonoBehaviour
         {
             dataManager.data.sharkSpeed[sharkIndex] += 0.5f;
             dataManager.data.totalCoin -= dataManager.data.sharkSpeedPrice[sharkIndex];
-            totalCoin.text = dataManager.data.totalCoin + " ALTIN";
+            totalCoin.text = dataManager.data.totalCoin + " GOLD";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
             SpeedSkeletActive(SpeedActiveIndexFind());
             
@@ -267,7 +267,7 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
-            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " GOLD";
         }
         else
         {
@@ -291,7 +291,7 @@ public class MarketMenu : MonoBehaviour
         {
             dataManager.data.sharkPower[sharkIndex] += 0.5f;
             dataManager.data.totalCoin -= dataManager.data.sharkPowerPrice[sharkIndex];
-            totalCoin.text = dataManager.data.totalCoin + " ALTIN";
+            totalCoin.text = dataManager.data.totalCoin + " GOLD";
             dataManager.data.sharkPowerPrice[sharkIndex] += 10;
             PowerSkeletActive(PowerActiveIndexFind());
 
@@ -318,7 +318,7 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
-            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " ALTIN";
+            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " GOLD";
         }
         else
         {
@@ -394,7 +394,7 @@ public class MarketMenu : MonoBehaviour
         }
         else
         {
-            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " ALTIN";
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " GOLD";
         }
         
     }
@@ -419,7 +419,7 @@ public class MarketMenu : MonoBehaviour
         }
         else
         {
-            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " ALTIN";
+            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " GOLD";
         }
 
     }

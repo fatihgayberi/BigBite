@@ -65,6 +65,6 @@ public class StartMenu : MonoBehaviour
     void HighScore()
     {
         dataManager.Load();
-        highScoreTxt.text = "EN YÜKSEK PUAN: " + dataManager.data.HighScore;
+        highScoreTxt.text = "HIGH SCORE: " + dataManager.data.HighScore;
     }
 }

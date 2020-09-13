@@ -33,11 +33,11 @@ public class ConfirmNotification : MonoBehaviour
     {
         ConfirmAudio();
         dataManager.Load();
-        marketMenu.priceOutput.text = "Secili";
+        marketMenu.priceOutput.text = "Chosen";
         dataManager.data.totalCoin -= dataManager.data.sharkPrice[marketMenu.sharkIndex];
         dataManager.data.buyingShark[marketMenu.sharkIndex] = true;
         dataManager.data.selectedSharkIndex = marketMenu.sharkIndex;
-        marketMenu.totalCoin.text = dataManager.data.totalCoin + " ALTIN";
+        marketMenu.totalCoin.text = dataManager.data.totalCoin + " GOLD";
         marketMenu.specialPower.gameObject.SetActive(true);
         dataManager.Save();
         confirmPanel.gameObject.SetActive(false);
