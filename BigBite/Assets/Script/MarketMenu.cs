@@ -86,7 +86,7 @@ public class MarketMenu : MonoBehaviour
     void TotalCoin()
     {
         dataManager.Load();
-        this.totalCoin.text = dataManager.data.totalCoin + " Gold";
+        this.totalCoin.text = dataManager.data.totalCoin + " Coin";
     }
     void TaskOnTouchBack()
     {
@@ -189,17 +189,17 @@ public class MarketMenu : MonoBehaviour
         dataManager.Load();
         if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex == sharkIndex)
         {
-            priceOutput.text = "Chosen";
+            priceOutput.text = "Selected";
             specialPower.gameObject.SetActive(true);
         }
         if (dataManager.data.buyingShark[sharkIndex] && dataManager.data.selectedSharkIndex != sharkIndex) 
         {
-            priceOutput.text = "Choose";
+            priceOutput.text = "Select";
             specialPower.gameObject.SetActive(true);
         }
         if (!dataManager.data.buyingShark[sharkIndex])
         {
-            priceOutput.text = dataManager.data.sharkPrice[sharkIndex] + " GOLD";
+            priceOutput.text = dataManager.data.sharkPrice[sharkIndex] + " Coin";
             specialPower.gameObject.SetActive(false);
         }
     }
@@ -209,7 +209,7 @@ public class MarketMenu : MonoBehaviour
         if (dataManager.data.buyingShark[sharkIndex])
         {
             dataManager.Load();
-            priceOutput.text = "Chosen";
+            priceOutput.text = "Selected";
             dataManager.data.selectedSharkIndex = sharkIndex;
             dataManager.Save();
             specialPower.gameObject.SetActive(true);
@@ -223,7 +223,7 @@ public class MarketMenu : MonoBehaviour
             }
             else
             {
-                notificationOutput = "Yeterli altın yok.";
+                notificationOutput = "Not enough coin";
                 notificationPanel.gameObject.SetActive(true);
             }
         }
@@ -233,19 +233,19 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.totalCoin < dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
-            notificationOutput = "Yeterli altın yok.";
+            notificationOutput = "Not enough coin";
             notificationPanel.gameObject.SetActive(true);
         }
         else if (dataManager.data.sharkSpeedPrice[sharkIndex] == 100)
         {
-            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
+            notificationOutput = "Max Rank!";
             notificationPanel.gameObject.SetActive(true);
         }
         if (dataManager.data.totalCoin >= dataManager.data.sharkSpeedPrice[sharkIndex] && dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
             dataManager.data.sharkSpeed[sharkIndex] += 0.5f;
             dataManager.data.totalCoin -= dataManager.data.sharkSpeedPrice[sharkIndex];
-            totalCoin.text = dataManager.data.totalCoin + " GOLD";
+            totalCoin.text = dataManager.data.totalCoin + " Coin";
             dataManager.data.sharkSpeedPrice[sharkIndex] += 10;
             SpeedSkeletActive(SpeedActiveIndexFind());
             
@@ -267,7 +267,7 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.sharkSpeedPrice[sharkIndex] != 100)
         {
-            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " GOLD";
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " Coin";
         }
         else
         {
@@ -279,19 +279,19 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.totalCoin < dataManager.data.sharkPowerPrice[sharkIndex] && dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
-            notificationOutput = "Yeterli altın yok.";
+            notificationOutput = "Not enough coin";
             notificationPanel.gameObject.SetActive(true);
         }
         else if(dataManager.data.sharkPowerPrice[sharkIndex] == 100)
         {
-            notificationOutput = "Bu özellik daha fazla yükseltilemez.";
+            notificationOutput = "Max Rank!";
             notificationPanel.gameObject.SetActive(true);
         }
         if (dataManager.data.totalCoin >= dataManager.data.sharkPowerPrice[sharkIndex] && dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
             dataManager.data.sharkPower[sharkIndex] += 0.5f;
             dataManager.data.totalCoin -= dataManager.data.sharkPowerPrice[sharkIndex];
-            totalCoin.text = dataManager.data.totalCoin + " GOLD";
+            totalCoin.text = dataManager.data.totalCoin + " Coin";
             dataManager.data.sharkPowerPrice[sharkIndex] += 10;
             PowerSkeletActive(PowerActiveIndexFind());
 
@@ -318,7 +318,7 @@ public class MarketMenu : MonoBehaviour
     {
         if (dataManager.data.sharkPowerPrice[sharkIndex] != 100)
         {
-            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " GOLD";
+            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " Coin";
         }
         else
         {
@@ -394,7 +394,7 @@ public class MarketMenu : MonoBehaviour
         }
         else
         {
-            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " GOLD";
+            speedUpTxt.text = dataManager.data.sharkSpeedPrice[sharkIndex] + " Coin";
         }
         
     }
@@ -419,7 +419,7 @@ public class MarketMenu : MonoBehaviour
         }
         else
         {
-            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " GOLD";
+            powerUpTxt.text = dataManager.data.sharkPowerPrice[sharkIndex] + " Coin";
         }
 
     }

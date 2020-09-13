@@ -65,6 +65,6 @@ public class StartMenu : MonoBehaviour
     void HighScore()
     {
         dataManager.Load();
-        highScoreTxt.text = "HIGH SCORE: " + dataManager.data.HighScore;
+        highScoreTxt.text = "High Score: " + dataManager.data.HighScore;
     }
 }
