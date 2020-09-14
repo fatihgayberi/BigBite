@@ -100,12 +100,10 @@ public class MarketMenu : MonoBehaviour
             sharkIndex--;
             SelectedShark();
             rightBtn.gameObject.GetComponent<Image>().sprite = btnActive;
-            Debug.Log("sharkIndex left: " + sharkIndex);
         }
         if (sharkIndex == 0)
         {
             leftBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
-            Debug.Log("sharkIndex left none: " + sharkIndex);
         }
         SpeedSkeletInActive();
         PowerSkeletInActive();
@@ -119,13 +117,11 @@ public class MarketMenu : MonoBehaviour
         {
             sharkIndex++;
             SelectedShark();
-            Debug.Log("sharkIndex right: " + sharkIndex);
             leftBtn.gameObject.GetComponent<Image>().sprite = btnActive;
         }
         if (sharkIndex == sharkArray.Length - 1)
         {
             rightBtn.gameObject.GetComponent<Image>().sprite = btnInActive;
-            Debug.Log("sharkIndex right none: " + sharkIndex);
         }
         SpeedSkeletInActive();
         PowerSkeletInActive();

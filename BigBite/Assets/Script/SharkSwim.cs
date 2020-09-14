@@ -54,6 +54,9 @@ public class SharkSwim : MonoBehaviour
     public Action OnDamage;
     void Start()
     {
+        IronSourceScript_.Instante.LoadInterstitial();//BU kod reklamı yükler bekletir
+
+
         audioSrcShark = GetComponent<AudioSource>();
         anim = GetComponent<Animation>();
         sharkCreate = FindObjectOfType<SharkCreate>();
@@ -150,7 +153,6 @@ public class SharkSwim : MonoBehaviour
 
         HealthColliderControl(other);
 
-        Debug.Log("health: " + health + " mana: " + mana);
     }
 
     // kenarlara degdigi surece hızını dusurur
@@ -404,7 +406,6 @@ public class SharkSwim : MonoBehaviour
             AnimStop("Swim");
             AnimPlay("Eat"); 
             sharkCreate.CoinCounterPlus();
-            Debug.Log("Coin: " + sharkCreate.getCoinCounter());
             yield return new WaitForSeconds(1f);
             AnimPlay("Swim");
         }
@@ -476,6 +477,13 @@ public class SharkSwim : MonoBehaviour
         {
             PlayerPrefs.SetInt("GameScore", gamePlayMenu.getScore());
             SceneManager.LoadScene("FinishScene");
+            PlayerPrefs.SetInt("LevelIronSource", PlayerPrefs.GetInt("LevelIronSource") + 1);
+            if (PlayerPrefs.GetInt("LevelIronSource") == 4)
+            {
+                Debug.Log("Geçiş Reklamı Çalıştı.");
+                IronSourceScript_.Instante.ShowInterstitial();
+                PlayerPrefs.SetInt("LevelIronSource", 0);
+            }
         }
     }
 
