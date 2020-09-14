@@ -1006,4 +1006,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/GameScene.unity
   - Assets/Scenes/MarketScene.unity
   - Assets/Scenes/FinishScene.unity
-  playerPath: C:/Users/fatih/Desktop/Apk/BigBite.apk
+  playerPath: C:/Users/fatih/Desktop/BigBite.aab
